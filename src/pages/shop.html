@@ -1,0 +1,645 @@
+<!doctype html>
+<html class="no-js" lang="ru">
+  @include('../components/head/head.html')
+
+  <body>
+    <div class="main-wrapper">
+      <!--  Header Start -->
+      @include('../components/layout/header.html')
+      <!--  Header Start -->
+      <!-- breadcrumb-area start -->
+      <div class="breadcrumb-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <!-- breadcrumb-list start -->
+              <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                  <a href="index.html">Главная</a>
+                </li>
+                <li class="breadcrumb-item active">Каталог часов</li>
+              </ul>
+              <!-- breadcrumb-list end -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- breadcrumb-area end -->
+
+      <!-- main-content-wrap start -->
+      <div class="main-content-wrap shop-page section-ptb">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 order-lg-1 order-2">
+              <!-- shop-sidebar-wrap start -->
+              <div class="shop-sidebar-wrap">
+                <div class="shop-box-area">
+                  <!--sidebar-categores-box start  -->
+                  <div class="sidebar-categores-box shop-sidebar mb-30">
+                    <h4 class="title">Категории</h4>
+                    <!-- category-sub-menu start -->
+                    <div class="category-sub-menu">
+                      <ul>
+                        <li class="has-sub">
+                          <a href="#">Мужские часы</a>
+                          <ul>
+                            <li><a href="#">Классические (15)</a></li>
+                            <li><a href="#">Спортивные (12)</a></li>
+                            <li><a href="#">Хронографы (8)</a></li>
+                          </ul>
+                        </li>
+                        <li class="has-sub">
+                          <a href="#">Женские часы</a>
+                          <ul>
+                            <li><a href="#">Элегантные (10)</a></li>
+                            <li><a href="#">Коктейльные (6)</a></li>
+                            <li><a href="#">Повседневные (14)</a></li>
+                          </ul>
+                        </li>
+                        <li class="has-sub">
+                          <a href="#">Смарт-часы</a>
+                          <ul>
+                            <li><a href="#">Apple Watch (5)</a></li>
+                            <li><a href="#">Samsung Galaxy (4)</a></li>
+                            <li><a href="#">Спортивные трекеры (7)</a></li>
+                          </ul>
+                        </li>
+                        <li class="has-sub">
+                          <a href="#">Премиум класс</a>
+                          <ul>
+                            <li><a href="#">Золотые (3)</a></li>
+                            <li><a href="#">С бриллиантами (2)</a></li>
+                            <li><a href="#">Лимитированные (4)</a></li>
+                          </ul>
+                        </li>
+                        <li class="has-sub">
+                          <a href="#">Винтажные часы</a>
+                          <ul>
+                            <li><a href="#">Советские (8)</a></li>
+                            <li><a href="#">Ретро стиль (6)</a></li>
+                            <li><a href="#">Коллекционные (5)</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- category-sub-menu end -->
+                  </div>
+                  <!--sidebar-categores-box end  -->
+
+                  <!-- shop-sidebar start -->
+                  <div class="shop-sidebar mb-30">
+                    <h4 class="title">Фильтр по цене</h4>
+                    <!-- filter-price-content start -->
+                    <div class="filter-price-content">
+                      <form action="#" method="post">
+                        <div id="price-slider" class="price-slider"></div>
+                        <div class="filter-price-wapper">
+                          <a class="add-to-cart-button" href="#">
+                            <span>ПРИМЕНИТЬ</span>
+                          </a>
+                          <div class="filter-price-cont">
+                            <span>Цена:</span>
+                            <div class="input-type">
+                              <input
+                                type="text"
+                                id="min-price"
+                                readonly=""
+                                placeholder="₽0" />
+                            </div>
+                            <span>—</span>
+                            <div class="input-type">
+                              <input
+                                type="text"
+                                id="max-price"
+                                readonly=""
+                                placeholder="₽50000" />
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- filter-price-content end -->
+                  </div>
+                  <!-- shop-sidebar end -->
+
+                  <!-- shop-sidebar start -->
+                  <div class="shop-sidebar mb-30">
+                    <h4 class="title">Бренды</h4>
+
+                    <ul class="category-widget-list">
+                      <li><a href="#">Rolex (8)</a></li>
+                      <li><a href="#">Omega (6)</a></li>
+                      <li><a href="#">Patek Philippe (4)</a></li>
+                      <li><a href="#">Hublot (5)</a></li>
+                      <li><a href="#">Cartier (7)</a></li>
+                      <li><a href="#">Breitling (6)</a></li>
+                      <li><a href="#">Audemars Piguet (3)</a></li>
+                      <li><a href="#">TAG Heuer (9)</a></li>
+                    </ul>
+                  </div>
+                  <!-- shop-sidebar end -->
+
+                  <!-- shop-sidebar start -->
+                  <div class="shop-sidebar mb-30">
+                    <h4 class="title">Материал корпуса</h4>
+
+                    <ul class="category-widget-list">
+                      <li><a href="#">Нержавеющая сталь (25)</a></li>
+                      <li><a href="#">Золото (8)</a></li>
+                      <li><a href="#">Титан (6)</a></li>
+                      <li><a href="#">Керамика (4)</a></li>
+                      <li><a href="#">Карбон (3)</a></li>
+                    </ul>
+                  </div>
+                  <!-- shop-sidebar end -->
+
+                  <!-- shop-sidebar start -->
+                  <div class="shop-sidebar mb-30">
+                    <h4 class="title">Теги</h4>
+
+                    <ul class="sidebar-tag">
+                      <li><a href="#">спорт</a></li>
+                      <li><a href="#">классика</a></li>
+                      <li><a href="#">водонепроницаемые</a></li>
+                      <li><a href="#">хронограф</a></li>
+                      <li><a href="#">автоматические</a></li>
+                      <li><a href="#">кварцевые</a></li>
+                      <li><a href="#">швейцарские</a></li>
+                      <li><a href="#">японские</a></li>
+                      <li><a href="#">премиум</a></li>
+                      <li><a href="#">винтаж</a></li>
+                    </ul>
+                  </div>
+                  <!-- shop-sidebar end -->
+                </div>
+              </div>
+              <!-- shop-sidebar-wrap end -->
+            </div>
+            <div class="col-lg-9 order-lg-2 order-1">
+              <!-- shop-product-wrapper start -->
+              <div class="shop-product-wrapper">
+                <div class="row align-itmes-center">
+                  <div class="col">
+                    <!-- shop-top-bar start -->
+                    <div class="shop-top-bar">
+                      <!-- product-view-mode start -->
+
+                      <div class="product-mode">
+                        <!--shop-item-filter-list-->
+                        <ul class="nav shop-item-filter-list" role="tablist">
+                          <li class="active">
+                            <a
+                              class="active grid-view"
+                              data-bs-toggle="tab"
+                              href="#grid">
+                              <i class="fa fa-th"></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              class="list-view"
+                              data-bs-toggle="tab"
+                              href="#list">
+                              <i class="fa fa-th-list"></i>
+                            </a>
+                          </li>
+                        </ul>
+                        <!-- shop-item-filter-list end -->
+                      </div>
+                      <!-- product-view-mode end -->
+                      <!-- product-short start -->
+                      <div class="product-short">
+                        <p>Сортировать по :</p>
+                        <select class="nice-select" name="sortby">
+                          <option value="trending">Популярности</option>
+                          <option value="sales">Названию (А - Я)</option>
+                          <option value="sales">Названию (Я - А)</option>
+                          <option value="rating">Цене (по возрастанию)</option>
+                          <option value="date">Цене (по убыванию)</option>
+                          <option value="newest">Новинкам</option>
+                        </select>
+                      </div>
+                      <!-- product-short end -->
+                    </div>
+                    <!-- shop-top-bar end -->
+                  </div>
+                </div>
+
+                <!-- shop-products-wrap start -->
+                <div class="shop-products-wrap">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="grid">
+                      <div class="shop-product-wrap">
+                        <div class="row" id="products">
+                          <!-- !dynamic content will be added via product-renderer.js -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="list">
+                      <div class="shop-product-list-wrap">
+                        <div class="row product-layout-list mt-30">
+                          <div class="col-lg-3 col-md-3">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product">
+                              <div class="product-image">
+                                <a href="product-details.html">
+                                  <img
+                                    src="assets/images/product/product-01.png"
+                                    alt="Rolex Submariner" />
+                                </a>
+                              </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                          </div>
+
+                          <div class="col-lg-6 col-md-6">
+                            <div class="product-content-list text-left">
+                              <h4>
+                                <a
+                                  href="product-details.html"
+                                  class="product-name">
+                                  Rolex Submariner Date
+                                </a>
+                              </h4>
+                              <div class="price-box">
+                                <span class="new-price">₽42,500</span>
+                                <span class="old-price">₽48,000</span>
+                              </div>
+
+                              <div class="product-rating">
+                                <ul class="d-flex">
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li class="bad-reting">
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                </ul>
+                              </div>
+
+                              <p>
+                                Классические мужские часы с водонепроницаемостью
+                                до 300м. Автоматический механизм, корпус из
+                                нержавеющей стали, керамическая безель.
+                              </p>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-3 col-md-3">
+                            <div class="block2">
+                              <ul class="stock-cont">
+                                <li class="product-sku">
+                                  Артикул:
+                                  <span>RLX-SUB-001</span>
+                                </li>
+                                <li class="product-stock-status">
+                                  Наличие:
+                                  <span class="in-stock">В наличии</span>
+                                </li>
+                              </ul>
+                              <div class="product-button">
+                                <ul class="actions">
+                                  <li class="add-to-wishlist">
+                                    <a
+                                      href="wishlist.html"
+                                      class="add_to_wishlist">
+                                      <i class="icon-heart"></i>
+                                      В избранное
+                                    </a>
+                                  </li>
+                                </ul>
+                                <div class="add-to-cart">
+                                  <div class="product-button-action">
+                                    <a href="#" class="add-to-cart">
+                                      Подробнее
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="shop-product-list-wrap">
+                        <div class="row product-layout-list mt-30">
+                          <div class="col-lg-3 col-md-3">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product">
+                              <div class="product-image">
+                                <a href="product-details.html">
+                                  <img
+                                    src="assets/images/product/product-02.png"
+                                    alt="Omega Speedmaster" />
+                                </a>
+                              </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                          </div>
+
+                          <div class="col-lg-6 col-md-6">
+                            <div class="product-content-list text-left">
+                              <h4>
+                                <a
+                                  href="product-details.html"
+                                  class="product-name">
+                                  Omega Speedmaster Professional
+                                </a>
+                              </h4>
+                              <div class="price-box">
+                                <span class="new-price">₽35,800</span>
+                                <span class="old-price">₽39,500</span>
+                              </div>
+
+                              <div class="product-rating">
+                                <ul class="d-flex">
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                </ul>
+                              </div>
+
+                              <p>
+                                Легендарные часы космонавтов. Механический
+                                хронограф с ручным заводом, тахиметрическая
+                                шкала, устойчивость к магнитным полям.
+                              </p>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-3 col-md-3">
+                            <div class="block2">
+                              <ul class="stock-cont">
+                                <li class="product-sku">
+                                  Артикул:
+                                  <span>OMG-SPD-002</span>
+                                </li>
+                                <li class="product-stock-status">
+                                  Наличие:
+                                  <span class="in-stock">В наличии</span>
+                                </li>
+                              </ul>
+                              <div class="product-button">
+                                <ul class="actions">
+                                  <li class="add-to-wishlist">
+                                    <a
+                                      href="wishlist.html"
+                                      class="add_to_wishlist">
+                                      <i class="icon-heart"></i>
+                                      В избранное
+                                    </a>
+                                  </li>
+                                </ul>
+                                <div class="add-to-cart">
+                                  <div class="product-button-action">
+                                    <a href="#" class="add-to-cart">
+                                      Подробнее
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row product-layout-list mt-30">
+                          <div class="col-lg-3 col-md-3">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product">
+                              <div class="product-image">
+                                <a href="product-details.html">
+                                  <img
+                                    src="assets/images/product/product-03.png"
+                                    alt="Patek Philippe Calatrava" />
+                                </a>
+                              </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                          </div>
+
+                          <div class="col-lg-6 col-md-6">
+                            <div class="product-content-list text-left">
+                              <h4>
+                                <a
+                                  href="product-details.html"
+                                  class="product-name">
+                                  Patek Philippe Calatrava
+                                </a>
+                              </h4>
+                              <div class="price-box">
+                                <span class="new-price">₽85,000</span>
+                                <span class="old-price">₽92,000</span>
+                              </div>
+
+                              <div class="product-rating">
+                                <ul class="d-flex">
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                </ul>
+                              </div>
+
+                              <p>
+                                Эталон элегантности в часовом искусстве.
+                                Ультратонкий корпус из белого золота, механизм
+                                собственного производства, аллигаторовый
+                                ремешок.
+                              </p>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-3 col-md-3">
+                            <div class="block2">
+                              <ul class="stock-cont">
+                                <li class="product-sku">
+                                  Артикул:
+                                  <span>PP-CAL-003</span>
+                                </li>
+                                <li class="product-stock-status">
+                                  Наличие:
+                                  <span class="in-stock">В наличии</span>
+                                </li>
+                              </ul>
+                              <div class="product-button">
+                                <ul class="actions">
+                                  <li class="add-to-wishlist">
+                                    <a
+                                      href="wishlist.html"
+                                      class="add_to_wishlist">
+                                      <i class="icon-heart"></i>
+                                      В избранное
+                                    </a>
+                                  </li>
+                                </ul>
+                                <div class="add-to-cart">
+                                  <div class="product-button-action">
+                                    <a href="#" class="add-to-cart">
+                                      Подробнее
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row product-layout-list mt-30">
+                          <div class="col-lg-3 col-md-3">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product">
+                              <div class="product-image">
+                                <a href="product-details.html">
+                                  <img
+                                    src="assets/images/product/product-04.png"
+                                    alt="Hublot Big Bang" />
+                                </a>
+                              </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                          </div>
+
+                          <div class="col-lg-6 col-md-6">
+                            <div class="product-content-list text-left">
+                              <h4>
+                                <a
+                                  href="product-details.html"
+                                  class="product-name">
+                                  Hublot Big Bang Unico
+                                </a>
+                              </h4>
+                              <div class="price-box">
+                                <span class="new-price">₽67,200</span>
+                                <span class="old-price">₽72,000</span>
+                              </div>
+
+                              <div class="product-rating">
+                                <ul class="d-flex">
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                  <li class="bad-reting">
+                                    <a href="#"><i class="icon-star"></i></a>
+                                  </li>
+                                </ul>
+                              </div>
+
+                              <p>
+                                Авангардный дизайн с мануфактурным хронографом.
+                                Карбоновый корпус, сапфировое стекло, каучуковый
+                                ремешок с системой One Click.
+                              </p>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-3 col-md-3">
+                            <div class="block2">
+                              <ul class="stock-cont">
+                                <li class="product-sku">
+                                  Артикул:
+                                  <span>HUB-BB-004</span>
+                                </li>
+                                <li class="product-stock-status">
+                                  Наличие:
+                                  <span class="in-stock">В наличии</span>
+                                </li>
+                              </ul>
+                              <div class="product-button">
+                                <ul class="actions">
+                                  <li class="add-to-wishlist">
+                                    <a
+                                      href="wishlist.html"
+                                      class="add_to_wishlist">
+                                      <i class="icon-heart"></i>
+                                      В избранное
+                                    </a>
+                                  </li>
+                                </ul>
+                                <div class="add-to-cart">
+                                  <div class="product-button-action">
+                                    <a href="#" class="add-to-cart">
+                                      Подробнее
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- shop-products-wrap end -->
+
+                <!-- paginatoin-area start -->
+                <div class="paginatoin-area">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <ul class="pagination-box">
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li>
+                          <a class="Next" href="#">Следующая</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- paginatoin-area end -->
+              </div>
+              <!-- shop-product-wrapper end -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- main-content-wrap end -->
+
+      <!-- footer Start -->
+      @include('../components/layout/footer.html')
+      <!-- footer End -->
+    </div>
+
+    <!-- JS
+============================================ -->
+  </body>
+</html>

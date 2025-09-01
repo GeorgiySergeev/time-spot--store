@@ -1,0 +1,125 @@
+<!doctype html>
+<html class="no-js" lang="ru">
+  @include('../components/head/head.html')
+
+  <body>
+    <div class="main-wrapper">
+      <!--  Header Start -->
+      @include('../components/layout/header.html')
+      <!--  Header Start -->
+
+      <!-- breadcrumb-area start -->
+      <div class="breadcrumb-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <!-- breadcrumb-list start -->
+              <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                  <a href="index.html">Главная</a>
+                </li>
+                <li class="breadcrumb-item active">Страница контактов</li>
+              </ul>
+              <!-- breadcrumb-list end -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- breadcrumb-area end -->
+
+      <!-- Page Conttent -->
+      <main class="page-content section-ptb">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7 col-sm-12">
+              <div class="contact-form">
+                <div class="contact-form-info">
+                  <div class="contact-title">
+                    <h3>РАССКАЖИТЕ НАМ О ВАШЕМ ПРОЕКТЕ</h3>
+                  </div>
+                  <form
+                    id="contact-form"
+                    action="http://hasthemes.com/file/mail.php"
+                    method="post">
+                    <div class="contact-page-form">
+                      <div class="contact-input">
+                        <div class="contact-inner">
+                          <input
+                            name="con_name"
+                            type="text"
+                            placeholder="Имя *" />
+                        </div>
+                        <div class="contact-inner">
+                          <input
+                            name="con_email"
+                            type="email"
+                            placeholder="Email *" />
+                        </div>
+                        <div class="contact-inner">
+                          <input
+                            name="con_phone"
+                            type="text"
+                            placeholder="Телефон *" />
+                        </div>
+                        <div class="contact-inner">
+                          <input
+                            name="con_subject"
+                            type="text"
+                            placeholder="Тема *" />
+                        </div>
+                        <div class="contact-inner contact-message">
+                          <textarea
+                            name="con_message"
+                            placeholder="Сообщение *"></textarea>
+                        </div>
+                      </div>
+                      <div class="contact-submit-btn">
+                        <button class="submit-btn" type="submit">
+                          Отправить Email
+                        </button>
+                        <p class="form-messege"></p>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 col-sm-12">
+              <div class="contact-infor">
+                <div class="contact-title">
+                  <h3>СВЯЖИТЕСЬ С НАМИ</h3>
+                </div>
+                <div class="contact-dec">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Ullam nam ex odio expedita, officia temporibus ipsum,
+                    placeat magni quibusdam sint, atque distinctio
+                  </p>
+                </div>
+                <div class="contact-address">
+                  <ul>
+                    <li>Адрес: ул. Бария, 40, 133/2, Нью-Йорк</li>
+                    <li>Email: Infor@Ruiztheme.com</li>
+                    <li>Телефон: 0(1234) 567 890</li>
+                  </ul>
+                </div>
+                <div class="work-hours">
+                  <h5>Рабочие часы</h5>
+                  <p>
+                    <strong>Понедельник &ndash; Суббота</strong>
+                    : &nbsp;08:00 &ndash; 22:00
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!--// Page Conttent -->
+
+      <!-- footer Start -->
+      @include('../components/layout/footer.html')
+      <!-- footer End -->
+    </div>
+  </body>
+</html>

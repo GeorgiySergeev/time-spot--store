@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="no-js" lang="ru">
+  @include('../components/head/head.html')
+
+  <body>
+    <div class="main-wrapper">
+      <!--  Header Start -->
+      @include('../components/layout/header.html')
+      <!--  Header Start -->
+
+      <!-- breadcrumb-area start -->
+      <div class="breadcrumb-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <!-- breadcrumb-list start -->
+              <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                  <a href="index.html">Главная</a>
+                </li>
+                <li class="breadcrumb-item active">Избранное</li>
+              </ul>
+              <!-- breadcrumb-list end -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- breadcrumb-area end -->
+
+      <!-- main-content-wrap start -->
+      <section class="main-content-wrap section-ptb">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="cart-table" id="wishlist"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- main-content-wrap end -->
+
+      <!-- footer Start -->
+      @include('../components/layout/footer.html')
+      <!-- footer End -->
+    </div>
+  </body>
+</html>

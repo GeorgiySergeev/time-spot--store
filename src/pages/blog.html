@@ -1,0 +1,325 @@
+<!doctype html>
+<html class="no-js" lang="ru">
+  @include('../components/head/head.html')
+
+  <body>
+    <div class="main-wrapper">
+      <!--  Header Start -->
+      @include('../components/layout/header.html')
+      <!--  Header Start -->
+
+      <!-- breadcrumb-area start -->
+      <div class="breadcrumb-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <!-- breadcrumb-list start -->
+              <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                  <a href="index.html">Главная</a>
+                </li>
+                <li class="breadcrumb-item active">Блог с правой панелью</li>
+              </ul>
+              <!-- breadcrumb-list end -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- breadcrumb-area end -->
+
+      <!-- main-content-wrap start -->
+      <div class="main-content-wrap blog-page">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 order-lg-1 order-2">
+              <!-- blog-sidebar-wrap start -->
+              <div class="blog-sidebar-wrap section-pt">
+                <div class="blog-sidebar-widget-area">
+                  <!--single-widget start  -->
+                  <div class="single-widget search-widget mb-30">
+                    <h4 class="widget-title">Поиск</h4>
+                    <form action="#">
+                      <div class="form-input">
+                        <input type="text" placeholder="Поиск... " />
+                        <button class="button-search" type="submit">
+                          <i class="icon-magnifier"></i>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <!--single-widget start end -->
+
+                  <!--single-widget start  -->
+                  <div class="single-widget mb-30">
+                    <h4 class="widget-title">Категории</h4>
+                    <!-- category-widget start -->
+                    <div class="category-widget-list">
+                      <ul>
+                        <li><a href="#">Цифровые часы</a></li>
+                        <li><a href="#">Цифровые часы</a></li>
+                        <li><a href="#">Здоровье</a></li>
+                        <li><a href="#">Питание</a></li>
+                        <li><a href="#">Часовой пояс</a></li>
+                        <li><a href="#">Без категории</a></li>
+                        <li><a href="#">Вода</a></li>
+                      </ul>
+                    </div>
+                    <!-- category-widget end -->
+                  </div>
+                  <!--single-widget end  -->
+
+                  <!--single-widget start  -->
+                  <div class="single-widget mb-30">
+                    <h4 class="widget-title">Последние посты</h4>
+
+                    <div class="recent-post-widget">
+                      <div class="single-widget-post">
+                        <div class="post-thumb">
+                          <a href="#">
+                            <img
+                              src="assets/images/blog/small-blog.jpg"
+                              alt="" />
+                          </a>
+                        </div>
+                        <div class="post-info">
+                          <h6 class="post-title">
+                            <a href="#">Maecenas ultricies</a>
+                          </h6>
+                          <div class="post-date">Апр 24.2019</div>
+                        </div>
+                      </div>
+                      <div class="single-widget-post">
+                        <div class="post-thumb">
+                          <a href="#">
+                            <img
+                              src="assets/images/blog/small-blog-02.jpg"
+                              alt="" />
+                          </a>
+                        </div>
+                        <div class="post-info">
+                          <h6 class="post-title">
+                            <a href="#">Пост с галереей</a>
+                          </h6>
+                          <div class="post-date">Апр 24.2019</div>
+                        </div>
+                      </div>
+                      <div class="single-widget-post">
+                        <div class="post-thumb">
+                          <a href="#">
+                            <img
+                              src="assets/images/blog/small-blog-03.jpg"
+                              alt="" />
+                          </a>
+                        </div>
+                        <div class="post-info">
+                          <h6 class="post-title">
+                            <a href="#">Maecenas ultricies</a>
+                          </h6>
+                          <div class="post-date">Апр 24.2019</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--single-widget end  -->
+
+                  <!--single-widget start  -->
+                  <div class="single-widget mb-30">
+                    <h4 class="widget-title">Архивы</h4>
+                    <!-- category-widget start -->
+                    <div class="category-widget-list">
+                      <ul>
+                        <li><a href="#">Апрель 2018</a></li>
+                        <li><a href="#">Апрель 2019</a></li>
+                      </ul>
+                    </div>
+                    <!-- category-widget end -->
+                  </div>
+                  <!--single-widget end  -->
+
+                  <!--single-widget start  -->
+                  <div class="single-widget mb-30">
+                    <h4 class="widget-title">Теги товаров</h4>
+
+                    <ul class="sidebar-tag">
+                      <li><a href="#">Часы</a></li>
+                      <li><a href="#">блузка</a></li>
+                      <li><a href="#">одежда</a></li>
+                      <li><a href="#">настольный</a></li>
+                      <li><a href="#">цифровой</a></li>
+                      <li><a href="#">мода</a></li>
+                      <li><a href="#">женщины</a></li>
+                      <li><a href="#">мужчины</a></li>
+                      <li><a href="#">часы</a></li>
+                      <li><a href="#">сумка</a></li>
+                    </ul>
+                  </div>
+                  <!--single-widget end -->
+                </div>
+              </div>
+              <!-- blog-sidebar-wrap end -->
+            </div>
+            <div class="col-lg-9 order-lg-2 order-1">
+              <div class="blog-wrapper section-pt">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                    <div class="singel-latest-blog">
+                      <div class="articles-image">
+                        <a href="blog-details.html">
+                          <img src="assets/images/blog/blog-01.jpg" alt="" />
+                        </a>
+                      </div>
+                      <div class="aritcles-content">
+                        <div class="author-name">
+                          пост от:
+                          <a href="#">Имя автора</a>
+                          - 30 Окт 2019
+                        </div>
+                        <h4>
+                          <a href="blog-details.html" class="articles-name">
+                            Ruiz Watch - один из самых посещаемых сайтов часов в
+                            интернете и в мире
+                          </a>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6">
+                    <div class="singel-latest-blog">
+                      <div class="articles-image">
+                        <a href="blog-details.html">
+                          <img src="assets/images/blog/blog-02.jpg" alt="" />
+                        </a>
+                      </div>
+                      <div class="aritcles-content">
+                        <div class="author-name">
+                          пост от:
+                          <a href="#">Имя автора</a>
+                          - 20 Окт 2019
+                        </div>
+                        <h4>
+                          <a href="blog-details.html" class="articles-name">
+                            Обзоры Ruiz Watch и самый популярный блог о часах и
+                            хронометрах для серьезных
+                          </a>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6">
+                    <div class="singel-latest-blog">
+                      <div class="articles-image">
+                        <a href="blog-details.html">
+                          <img src="assets/images/blog/blog-03.jpg" alt="" />
+                        </a>
+                      </div>
+                      <div class="aritcles-content">
+                        <div class="author-name">
+                          пост от:
+                          <a href="#">Имя автора</a>
+                          - 13 Окт 2019
+                        </div>
+                        <a href="blog-details.html" class="articles-name">
+                          Подключение к миру: Представляем G-Shock MTG-B1000-1A
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6">
+                    <div class="singel-latest-blog">
+                      <div class="articles-image">
+                        <a href="blog-details.html">
+                          <img src="assets/images/blog/blog-04.jpg" alt="" />
+                        </a>
+                      </div>
+                      <div class="aritcles-content">
+                        <div class="author-name">
+                          пост от:
+                          <a href="#">Имя автора</a>
+                          - 13 Окт 2019
+                        </div>
+                        <a href="blog-details.html" class="articles-name">
+                          Подключение к миру: Представляем G-Shock MTG-B1000-1A
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6">
+                    <div class="singel-latest-blog">
+                      <div class="articles-image">
+                        <a href="blog-details.html">
+                          <img src="assets/images/blog/blog-05.jpg" alt="" />
+                        </a>
+                      </div>
+                      <div class="aritcles-content">
+                        <div class="author-name">
+                          пост от:
+                          <a href="#">Имя автора</a>
+                          - 30 Окт 2019
+                        </div>
+                        <h4>
+                          <a href="blog-details.html" class="articles-name">
+                            Ruiz Watch - один из самых посещаемых сайтов часов в
+                            интернете и в мире
+                          </a>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6">
+                    <div class="singel-latest-blog">
+                      <div class="articles-image">
+                        <a href="blog-details.html">
+                          <img src="assets/images/blog/blog-06.jpg" alt="" />
+                        </a>
+                      </div>
+                      <div class="aritcles-content">
+                        <div class="author-name">
+                          пост от:
+                          <a href="#">Имя автора</a>
+                          - 20 Окт 2019
+                        </div>
+                        <h4>
+                          <a href="blog-details.html" class="articles-name">
+                            Обзоры Ruiz Watch и самый популярный блог о часах и
+                            хронометрах для серьезных
+                          </a>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- paginatoin-area start -->
+                <div class="paginatoin-area">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <ul class="pagination-box">
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li>
+                          <a class="Next" href="#">Следующая</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- paginatoin-area end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- main-content-wrap end -->
+
+      <!-- footer Start -->
+      @include('../components/layout/footer.html')
+      <!-- footer End -->
+    </div>
+  </body>
+</html>

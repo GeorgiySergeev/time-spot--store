@@ -1,0 +1,8 @@
+import './components/burger.js'
+import './components/dialog.js'
+// import './components/img-loading-error.js'
+// import './components/product-gallery.js'
+import './functions/swiper.js'
+import './api/renderer.js'
+import './functions/helpers.js'
+// import * as bootstrap from 'bootstrap'
