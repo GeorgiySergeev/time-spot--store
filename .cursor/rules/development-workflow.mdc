@@ -1,0 +1,44 @@
+---
+description: "Development commands and workflow"
+---
+
+# Development Workflow and Commands
+
+## Available NPM Scripts
+- `npm run dev` - Start development server with hot reload (port 3000)
+- `npm run build` - Production build with optimization
+- `npm run deploy` - Deploy to GitHub Pages manually
+- `npm run cache` - Cache busting for assets
+- `npm run backend` - Backend-specific build
+- `npm run zip` - Create build archive
+- `npm run format` - Format code with Prettier
+- `npm run stylelint` - Lint SCSS files
+
+## Development Server
+- Browser-Sync server on http://localhost:3000
+- Auto-reload on file changes
+- Watches: SCSS, JS, HTML, images, assets
+- Live CSS injection
+
+## Build Tasks (Gulp)
+- **HTML**: File includes + minification
+- **SCSS**: Compilation + autoprefixer + minification
+- **JavaScript**: Webpack bundling + minification
+- **Images**: Optimization + WebP generation
+- **Assets**: Copy fonts, favicon, videos
+- **SVG**: Sprite generation
+
+## File Watching
+The dev server watches these patterns:
+- `src/styles/**/*.scss` → CSS compilation
+- `src/js/**/*.js` → JavaScript bundling
+- `src/components/**/*.html` → HTML processing
+- `src/pages/*.html` → Page rebuilding
+- `src/img/**/*` → Image processing
+
+## Production Considerations
+- All assets are minified and optimized
+- Source maps generated for debugging
+- Cache busting with revision hashes
+- WebP images for modern browsers
+- HTML minification with whitespace removal

@@ -1,0 +1,31 @@
+---
+globs: *.scss,*.sass,src/styles/*
+---
+
+# SCSS/Sass Development Conventions
+
+## File Structure
+- [src/styles/main.scss](mdc:src/styles/main.scss) - Main entry point
+- [src/styles/vendor.scss](mdc:src/styles/vendor.scss) - Third-party styles
+- [src/styles/_variabls.scss](mdc:src/styles/_variabls.scss) - Global variables
+- [src/styles/_mixin.scss](mdc:src/styles/_mixin.scss) - Mixins and functions
+- [src/styles/_common.scss](mdc:src/styles/_common.scss) - Common/base styles
+
+## Component-Specific Styles
+Each page/component has its own SCSS file:
+- `_header.scss`, `_footer.scss` - Layout components
+- `_product.scss`, `_cart.scss` - E-commerce specific
+- `_hero.scss`, `_banner.scss` - Landing page sections
+
+## Best Practices
+- Use SCSS partials (files starting with `_`)
+- Import Bootstrap as vendor dependency
+- Follow BEM methodology for class naming
+- Use variables for colors, fonts, and spacing
+- Organize imports in logical order: variables → mixins → base → components
+
+## Build Output
+- Compiled to: `build/css/main.css`
+- Source maps generated for debugging
+- Autoprefixer applied for browser compatibility
+- CSS minification in production builds

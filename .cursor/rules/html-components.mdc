@@ -1,0 +1,39 @@
+---
+globs: *.html,src/pages/*,src/components/*
+---
+
+# HTML Components and Structure
+
+## Component System
+The project uses a component-based HTML structure with gulp-file-include.
+
+### Component Organization
+- [src/components/layout/](mdc:src/components/layout/) - Layout components (header, footer)
+- [src/components/blocks/](mdc:src/components/blocks/) - Reusable content blocks
+- [src/components/head/head.html](mdc:src/components/head/head.html) - HTML head section
+
+### Page Templates
+- [src/pages/index.html](mdc:src/pages/index.html) - Homepage
+- [src/pages/shop.html](mdc:src/pages/shop.html) - Product catalog
+- [src/pages/product-details.html](mdc:src/pages/product-details.html) - Product page
+- [src/pages/about.html](mdc:src/pages/about.html) - About page
+
+### Include Syntax
+Use `@include('../path/to/component.html')` to include components:
+```html
+@include('../components/head/head.html')
+@include('../components/layout/header.html')
+@include('../components/blocks/banner.html')
+```
+
+### Build Process
+- HTML files are processed with gulp-file-include
+- Includes are resolved and combined
+- HTML minification applied in production
+- Output to `build/` directory with same structure
+
+### Best Practices
+- Keep components modular and reusable
+- Use semantic HTML5 elements
+- Include proper meta tags in head component
+- Maintain consistent naming conventions

@@ -1,0 +1,33 @@
+---
+description: "GitHub Pages deployment and build process"
+globs: .github/workflows/*,gulpfile.js,package.json
+---
+
+# GitHub Pages Deployment Guide
+
+## Deployment Workflow
+The project uses GitHub Actions for automatic deployment to GitHub Pages.
+
+### Build Process
+1. `npm run build` - Builds the project using Gulp
+2. Files are compiled from `src/` to `build/` directory
+3. GitHub Actions automatically deploys `build/` contents to `gh-pages` branch
+4. GitHub Pages serves from `gh-pages` branch root
+
+### Manual Deployment
+- `npm run deploy` - Manual deployment using gh-pages package
+- `npm run build` - Build only (for testing)
+
+### Key Configuration
+- Build output directory: `./build`
+- GitHub Pages source: `gh-pages` branch
+- Node.js version: 18 (specified in workflow)
+- Package manager: npm with `npm ci` for faster installs
+
+### Workflow Triggers
+- Automatic: Push to `main` or `master` branch
+- Manual: `workflow_dispatch` event in GitHub Actions
+
+### Site URL
+- Production: https://georgiysergeev.github.io/time-spot--store/
+- Build time: 2-3 minutes after push

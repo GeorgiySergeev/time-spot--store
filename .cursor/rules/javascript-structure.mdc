@@ -1,0 +1,42 @@
+---
+globs: *.js,src/js/*
+---
+
+# JavaScript Structure and Organization
+
+## Main Entry Points
+- [src/js/main.js](mdc:src/js/main.js) - Main JavaScript entry point
+- [src/js/shop.js](mdc:src/js/shop.js) - Shop-specific functionality
+- [src/js/_components.js](mdc:src/js/_components.js) - Component scripts
+
+## Directory Structure
+- `src/js/api/` - API interaction modules
+- `src/js/api-2/` - Additional API modules  
+- `src/js/components/` - Component-specific JavaScript
+- `src/js/functions/` - Utility functions and helpers
+- `src/js/pages/` - Page-specific scripts
+
+## Dependencies
+Key libraries used (from [package.json](mdc:package.json)):
+- **Bootstrap 5.3.7** - UI framework
+- **Swiper 11.2.10** - Touch slider/carousel
+- **AOS 2.3.4** - Animate On Scroll library
+- **Axios 1.11.0** - HTTP client for API calls
+- **Animate.css 4.1.1** - CSS animations
+- **Rellax 1.12.1** - Parallax library
+- **SimpleBar 6.2.5** - Custom scrollbars
+
+## Build Process
+- Webpack bundling with Babel transpilation
+- ES6+ syntax support
+- Source maps for debugging
+- Minification in production
+- Output: `build/js/main.js`
+
+## Best Practices
+- Use ES6 modules for better organization
+- Keep API calls in dedicated modules
+- Separate page-specific logic from components
+- Use async/await for API interactions
+- Follow consistent naming conventions
+- Import only needed dependencies to reduce bundle size
