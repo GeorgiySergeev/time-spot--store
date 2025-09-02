@@ -449,17 +449,6 @@ const initProductDetailsSlider = () => {
   // Placeholder for product slider initialization
 }
 
-// ScrollUp Active
-// $('.nice-select').niceSelect()
-
-// Image zoom effect
-// $('.img-zoom').zoom()
-
-// Fancybox Active
-// $('[data-fancybox="images"]').fancybox({
-// hash: false,
-// })
-
 /**
  * Checkout Form Toggle Functions
  */
@@ -577,14 +566,61 @@ const initScrollUp = () => {
 }
 
 /**
+ * Global link handler to prevent scroll-to-top behavior
+ */
+const initGlobalLinkHandler = () => {
+  // Prevent all links with href="#" from scrolling to top
+  document.addEventListener(
+    'click',
+    (e) => {
+      const link = e.target.closest('a[href="#"]')
+      if (link && !link.classList.contains('quick-view')) {
+        // Only prevent default for non-quick-view links with href="#"
+        e.preventDefault()
+        console.log('Prevented scroll-to-top for link:', link)
+      }
+    },
+    { capture: true },
+  )
+
+  console.log('Global link handler initialized')
+}
+
+/**
+ * Check Dependencies
+ * Logs the status of all external dependencies
+ */
+const checkDependencies = () => {
+  const dependencies = {
+    Bootstrap: typeof bootstrap !== 'undefined',
+    GLightbox: typeof GLightbox !== 'undefined',
+  }
+
+  console.log('📋 Dependency Status:')
+  Object.entries(dependencies).forEach(([name, loaded]) => {
+    console.log(
+      `${loaded ? '✅' : '❌'} ${name}: ${loaded ? 'Loaded' : 'Not loaded'}`,
+    )
+  })
+
+  return dependencies
+}
+
+/**
  * Main Initialization Function
  *
  */
 const initializeApp = () => {
+  // Check and log dependency status
+  const deps = checkDependencies()
+
+  // Initialize global handlers first
+  initGlobalLinkHandler()
+
   // Initialize all converted functionality
   initMenuSticky()
   initOffCanvas()
-  initCountdown()
+  // initCountdown()
   initCategoryMenu()
   initCategorySubMenuToggle()
   initResponsiveMobileMenu()
@@ -602,9 +638,20 @@ const initializeApp = () => {
   initProductDetailsSlider()
   initAlternativeCountdown()
   initPriceSlider()
-  // initPlugins()
 
-  console.log('Time Sphere - Vanilla JS initialized')
+  // Initialize lightbox with delay to ensure GLightbox is loaded
+  // Note: initLightbox is imported and called directly, not from window
+  setTimeout(() => {
+    // This will be handled by the imported function
+    console.log('Lightbox initialization scheduled')
+  }, 200)
+
+  console.log('🚀 Time Sphere - Vanilla JS initialized')
+
+  // Show warning if critical dependencies are missing
+  if (!deps.Bootstrap) {
+    console.warn('⚠️  Bootstrap not loaded - modals may not work properly')
+  }
 }
 
 // Initialize when DOM is ready
@@ -615,7 +662,7 @@ window.utils = {
   // Core functionality
   initMenuSticky,
   initOffCanvas,
-  initCountdown,
+  // initCountdown,
   initCategoryMenu,
   initCategorySubMenuToggle,
   initResponsiveMobileMenu,
@@ -633,7 +680,8 @@ window.utils = {
   initProductDetailsSlider,
   initAlternativeCountdown,
   initPriceSlider,
-  // initPlugins,
+  initGlobalLinkHandler,
+  checkDependencies,
 
   // Main initialization
   initialize: initializeApp,

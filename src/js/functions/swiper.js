@@ -1,5 +1,9 @@
 // Swiper
 import Swiper from 'swiper'
+import { Autoplay } from 'swiper/modules'
+
+// Configure Swiper to use modules
+Swiper.use([Autoplay])
 
 console.log('Swiper')
 
@@ -63,6 +67,7 @@ export const initHeroSwiper = () => {
   return swiper
 }
 
+// Product Swiper Configuration
 const productSwiperConfig = {
   direction: 'horizontal',
   loop: true,
@@ -82,7 +87,59 @@ export const initProductSwiper = () => {
   return swiper
 }
 
+// Brand Swiper Configuration
+const brandSwiperConfig = {
+  direction: 'horizontal',
+  loop: true,
+  slidesPerView: 6,
+  spaceBetween: 30,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  grabCursor: true,
+  breakpoints: {
+    // When window width is >= 320px
+    320: {
+      slidesPerView: 2,
+      spaceBetween: 10,
+    },
+    // When window width is >= 480px
+    480: {
+      slidesPerView: 3,
+      spaceBetween: 15,
+    },
+    // When window width is >= 768px
+    768: {
+      slidesPerView: 4,
+      spaceBetween: 20,
+    },
+    // When window width is >= 1024px
+    1024: {
+      slidesPerView: 5,
+      spaceBetween: 25,
+    },
+    // When window width is >= 1200px
+    1200: {
+      slidesPerView: 6,
+      spaceBetween: 30,
+    },
+  },
+}
+export const initBrandSwiper = () => {
+  const swiperElement = document.querySelector('.swiper-brands')
+  if (!swiperElement) {
+    console.warn('Brand swiper element not found')
+    return null
+  }
+
+  const swiper = new Swiper('.swiper-brands', brandSwiperConfig)
+  console.log('Brand Swiper initialized:', swiper)
+  return swiper
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initHeroSwiper()
   initProductSwiper()
+  initBrandSwiper()
 })

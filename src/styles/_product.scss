@@ -341,11 +341,35 @@
   }
 }
 
+.zoom-icon-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  pointer-events: none;
+
+  i {
+    font-size: 18px;
+  }
+}
+
 .pro-large-img.img-zoom {
   position: relative;
   overflow: hidden;
 
-  &:hover .zoom-icon {
+  &:hover .zoom-icon,
+  &:hover .zoom-icon-overlay {
     opacity: 1;
   }
 
@@ -356,6 +380,11 @@
   &:hover img {
     transform: scale(1.1);
   }
+}
+
+/* Modal gallery hover effects */
+.glightbox:hover .zoom-icon-overlay {
+  opacity: 1;
 }
 
 /* GLightbox custom styles */

@@ -20,6 +20,9 @@ export const scripts = () => {
         output: {
           filename: 'main.js',
         },
+        externals: {
+          glightbox: 'GLightbox',
+        },
         module: {
           rules: [
             {

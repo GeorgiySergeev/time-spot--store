@@ -38,10 +38,12 @@
     23. Login And Register Css
 
 -----------------------------------------------------------------------------------*/
-
+@import 'vendor';
 @import '_variabls';
 @import '_mixin';
 @import '_common';
+
+// Theme CSS
 @import '_header';
 @import '_categories-toggler';
 @import '_hero';

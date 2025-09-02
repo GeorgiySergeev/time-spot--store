@@ -1,5 +1,13 @@
 import './_components.js'
+import './_functions.js'
+import './_api.js'
+
+// ==============================
+
 import { initializeCatalog } from './api/renderer.js'
+import { initAOS } from './functions/aos.js'
+import { initLightbox } from './functions/lightbox.js'
+import './functions/helpers.js'
 
 // Import test functionality in development
 if (
@@ -12,6 +20,12 @@ if (
 // Auto-initialize catalog on pages that include the products container
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🚀 Time-Sphere Catalog - Initializing...')
+
+  // Initialize AOS animations
+  initAOS()
+
+  // Initialize lightbox (will work if GLightbox CDN is loaded)
+  initLightbox()
 
   const productsContainer = document.getElementById('products')
   if (productsContainer) {

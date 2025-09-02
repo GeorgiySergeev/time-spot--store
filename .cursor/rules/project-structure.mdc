@@ -7,11 +7,13 @@ alwaysApply: true
 This is a front-end e-commerce project built with Gulp and deployed to GitHub Pages.
 
 ## Main Entry Points
+
 - Main build configuration: [gulpfile.js](mdc:gulpfile.js)
 - Package configuration: [package.json](mdc:package.json)
 - Build paths configuration: [gulp/config/paths.js](mdc:gulp/config/paths.js)
 
 ## Directory Structure
+
 - `src/` - Source files for development
   - `src/pages/` - HTML page templates
   - `src/components/` - Reusable HTML components
@@ -24,6 +26,7 @@ This is a front-end e-commerce project built with Gulp and deployed to GitHub Pa
 - `.github/workflows/` - GitHub Actions workflows
 
 ## Key Files
+
 - [.github/workflows/deploy.yml](mdc:.github/workflows/deploy.yml) - GitHub Pages deployment workflow
 - [src/pages/index.html](mdc:src/pages/index.html) - Main homepage template
 - [src/components/layout/header.html](mdc:src/components/layout/header.html) - Site header

@@ -1,48 +1,125 @@
 /*--
     15. Brand Css
 ------------------------*/
-.brand-bg{
-    background: url(../images/bg/brand-bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+.brand-bg {
+  background: url(../images/bg/brand-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
+// Brand Slider Styles
+.our-brand-area {
+  padding: 60px 0;
+  background: #f8f9fa;
+
+  .container {
+    max-width: 1200px;
+  }
+
+  &.swiper-brands {
+    overflow: hidden;
+
+    .swiper-wrapper {
+      align-items: center;
+    }
+  }
+}
+
+.brand-single-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: all 0.3s ease;
+
+  a {
+    display: block;
+    text-align: center;
+
+    img {
+      max-width: 120px;
+      max-height: 60px;
+      width: auto;
+      height: auto;
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      object-fit: contain;
+    }
+  }
+
+  &:hover {
+    a img {
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+}
+
+// Legacy brand group styles
 .brand-group {
-    & .brand-item {
-        padding: 10px 0;
-        text-align: center;
-        border-bottom: 1px solid #ebebeb;
-        
-        & img {
-            transform: scale(1.0);
-        }
-        &:hover {
-            & img {
-                 transform: scale(1.1);
-            }
-        }
-        &:last-child {
-            border: none;
-        }
+  & .brand-item {
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid #ebebeb;
+
+    & img {
+      transform: scale(1);
     }
+    &:hover {
+      & img {
+        transform: scale(1.1);
+      }
+    }
+    &:last-child {
+      border: none;
+    }
+  }
 }
+
 .our-brand-active {
-    & .brand-group {
-        border-right: 1px solid #ddd;
-        @media #{$small-mobile}{
-            border-right: none;
-        }
-        &.last-elem{
-            border-right: none;
-        }
+  & .brand-group {
+    border-right: 1px solid #ddd;
+    @media #{$small-mobile} {
+      border-right: none;
     }
-    
+    &.last-elem {
+      border-right: none;
+    }
+  }
 }
+
 .brand-box {
-    padding: 30px;
-    background: $white;
-    border: 1px solid #ddd;
-    border-radius: 3px;
+  padding: 30px;
+  background: $white;
+  border: 1px solid #ddd;
+  border-radius: 3px;
 }
-.brand-active-two{
-    
+
+// Responsive Design for Brand Slider
+@media (max-width: 768px) {
+  .our-brand-area {
+    padding: 40px 0;
+  }
+
+  .brand-single-item {
+    padding: 15px;
+
+    a img {
+      max-width: 100px;
+      max-height: 50px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-single-item {
+    padding: 10px;
+
+    a img {
+      max-width: 80px;
+      max-height: 40px;
+    }
+  }
 }
