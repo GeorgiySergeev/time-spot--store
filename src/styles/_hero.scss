@@ -4,11 +4,12 @@
 
 .hero-slider-one {
   & .single-slide {
-    height: 700px;
+    height: 550px;
     display: flex;
     align-items: center;
     background-size: cover;
     background-position: center right;
+    position: relative;
 
     @media #{$desktop-device} {
       height: 620px;
@@ -19,6 +20,20 @@
     @media #{$large-mobile} {
       height: 420px;
     }
+  }
+
+  & .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    z-index: 1;
   }
   & .slick-arrow {
     background-color: rgba(0, 0, 0, 0.2);
@@ -61,12 +76,15 @@
 }
 
 .hero-content-one {
+  position: relative;
+  z-index: 2;
+
   & .slider-content-text {
     & h5 {
       color: $white;
     }
     & h1 {
-      color: $white;
+      color: $gold;
     }
     & p {
       color: $white;

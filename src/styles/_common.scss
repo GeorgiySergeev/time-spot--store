@@ -3,7 +3,7 @@
 /*----------------------------------------*/
 
 /*-- Google Font --*/
-@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900');
+// @import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900');
 
 /*-- Common Style --*/
 *,
@@ -16,14 +16,14 @@ body {
   height: 100%;
 }
 body {
-  background-color: $body-bg;
+  background-color: $body-bg-2;
   line-height: 23px;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   visibility: visible;
   font-family: $body-font;
-  color: $body-color;
+  color: $body-color-2;
   position: relative;
 }
 h1,
@@ -159,6 +159,7 @@ a:focus {
 -----------------------------------------*/
 .container {
   max-width: 1170px;
+  padding: 0 15px;
 }
 .fix {
   overflow: hidden;
@@ -180,7 +181,7 @@ a:focus {
 }
 @media #{$small-mobile} {
   .container {
-    width: 390px;
+    width: 425px;
   }
 }
 
@@ -724,17 +725,19 @@ img.mfp-img {
 .tab-content {
   width: 100%;
   & .tab-pane {
-    display: block;
-    height: 0;
-    max-width: 100%;
-    visibility: hidden;
-    overflow: hidden;
-    opacity: 0;
+    display: none;
     &.active {
-      height: auto;
-      visibility: visible;
-      opacity: 1;
-      overflow: visible;
+      display: block;
+    }
+    /* Support for Bootstrap fade transitions */
+    &.fade {
+      transition: opacity 0.15s linear;
+      &:not(.show) {
+        opacity: 0;
+      }
+      &.show {
+        opacity: 1;
+      }
     }
   }
 }
