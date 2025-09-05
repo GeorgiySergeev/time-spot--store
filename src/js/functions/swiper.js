@@ -1,9 +1,9 @@
 // Swiper
 import Swiper from 'swiper'
-import { Autoplay } from 'swiper/modules'
+import { Autoplay, Thumbs } from 'swiper/modules'
 
 // Configure Swiper to use modules
-Swiper.use([Autoplay])
+Swiper.use([Autoplay, Thumbs])
 
 console.log('Swiper')
 
@@ -138,8 +138,101 @@ export const initBrandSwiper = () => {
   return swiper
 }
 
+// Product Page Thumbs Configuration
+const productPageThumbsConfig = {
+  direction: 'horizontal',
+  slidesPerView: 'auto',
+  spaceBetween: 10,
+  freeMode: false,
+  watchSlidesProgress: true,
+  slideToClickedSlide: true,
+  centerInsufficientSlides: true,
+  allowTouchMove: true, // Enable touch for clicking
+  simulateTouch: true, // Enable touch simulation for clicks
+  preventClicks: false,
+  preventClicksPropagation: false,
+  breakpoints: {
+    320: {
+      slidesPerView: 'auto',
+      spaceBetween: 8,
+    },
+    480: {
+      slidesPerView: 'auto',
+      spaceBetween: 10,
+    },
+    768: {
+      slidesPerView: 'auto',
+      spaceBetween: 12,
+    },
+  },
+}
+
+const productPageMainConfig = {
+  direction: 'horizontal',
+  loop: false,
+  spaceBetween: 10,
+  grabCursor: true,
+}
+
+export const productPageSlider = () => {
+  const thumbsElement = document.querySelector('.product-thumbs-swiper')
+  const mainElement = document.querySelector('.product-main-swiper')
+
+  if (!thumbsElement || !mainElement) {
+    console.warn('Product page swiper elements not found:', {
+      thumbsElement: !!thumbsElement,
+      mainElement: !!mainElement,
+    })
+    return null
+  }
+
+  console.log('Initializing product page swipers...')
+
+  // Initialize thumbs swiper first
+  const thumbsSwiper = new Swiper(
+    '.product-thumbs-swiper',
+    productPageThumbsConfig,
+  )
+  console.log('Product Thumbs Swiper initialized:', thumbsSwiper)
+  console.log('Thumbs slides count:', thumbsSwiper.slides.length)
+
+  // Initialize main swiper with thumbs
+  const mainSwiper = new Swiper('.product-main-swiper', {
+    ...productPageMainConfig,
+    thumbs: {
+      swiper: thumbsSwiper,
+    },
+  })
+  console.log('Product Main Swiper initialized:', mainSwiper)
+  console.log('Main slides count:', mainSwiper.slides.length)
+
+  // Add explicit click event handlers for thumbnails
+  const thumbnailSlides = thumbsElement.querySelectorAll('.swiper-slide')
+  thumbnailSlides.forEach((slide, index) => {
+    slide.addEventListener('click', (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      console.log(`Thumbnail ${index} clicked`)
+      mainSwiper.slideTo(index)
+
+      // Update active state manually
+      thumbnailSlides.forEach((s) =>
+        s.classList.remove('swiper-slide-thumb-active'),
+      )
+      slide.classList.add('swiper-slide-thumb-active')
+    })
+  })
+
+  return { mainSwiper, thumbsSwiper }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initHeroSwiper()
   initProductSwiper()
   initBrandSwiper()
+
+  // Add a small delay for product page swiper to ensure DOM is ready
+  setTimeout(() => {
+    productPageSlider()
+  }, 100)
 })

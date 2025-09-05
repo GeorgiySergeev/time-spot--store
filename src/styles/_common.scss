@@ -5,6 +5,17 @@
 /*-- Google Font --*/
 // @import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900');
 
+/*-- CSS Custom Properties --*/
+:root {
+  --icon-font: 'FontAwesome', sans-serif;
+  --body-font: 'Rubik', sans-serif;
+  --heading-font: 'Rubik', sans-serif;
+  --theme-color: #{$theme-color};
+  --white-color: #{$white};
+  --title-color: #{$heading-color};
+  --main-container: 1200px;
+}
+
 /*-- Common Style --*/
 *,
 *::after,
@@ -187,6 +198,11 @@ a:focus {
 
 .bold {
   font-weight: 700;
+}
+
+/* Scroll Lock for Mobile Menu */
+body.scroll-lock {
+  overflow: hidden;
 }
 .semi-bold {
   font-weight: 600;
@@ -1243,4 +1259,9 @@ img.mfp-img {
   [data-white-overlay='#{$i}']:before {
     opacity: #{$i * 0.1};
   }
+}
+
+.product-short-span {
+  margin-right: 15px;
+  color: $theme-color;
 }

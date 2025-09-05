@@ -1,43 +1,51 @@
-// import { disableScroll } from '../functions/disable-scroll.js'
-// import { enableScroll } from '../functions/enable-scroll.js'
-// ;(function () {
-//   const burger = document.querySelector('[data-burger]')
-//   const menu = document.querySelector('[data-menu]')
-//   const menuItems = document.querySelectorAll('[data-menu-item]')
-//   const overlay = document.querySelector('[data-menu-overlay]')
+import { disableScroll } from '../functions/disable-scroll.js'
+import { enableScroll } from '../functions/enable-scroll.js'
+;(function () {
+  const burger = document.querySelector('.burger-menu-btn')
+  const offcanvas = document.querySelector('#offcanvasExample')
 
-//   burger.addEventListener('click', (e) => {
-//     burger.classList.toggle('header__burger--active')
-//     menu.classList.toggle('header__nav--active')
-//     overlay.classList.toggle('overlay--active')
+  if (!burger || !offcanvas) return
 
-//     if (menu.classList.contains('header__nav--active')) {
-//       burger.setAttribute('aria-expanded', 'true')
-//       burger.setAttribute('aria-label', 'Close menu')
-//       disableScroll()
-//     } else {
-//       burger.setAttribute('aria-expanded', 'false')
-//       burger.setAttribute('aria-label', 'Open menu')
-//       enableScroll()
-//     }
-//   })
+  // Handle Bootstrap offcanvas events
+  offcanvas.addEventListener('show.bs.offcanvas', () => {
+    burger.classList.add('active')
+    burger.setAttribute('aria-expanded', 'true')
+    burger.setAttribute('aria-label', 'Close menu')
+    disableScroll()
+  })
 
-//   overlay.addEventListener('click', () => {
-//     closeMenu()
-//   })
+  offcanvas.addEventListener('hide.bs.offcanvas', () => {
+    burger.classList.remove('active')
+    burger.setAttribute('aria-expanded', 'false')
+    burger.setAttribute('aria-label', 'Open menu')
+    enableScroll()
+  })
 
-//   menuItems.forEach((el) => {
-//     el.addEventListener('click', () => {
-//       closeMenu()
-//     })
-//   })
+  // Set initial ARIA attributes
+  burger.setAttribute('aria-expanded', 'false')
+  burger.setAttribute('aria-label', 'Open menu')
 
-//   const closeMenu = () => {
-//     burger.setAttribute('aria-expanded', 'false')
-//     burger.setAttribute('aria-label', 'Open menu')
-//     burger.classList.remove('header__burger--active')
-//     menu.classList.remove('header__nav--active')
-//     overlay.classList.remove('overlay--active')
-//     enableScroll()
-//   }
-// })()
+  // Handle mobile menu dropdowns
+  const initMobileMenuDropdowns = () => {
+    const menuItemsWithChildren = document.querySelectorAll(
+      '.mobile-menu .menu-item-has-children > a',
+    )
+
+    menuItemsWithChildren.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault()
+        const parent = item.parentElement
+        const submenu = parent.querySelector('ul')
+
+        if (submenu) {
+          parent.classList.toggle('active')
+          submenu.style.display =
+            submenu.style.display === 'block' ? 'none' : 'block'
+        }
+      })
+    })
+  }
+
+  // Initialize dropdowns when offcanvas is shown
+  offcanvas.addEventListener('shown.bs.offcanvas', initMobileMenuDropdowns)
+})()

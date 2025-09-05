@@ -3,7 +3,7 @@ import './_functions.js'
 import './_api.js'
 
 // Import page-specific modules
-import './pages/product-details.js'
+// import './pages/product-details.js'
 
 // ==============================
 

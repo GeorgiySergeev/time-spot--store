@@ -16,6 +16,8 @@ import {
 
 import { CONFIG } from './config.js'
 
+const totalEl = document.getElementById('total_products')
+
 // DOM операции
 const getContainer = (containerId) => {
   const container = document.getElementById(containerId)
@@ -72,7 +74,9 @@ export const renderProducts = (
 
     const renderStrategy = renderStrategies[viewType] || renderStrategies.grid
     const content = renderStrategy(preparedProducts)
-
+    totalEl.textContent = prepareProducts.length
+    console.log(`Получено ${preparedProducts.length} продуктов`)
+    // !!==============================
     setContent(container, content)
     console.log(`Отображено ${preparedProducts.length} товаров (${viewType})`)
   } catch (error) {

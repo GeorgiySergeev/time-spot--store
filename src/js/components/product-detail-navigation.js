@@ -26,7 +26,7 @@ export const initProductDetailNavigation = () => {
         // Check if we're on product details page
         const onProductDetailsPage = isProductDetailsPage()
         console.log('📍 Are we on product details page?', onProductDetailsPage)
-        
+
         if (onProductDetailsPage) {
           // Render product details directly without navigation
           console.log('🔄 Loading product details for ID:', productId)
@@ -56,7 +56,11 @@ export const initProductDetailNavigation = () => {
       }
     } else {
       // Check if it's a product-details.html link (backup approach)
-      if (event.target.tagName === 'A' && event.target.href && event.target.href.includes('product-details.html')) {
+      if (
+        event.target.tagName === 'A' &&
+        event.target.href &&
+        event.target.href.includes('product-details.html')
+      ) {
         console.log('🔗 Product details link clicked (backup handler)')
         // For now, allow normal navigation to work
         // This ensures navigation works even if data attributes fail
@@ -69,46 +73,51 @@ export const initProductDetailNavigation = () => {
 
 // Check if we're currently on the product details page
 const isProductDetailsPage = () => {
-  const isProductDetailsPath = window.location.pathname.includes('product-details')
-  const hasProductDetailsContainer = document.querySelector('.product-details-inner') !== null
-  
+  const isProductDetailsPath =
+    window.location.pathname.includes('product-details')
+  const hasProductDetailsContainer =
+    document.querySelector('.product-details-inner') !== null
+
   // Primarily rely on URL path, only use container as fallback for SPA scenarios
   const result = isProductDetailsPath
-  
+
   console.log('🔍 Page detection:', {
     path: window.location.pathname,
     isProductDetailsPath,
     hasProductDetailsContainer,
-    result: result
+    result: result,
   })
-  
+
   return result
 }
 
-// Navigate to product detail page and store product ID for later use
+// Navigate to product detail page with URL parameters (survives page reload)
 const navigateToProductDetail = (productId) => {
   console.log('🗺 Starting navigation to product details page...')
-  console.log('💾 Storing product ID in sessionStorage:', productId)
-  
-  // Store the product ID in sessionStorage for the details page to pick up
-  sessionStorage.setItem('selectedProductId', productId)
-  
-  console.log('💾 Verification - stored value:', sessionStorage.getItem('selectedProductId'))
+  console.log('💾 Using URL parameter for product ID:', productId)
 
-  // Navigate to product details page
-  const detailUrl = 'product-details.html'
+  // Store the product ID in sessionStorage as backup
+  sessionStorage.setItem('selectedProductId', productId)
+
+  // Navigate to product details page with product ID in URL
+  const detailUrl = `product-details.html?id=${encodeURIComponent(productId)}`
   console.log('🚀 Navigating to:', detailUrl)
+
+  // Update browser history to include product ID
   window.location.href = detailUrl
 }
 
 // Get stored product ID (for use by product details page)
 export const getStoredProductId = () => {
   const productId = sessionStorage.getItem('selectedProductId')
-  if (productId) {
-    // Clear it after use to avoid stale data
-    sessionStorage.removeItem('selectedProductId')
-  }
+  // Only clear sessionStorage if we successfully got a product ID from URL
+  // This allows fallback to work if URL params are missing
   return productId
+}
+
+// Clear stored product ID (call this explicitly when no longer needed)
+export const clearStoredProductId = () => {
+  sessionStorage.removeItem('selectedProductId')
 }
 
 // Initialize when DOM is ready
@@ -118,7 +127,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Handle browser back/forward buttons
 window.addEventListener('popstate', (event) => {
-  if (isProductDetailsPage() && event.state && event.state.productId) {
-    renderProductDetails(event.state.productId)
+  console.log('🔙 Browser navigation detected')
+  if (isProductDetailsPage()) {
+    // Check for product ID in URL or history state
+    const productId =
+      getProductIdFromUrl() || (event.state && event.state.productId)
+    if (productId) {
+      console.log('🔄 Reloading product details for ID:', productId)
+      // Use dynamic import to load renderer
+      import('../api/product-details-renderer.js')
+        .then((module) => {
+          module.renderProductDetails(productId)
+        })
+        .catch((error) => {
+          console.error('❌ Failed to load product details renderer:', error)
+        })
+    }
   }
 })
+
+// Helper function to get product ID from URL
+const getProductIdFromUrl = () => {
+  const urlParams = new URLSearchParams(window.location.search)
+  return urlParams.get('id') || urlParams.get('productId')
+}

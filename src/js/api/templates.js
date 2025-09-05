@@ -411,6 +411,155 @@ export const createModalErrorState = (message) => `
   </div>
 `
 
+// Product Details Page Templates
+
+// Product info section template
+export const createProductInfo = (product) => `
+  <h3>${product.model || product.name || product.title || 'Product Name'}</h3>
+  <div class="product-rating d-flex">
+    <ul class="d-flex">
+      ${Array.from(
+        { length: 5 },
+        (_, i) => `
+        <li class="${i < (product.rating || 5) ? '' : 'bad-reting'}">
+          <a href="#"><i class="icon-star"></i></a>
+        </li>
+      `,
+      ).join('')}
+    </ul>
+    <span class="count">(1)</span>
+  </div>
+  <div class="price-box">
+    <span class="new-price">${formatPrice(product.price || product.currentPrice)}</span>
+    ${
+      product.oldPrice || product.originalPrice
+        ? `<span class="old-price">${formatPrice(product.oldPrice || product.originalPrice)}</span>`
+        : ''
+    }
+  </div>
+  <p>
+    ${product.description || product.shortDescription || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
+  </p>
+`
+
+// Product details section template
+export const createProductDetails = (product) => `
+  <ul class="stock-cont">
+    <li class="product-sku">Артикул: <span>${product.sku || product.id || 'P006'}</span></li>
+    ${
+      product.categories
+        ? `<li class="product-stock-status">Категории: ${product.categories.map((cat) => `<a href="#">${cat}</a>`).join(', ')}</li>`
+        : ''
+    }
+  </ul>
+`
+
+// Product image gallery template
+export const createProductGallery = (product, baseImageUrl) => {
+  const mainImage = product.img?.path
+    ? `${baseImageUrl}/${product.img.path}`
+    : '/img/product/default.jpg'
+
+  return {
+    mainImage,
+    thumbnails: [
+      {
+        url: mainImage,
+        alt: product.model || 'Product Image',
+        active: true,
+      },
+      ...(product.images || []).map((image, index) => ({
+        url: image.path ? `${baseImageUrl}/${image.path}` : image.url || image,
+        alt: `Product Image ${index + 2}`,
+        active: false,
+      })),
+    ],
+  }
+}
+
+// Thumbnail template
+export const createThumbnail = (image, index) => `
+  <div class="pro-nav-thumb ${image.active ? 'active' : ''}" data-index="${index}">
+    <img src="${image.url}" alt="${image.alt}">
+    <a href="${image.url}" class="glightbox hidden-gallery-item"
+       data-gallery="product-gallery"
+       data-glightbox="title: ${image.alt}; description: High quality product view">
+    </a>
+  </div>
+`
+
+// Product loading state template
+export const createProductLoadingState = () => `
+  <div class="product-loading" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+       background: rgba(255,255,255,0.9); display: flex; align-items: center;
+       justify-content: center; z-index: 100; min-height: 300px;">
+    <div style="text-align: center; color: #333;">
+      <div style="font-size: 2rem; margin-bottom: 1rem;">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+      <div style="font-size: 1.1rem;">
+        Загрузка товара...
+      </div>
+    </div>
+  </div>
+`
+
+// Product error state template
+export const createProductErrorState = (errorMessage) => `
+  <div class="col-12 text-center" style="padding: 3rem;">
+    <div style="color: #ff6b6b; font-size: 1.4rem; margin-bottom: 1rem;">
+      <i class="fa fa-exclamation-triangle"></i> Не удалось загрузить товар
+    </div>
+    <div style="color: #666; font-size: 1.1rem; margin-bottom: 2rem;">
+      ${errorMessage}
+    </div>
+    <div style="margin-bottom: 2rem;">
+      <button onclick="window.location.reload()"
+              style="background: #007bff; color: white; border: none;
+                     padding: 1rem 2rem; border-radius: 4px; cursor: pointer; margin-right: 1rem;">
+        <i class="fa fa-refresh"></i> Попробовать снова
+      </button>
+      <a href="shop.html"
+         style="background: #28a745; color: white; text-decoration: none;
+                padding: 1rem 2rem; border-radius: 4px; display: inline-block;">
+        <i class="fa fa-arrow-left"></i> Вернуться к товарам
+      </a>
+    </div>
+    <div style="color: #999; font-size: 0.9rem;">
+      Если проблема повторяется, обратитесь к администратору
+    </div>
+  </div>
+`
+
+// Fallback notice template
+export const createFallbackNotice = () => `
+  <div class="alert alert-info" style="margin-bottom: 2rem; padding: 1rem; background: #d1ecf1;
+       border: 1px solid #bee5eb; border-radius: 4px; color: #0c5460;">
+    <div style="display: flex; align-items: center;">
+      <i class="fa fa-info-circle" style="margin-right: 0.5rem; font-size: 1.2rem;"></i>
+      <div>
+        <strong>Образцы данных:</strong> Информация о товаре временно недоступна через API.
+        <a href="shop.html" style="color: #0c5460; text-decoration: underline; margin-left: 1rem;">Перейти к каталогу</a>
+      </div>
+    </div>
+  </div>
+`
+
+// Helper function for price formatting
+const formatPrice = (price) => {
+  if (typeof price === 'number') {
+    return `$${price.toFixed(2)}`
+  }
+  if (typeof price === 'string') {
+    const numPrice = parseFloat(price)
+    if (!isNaN(numPrice)) {
+      return `$${numPrice.toFixed(2)}`
+    }
+    return price
+  }
+  return '$0.00'
+}
+
 // Pagination template
 export const createPagination = (currentPage, totalPages, onPageChange) => {
   if (totalPages <= 1) return ''

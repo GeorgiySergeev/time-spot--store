@@ -18,7 +18,7 @@
                 <li class="breadcrumb-item">
                   <a href="index.html">Главная</a>
                 </li>
-                <li class="breadcrumb-item active"></li>
+                <li class="breadcrumb-item active">{dinamic_data}</li>
               </ul>
               <!-- breadcrumb-list end -->
             </div>
@@ -33,65 +33,151 @@
           <div class="row product-details-inner">
             <div class="col-lg-5 col-md-6">
               <!-- Product Details Left -->
-              <div class="product-large-slider">
-                <div class="pro-large-img img-zoom active" data-index="0">
-                  <img
-                    src="/img/product/product-01.png"
-                    alt="Product Image 1"
-                    id="main-product-image" />
-                  <a
-                    href="/img/product/product-01.png"
-                    class="glightbox zoom-icon"
-                    data-gallery="product-gallery"
-                    data-glightbox="title: Product Image 1; description: High quality product view">
-                    <i class="fa fa-search"></i>
-                  </a>
+              <!-- Main Product Images Swiper -->
+              <div class="swiper product-main-swiper" id="product_page_slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="pro-large-img img-zoom">
+                      <img
+                        src="/img/products/1-1-450x450.jpg"
+                        alt="Product Image 1"
+                        id="main-product-image" />
+                      <a
+                        href="/img/products/1-1-600x600.jpg"
+                        class="glightbox zoom-icon"
+                        data-gallery="product-gallery"
+                        data-glightbox="title: Product Image 1; description: High quality product view">
+                        <i class="fa fa-search"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="pro-large-img img-zoom">
+                      <img
+                        src="/img/products/2-2-450x450.jpg"
+                        alt="Product Image 2" />
+                      <a
+                        href="/img/products/2-2-600x600.jpg"
+                        class="glightbox zoom-icon"
+                        data-gallery="product-gallery"
+                        data-glightbox="title: Product Image 2; description: Another view of the product">
+                        <i class="fa fa-search"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="pro-large-img img-zoom">
+                      <img
+                        src="/img/products/3-3-450x450.jpg"
+                        alt="Product Image 3" />
+                      <a
+                        href="/img/products/3-3-450x450.jpg"
+                        class="glightbox zoom-icon"
+                        data-gallery="product-gallery"
+                        data-glightbox="title: Product Image 3; description: Detailed product view">
+                        <i class="fa fa-search"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="pro-large-img img-zoom">
+                      <img
+                        src="/img/products/4-4-450x450.jpg"
+                        alt="Product Image 4" />
+                      <a
+                        href="/img/products/4-4-450x450.jpg"
+                        class="glightbox zoom-icon"
+                        data-gallery="product-gallery"
+                        data-glightbox="title: Product Image 4; description: Close-up product view">
+                        <i class="fa fa-search"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="pro-large-img img-zoom">
+                      <img
+                        src="/img/products/4-4-450x450.jpg"
+                        alt="Product Image 5" />
+                      <a
+                        href="/img/products/4-4-450x450.jpg"
+                        class="glightbox zoom-icon"
+                        data-gallery="product-gallery"
+                        data-glightbox="title: Product Image 5; description: Final product view">
+                        <i class="fa fa-search"></i>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="product-nav">
-                <div class="pro-nav-thumb active" data-index="0">
-                  <img src="/img/product/product-01.png" alt="Thumbnail 1" />
-                  <a
-                    href="/img/product/product-01.png"
-                    class="glightbox hidden-gallery-item"
-                    data-gallery="product-gallery"
-                    data-glightbox="title: Product Image 1; description: High quality product view"></a>
-                </div>
-                <div class="pro-nav-thumb" data-index="1">
-                  <img src="/img/product/product-02.png" alt="Thumbnail 2" />
-                  <a
-                    href="/img/product/product-02.png"
-                    class="glightbox hidden-gallery-item"
-                    data-gallery="product-gallery"
-                    data-glightbox="title: Product Image 2; description: Another view of the product"></a>
-                </div>
-                <div class="pro-nav-thumb" data-index="2">
-                  <img src="/img/product/product-03.png" alt="Thumbnail 3" />
-                  <a
-                    href="/img/product/product-03.png"
-                    class="glightbox hidden-gallery-item"
-                    data-gallery="product-gallery"
-                    data-glightbox="title: Product Image 3; description: Detailed product view"></a>
-                </div>
-                <div class="pro-nav-thumb" data-index="3">
-                  <img src="/img/product/product-04.png" alt="Thumbnail 4" />
-                  <a
-                    href="/img/product/product-04.png"
-                    class="glightbox hidden-gallery-item"
-                    data-gallery="product-gallery"
-                    data-glightbox="title: Product Image 4; description: Close-up product view"></a>
-                </div>
-                <div class="pro-nav-thumb" data-index="4">
-                  <img src="/img/product/product-05.png" alt="Thumbnail 5" />
-                  <a
-                    href="/img/product/product-05.png"
-                    class="glightbox hidden-gallery-item"
-                    data-gallery="product-gallery"
-                    data-glightbox="title: Product Image 5; description: Final product view"></a>
+
+              <!-- Thumbnail Navigation Swiper -->
+              <div class="swiper product-thumbs-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="pro-nav-thumb">
+                      <img
+                        src="/img/products/thumb/thumb_1.png"
+                        alt="Thumbnail 1" />
+                      <a
+                        href="/img/products/1-1-600x600.jpg"
+                        class="glightbox hidden-gallery-item"
+                        data-gallery="product-gallery"
+                        data-glightbox="title: Product Image 1; description: High quality product view"></a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="pro-nav-thumb">
+                      <img
+                        src="/img/products/img_1_450.webp"
+                        alt="Thumbnail 2" />
+                      <a
+                        href="/img/products/img_1_450.webp"
+                        class="glightbox hidden-gallery-item"
+                        data-gallery="product-gallery"
+                        data-glightbox="title: Product Image 2; description: Another view of the product"></a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="pro-nav-thumb">
+                      <img
+                        src="/img/products/img_1_450.webp"
+                        alt="Thumbnail 3" />
+                      <a
+                        href="/img/products/img_1_450.webp"
+                        class="glightbox hidden-gallery-item"
+                        data-gallery="product-gallery"
+                        data-glightbox="title: Product Image 3; description: Detailed product view"></a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="pro-nav-thumb">
+                      <img
+                        src="/img/products/img_1_450.webp"
+                        alt="Thumbnail 4" />
+                      <a
+                        href="/img/products/img_1_450.webp"
+                        class="glightbox hidden-gallery-item"
+                        data-gallery="product-gallery"
+                        data-glightbox="title: Product Image 4; description: Close-up product view"></a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="pro-nav-thumb">
+                      <img
+                        src="/img/products/img_1_450.webp"
+                        alt="Thumbnail 5" />
+                      <a
+                        href="/img/products/img_1_450.webp"
+                        class="glightbox hidden-gallery-item"
+                        data-gallery="product-gallery"
+                        data-glightbox="title: Product Image 5; description: Final product view"></a>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!--// Product Details Left -->
             </div>
+            <!-- rightside -->
 
             <div class="col-lg-7 col-md-6">
               <div class="product-details-view-content">
@@ -216,7 +302,7 @@
                     </li>
                     <li role="presentation">
                       <a data-bs-toggle="tab" role="tab" href="#reviews">
-                        Отзывы
+                        Характеристики
                       </a>
                     </li>
                   </ul>
@@ -256,624 +342,7 @@
                     </div>
                   </div>
                   <!-- End Single Content -->
-                  <!-- Start Single Content -->
-                  <div
-                    class="product_tab_content tab-pane"
-                    id="reviews"
-                    role="tabpanel">
-                    <div class="review_address_inner mt-30">
-                      <!-- Start Single Review -->
-                      <div class="pro_review">
-                        <div class="review_thumb">
-                          <img
-                            alt="review img"
-                            src="/img/other/reviewer-60x60.jpg" />
-                        </div>
-                        <div class="review_details">
-                          <div class="review_info mb-10">
-                            <ul class="product-rating d-flex mb-10">
-                              <li><span class="icon-star"></span></li>
-                              <li><span class="icon-star"></span></li>
-                              <li><span class="icon-star"></span></li>
-                              <li><span class="icon-star"></span></li>
-                              <li><span class="icon-star"></span></li>
-                            </ul>
-                            <h5>
-                              Admin -
-                              <span>November 19, 2019</span>
-                            </h5>
-                          </div>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Proin in viverra ex, vitae vestibulum arcu.
-                            Duis sollicitudin metus sed lorem commodo, eu
-                            dapibus libero interdum. Morbi convallis viverra
-                            erat, et aliquet orci congue vel. Integer in odio
-                            enim. Pellentesque in dignissim leo. Vivamus varius
-                            ex sit amet quam tincidunt iaculis.
-                          </p>
-                        </div>
-                      </div>
-                      <!-- End Single Review -->
-                    </div>
-                    <!-- Start RAting Area -->
-                    <div class="rating_wrap mt-50">
-                      <h5 class="rating-title-1">Добавить отзыв</h5>
-                      <p>
-                        Ваш адрес электронной почты не будет опубликован.
-                        Обязательные поля отмечены *
-                      </p>
-                      <h6 class="rating-title-2">Ваша оценка</h6>
-                      <div class="rating_list">
-                        <div class="review_info mb-10">
-                          <ul class="product-rating d-flex mb-10">
-                            <li><span class="icon-star"></span></li>
-                            <li><span class="icon-star"></span></li>
-                            <li><span class="icon-star"></span></li>
-                            <li><span class="icon-star"></span></li>
-                            <li><span class="icon-star"></span></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End RAting Area -->
-                    <div class="comments-area comments-reply-area">
-                      <div class="row">
-                        <div class="col-lg-12">
-                          <form action="#" class="comment-form-area">
-                            <div class="row comment-input">
-                              <div class="col-md-6 comment-form-author mt-15">
-                                <label>
-                                  Имя
-                                  <span class="required">*</span>
-                                </label>
-                                <input
-                                  type="text"
-                                  required="required"
-                                  name="Name" />
-                              </div>
-                              <div class="col-md-6 comment-form-email mt-15">
-                                <label>
-                                  Email
-                                  <span class="required">*</span>
-                                </label>
-                                <input
-                                  type="text"
-                                  required="required"
-                                  name="email" />
-                              </div>
-                            </div>
-                            <div class="comment-form-comment mt-15">
-                              <label>Комментарий</label>
-                              <textarea
-                                class="comment-notes"
-                                required="required"></textarea>
-                            </div>
-                            <div class="comment-form-submit mt-15">
-                              <input
-                                type="submit"
-                                value="Отправить"
-                                class="comment-submit" />
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Single Content -->
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="related-product-area section-pt">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="section-title">
-                  <h3>Похожие товары</h3>
-                </div>
-              </div>
-            </div>
-            <div class="row product-active-lg-4">
-              <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mt-30">
-                  <div class="product-thumb">
-                    <a href="product-details.html?id=2">
-                      <img
-                        class="primary-image"
-                        src="/img/product/product-02.png"
-                        alt="" />
-                    </a>
-                    <div class="label-product label_new">New</div>
-                    <div class="action-links">
-                      <a href="cart.html" class="cart-btn" title="Add to Cart">
-                        <i class="icon-basket-loaded"></i>
-                      </a>
-                      <a
-                        href="wishlist.html"
-                        class="wishlist-btn"
-                        title="Add to Wish List">
-                        <i class="icon-heart"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="quick-view"
-                        title="Quick View"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter"
-                        data-product-id="2">
-                        <i class="icon-magnifier icons"></i>
-                      </a>
-                    </div>
-                    <ul class="watch-color">
-                      <li class="twilight"><span></span></li>
-                      <li class="pigeon"><span></span></li>
-                      <li class="portage"><span></span></li>
-                    </ul>
-                  </div>
-                  <div class="product-caption">
-                    <h4 class="product-name">
-                      <a href="product-details.html">Simple Product 002</a>
-                    </h4>
-                    <div class="price-box">
-                      <span class="new-price">$49.00</span>
-                      <span class="old-price">$90.00</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- single-product-area end -->
-              </div>
-              <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mt-30">
-                  <div class="product-thumb">
-                    <a href="product-details.html">
-                      <img
-                        class="primary-image"
-                        src="/img/product/product-03.png"
-                        alt="" />
-                    </a>
-
-                    <div class="action-links">
-                      <a href="cart.html" class="cart-btn" title="Add to Cart">
-                        <i class="icon-basket-loaded"></i>
-                      </a>
-                      <a
-                        href="wishlist.html"
-                        class="wishlist-btn"
-                        title="Add to Wish List">
-                        <i class="icon-heart"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="quick-view"
-                        title="Quick View"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter"
-                        data-product-id="3">
-                        <i class="icon-magnifier icons"></i>
-                      </a>
-                    </div>
-                    <ul class="watch-color">
-                      <li class="twilight"><span></span></li>
-                      <li class="pigeon"><span></span></li>
-                    </ul>
-                  </div>
-                  <div class="product-caption">
-                    <h4 class="product-name">
-                      <a href="product-details.html">Simple Product 003</a>
-                    </h4>
-                    <div class="price-box">
-                      <span class="new-price">$55.00</span>
-                      <span class="old-price">$76.00</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- single-product-area end -->
-              </div>
-              <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mt-30">
-                  <div class="product-thumb">
-                    <a href="product-details.html">
-                      <img
-                        class="primary-image"
-                        src="/img/product/product-04.png"
-                        alt="" />
-                    </a>
-                    <div class="label-product label_new">New</div>
-                    <div class="action-links">
-                      <a href="cart.html" class="cart-btn" title="Add to Cart">
-                        <i class="icon-basket-loaded"></i>
-                      </a>
-                      <a
-                        href="wishlist.html"
-                        class="wishlist-btn"
-                        title="Add to Wish List">
-                        <i class="icon-heart"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="quick-view"
-                        title="Quick View"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter"
-                        data-product-id="4">
-                        <i class="icon-magnifier icons"></i>
-                      </a>
-                    </div>
-                    <ul class="watch-color">
-                      <li class="twilight"><span></span></li>
-                      <li class="portage"><span></span></li>
-                      <li class="pigeon"><span></span></li>
-                    </ul>
-                  </div>
-                  <div class="product-caption">
-                    <h4 class="product-name">
-                      <a href="product-details.html">Simple Product 004</a>
-                    </h4>
-                    <div class="price-box">
-                      <span class="new-price">$64.00</span>
-                      <span class="old-price">$72.00</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- single-product-area end -->
-              </div>
-              <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mt-30">
-                  <div class="product-thumb">
-                    <a href="product-details.html">
-                      <img
-                        class="primary-image"
-                        src="/img/product/product-05.png"
-                        alt="" />
-                    </a>
-                    <div class="label-product label_new">New</div>
-                    <div class="action-links">
-                      <a href="cart.html" class="cart-btn" title="Add to Cart">
-                        <i class="icon-basket-loaded"></i>
-                      </a>
-                      <a
-                        href="wishlist.html"
-                        class="wishlist-btn"
-                        title="Add to Wish List">
-                        <i class="icon-heart"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="quick-view"
-                        title="Quick View"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter"
-                        data-product-id="5">
-                        <i class="icon-magnifier icons"></i>
-                      </a>
-                    </div>
-                    <ul class="watch-color">
-                      <li class="twilight"><span></span></li>
-                      <li class="portage"><span></span></li>
-                      <li class="pigeon"><span></span></li>
-                    </ul>
-                  </div>
-                  <div class="product-caption">
-                    <h4 class="product-name">
-                      <a href="product-details.html">Simple Product 005</a>
-                    </h4>
-                    <div class="price-box">
-                      <span class="new-price">$44.00</span>
-                      <span class="old-price">$49.00</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- single-product-area end -->
-              </div>
-              <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mt-30">
-                  <div class="product-thumb">
-                    <a href="product-details.html">
-                      <img
-                        class="primary-image"
-                        src="/img/product/product-01.png"
-                        alt="" />
-                    </a>
-                    <div class="label-product label_new">New</div>
-                    <div class="action-links">
-                      <a href="cart.html" class="cart-btn" title="Add to Cart">
-                        <i class="icon-basket-loaded"></i>
-                      </a>
-                      <a
-                        href="wishlist.html"
-                        class="wishlist-btn"
-                        title="Add to Wish List">
-                        <i class="icon-heart"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="quick-view"
-                        title="Quick View"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter"
-                        data-product-id="1">
-                        <i class="icon-magnifier icons"></i>
-                      </a>
-                    </div>
-                    <ul class="watch-color">
-                      <li class="twilight"><span></span></li>
-                      <li class="portage"><span></span></li>
-                      <li class="pigeon"><span></span></li>
-                    </ul>
-                  </div>
-                  <div class="product-caption">
-                    <h4 class="product-name">
-                      <a href="product-details.html">Simple Product 001</a>
-                    </h4>
-                    <div class="price-box">
-                      <span class="new-price">$42.00</span>
-                      <span class="old-price">$49.00</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- single-product-area end -->
-              </div>
-            </div>
-          </div>
-
-          <div class="related-product-area section-pt">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="section-title">
-                  <h3>Рекомендуемые товары</h3>
-                </div>
-              </div>
-            </div>
-            <div class="row product-active-lg-4">
-              <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mt-30">
-                  <div class="product-thumb">
-                    <a href="product-details.html">
-                      <img
-                        class="primary-image"
-                        src="/img/product/product-12.png"
-                        alt="" />
-                    </a>
-                    <div class="label-product label_new">New</div>
-                    <div class="action-links">
-                      <a href="cart.html" class="cart-btn" title="Add to Cart">
-                        <i class="icon-basket-loaded"></i>
-                      </a>
-                      <a
-                        href="wishlist.html"
-                        class="wishlist-btn"
-                        title="Add to Wish List">
-                        <i class="icon-heart"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="quick-view"
-                        title="Quick View"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter"
-                        data-product-id="12">
-                        <i class="icon-magnifier icons"></i>
-                      </a>
-                    </div>
-                    <ul class="watch-color">
-                      <li class="twilight"><span></span></li>
-                      <li class="pigeon"><span></span></li>
-                      <li class="portage"><span></span></li>
-                    </ul>
-                  </div>
-                  <div class="product-caption">
-                    <h4 class="product-name">
-                      <a href="product-details.html">Simple Product 002</a>
-                    </h4>
-                    <div class="price-box">
-                      <span class="new-price">$49.00</span>
-                      <span class="old-price">$90.00</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- single-product-area end -->
-              </div>
-              <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mt-30">
-                  <div class="product-thumb">
-                    <a href="product-details.html">
-                      <img
-                        class="primary-image"
-                        src="/img/product/product-13.png"
-                        alt="" />
-                    </a>
-
-                    <div class="action-links">
-                      <a href="cart.html" class="cart-btn" title="Add to Cart">
-                        <i class="icon-basket-loaded"></i>
-                      </a>
-                      <a
-                        href="wishlist.html"
-                        class="wishlist-btn"
-                        title="Add to Wish List">
-                        <i class="icon-heart"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="quick-view"
-                        title="Quick View"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter"
-                        data-product-id="13">
-                        <i class="icon-magnifier icons"></i>
-                      </a>
-                    </div>
-                    <ul class="watch-color">
-                      <li class="twilight"><span></span></li>
-                      <li class="pigeon"><span></span></li>
-                    </ul>
-                  </div>
-                  <div class="product-caption">
-                    <h4 class="product-name">
-                      <a href="product-details.html">Simple Product 003</a>
-                    </h4>
-                    <div class="price-box">
-                      <span class="new-price">$55.00</span>
-                      <span class="old-price">$76.00</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- single-product-area end -->
-              </div>
-              <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mt-30">
-                  <div class="product-thumb">
-                    <a href="product-details.html">
-                      <img
-                        class="primary-image"
-                        src="/img/product/product-14.png"
-                        alt="" />
-                    </a>
-                    <div class="label-product label_new">New</div>
-                    <div class="action-links">
-                      <a href="cart.html" class="cart-btn" title="Add to Cart">
-                        <i class="icon-basket-loaded"></i>
-                      </a>
-                      <a
-                        href="wishlist.html"
-                        class="wishlist-btn"
-                        title="Add to Wish List">
-                        <i class="icon-heart"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="quick-view"
-                        title="Quick View"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter"
-                        data-product-id="14">
-                        <i class="icon-magnifier icons"></i>
-                      </a>
-                    </div>
-                    <ul class="watch-color">
-                      <li class="twilight"><span></span></li>
-                      <li class="portage"><span></span></li>
-                      <li class="pigeon"><span></span></li>
-                    </ul>
-                  </div>
-                  <div class="product-caption">
-                    <h4 class="product-name">
-                      <a href="product-details.html">Simple Product 004</a>
-                    </h4>
-                    <div class="price-box">
-                      <span class="new-price">$64.00</span>
-                      <span class="old-price">$72.00</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- single-product-area end -->
-              </div>
-              <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mt-30">
-                  <div class="product-thumb">
-                    <a href="product-details.html">
-                      <img
-                        class="primary-image"
-                        src="/img/product/product-15.png"
-                        alt="" />
-                    </a>
-                    <div class="label-product label_new">New</div>
-                    <div class="action-links">
-                      <a href="cart.html" class="cart-btn" title="Add to Cart">
-                        <i class="icon-basket-loaded"></i>
-                      </a>
-                      <a
-                        href="wishlist.html"
-                        class="wishlist-btn"
-                        title="Add to Wish List">
-                        <i class="icon-heart"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="quick-view"
-                        title="Quick View"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter"
-                        data-product-id="15">
-                        <i class="icon-magnifier icons"></i>
-                      </a>
-                    </div>
-                    <ul class="watch-color">
-                      <li class="twilight"><span></span></li>
-                      <li class="portage"><span></span></li>
-                      <li class="pigeon"><span></span></li>
-                    </ul>
-                  </div>
-                  <div class="product-caption">
-                    <h4 class="product-name">
-                      <a href="product-details.html">Simple Product 005</a>
-                    </h4>
-                    <div class="price-box">
-                      <span class="new-price">$44.00</span>
-                      <span class="old-price">$49.00</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- single-product-area end -->
-              </div>
-              <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mt-30">
-                  <div class="product-thumb">
-                    <a href="product-details.html">
-                      <img
-                        class="primary-image"
-                        src="/img/product/product-01.png"
-                        alt="" />
-                    </a>
-                    <div class="label-product label_new">New</div>
-                    <div class="action-links">
-                      <a href="cart.html" class="cart-btn" title="Add to Cart">
-                        <i class="icon-basket-loaded"></i>
-                      </a>
-                      <a
-                        href="wishlist.html"
-                        class="wishlist-btn"
-                        title="Add to Wish List">
-                        <i class="icon-heart"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="quick-view"
-                        title="Quick View"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter"
-                        data-product-id="16">
-                        <i class="icon-magnifier icons"></i>
-                      </a>
-                    </div>
-                    <ul class="watch-color">
-                      <li class="twilight"><span></span></li>
-                      <li class="portage"><span></span></li>
-                      <li class="pigeon"><span></span></li>
-                    </ul>
-                  </div>
-                  <div class="product-caption">
-                    <h4 class="product-name">
-                      <a href="product-details.html">Simple Product 001</a>
-                    </h4>
-                    <div class="price-box">
-                      <span class="new-price">$42.00</span>
-                      <span class="old-price">$49.00</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- single-product-area end -->
               </div>
             </div>
           </div>

@@ -131,13 +131,15 @@
   }
 }
 
-//
+// hero-2
 
 .breadcumb-wrapper {
-  background-color: var(--title-color);
+  background-color: $theme-color;
   background-image: url('/img/bg/breadcumb-bg-2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
   position: relative;
-  min-height: 561px;
+  min-height: 400px;
   display: flex;
   align-items: end;
   padding: 129px 0 125px;
