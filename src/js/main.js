@@ -2,6 +2,9 @@ import './_components.js'
 import './_functions.js'
 import './_api.js'
 
+// Page-specific functionality
+import './pages/product-details.js'
+
 // ==============================
 
 import { initializeCatalog } from './api/renderer.js'

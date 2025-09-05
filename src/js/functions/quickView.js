@@ -3,6 +3,13 @@
  * Handles Bootstrap modal initialization and product quick view
  */
 
+import { getProductById } from '../api/api.js'
+import {
+  createModalContent,
+  createModalLoadingState,
+  createModalErrorState,
+} from '../api/templates.js'
+
 /**
  * Initialize Quick View Modal
  */
@@ -46,7 +53,7 @@ const initQuickView = () => {
     }
 
     // Handle quick view button clicks
-    const handleQuickViewClick = (e) => {
+    const handleQuickViewClick = async (e) => {
       e.preventDefault()
 
       const button = e.currentTarget
@@ -56,7 +63,10 @@ const initQuickView = () => {
 
       // Update modal content if we have product data
       if (productId) {
-        updateModalContent(productId)
+        await updateModalContent(productId)
+      } else {
+        // Show error if no product ID
+        showModalError('Не удалось получить информацию о товаре')
       }
 
       // Show the modal
@@ -64,17 +74,83 @@ const initQuickView = () => {
     }
 
     // Update modal content with product data
-    const updateModalContent = (productId) => {
-      // This is a placeholder for dynamic content loading
-      // In the future, this could fetch product data and update the modal
-      console.log(`🔄 Loading product data for ID: ${productId}`)
+    const updateModalContent = async (productId) => {
+      const modalInnerArea = modalElement.querySelector('.modal-inner-area')
 
-      // For now, just update the modal title or basic content
-      const modalBody = modalElement.querySelector('.modal-body')
-      if (modalBody) {
-        // Add a loading indicator or update content
-        console.log('📝 Modal content updated')
+      if (!modalInnerArea) {
+        console.error('❌ Modal inner area not found')
+        return
       }
+
+      try {
+        // Show loading state
+        showModalLoading()
+
+        console.log(`🔄 Loading product data for ID: ${productId}`)
+
+        // Fetch product data using the API
+        const product = await getProductById(productId)
+
+        if (!product) {
+          throw new Error('Товар не найден')
+        }
+
+        // Render the modal content with product data
+        modalInnerArea.innerHTML = createModalContent(product)
+
+        console.log('📝 Modal content updated successfully')
+
+        // Initialize any additional components (like lightbox) after content is loaded
+        initModalComponents()
+      } catch (error) {
+        console.error('❌ Error loading product data:', error)
+        showModalError(error.message || 'Ошибка загрузки данных о товаре')
+      }
+    }
+
+    // Show loading state in modal
+    const showModalLoading = () => {
+      const modalInnerArea = modalElement.querySelector('.modal-inner-area')
+      if (modalInnerArea) {
+        modalInnerArea.innerHTML = createModalLoadingState()
+      }
+    }
+
+    // Show error state in modal
+    const showModalError = (message) => {
+      const modalInnerArea = modalElement.querySelector('.modal-inner-area')
+      if (modalInnerArea) {
+        modalInnerArea.innerHTML = createModalErrorState(message)
+      }
+    }
+
+    // Initialize modal-specific components after content load
+    const initModalComponents = () => {
+      // Initialize GLightbox for modal gallery if available
+      if (typeof GLightbox !== 'undefined') {
+        try {
+          const modalGallery = GLightbox({
+            selector: '.modal-inner-area .glightbox',
+            touchNavigation: true,
+            loop: true,
+            autoplayVideos: false,
+          })
+          console.log('✅ Modal lightbox gallery initialized')
+        } catch (error) {
+          console.warn('⚠️ Could not initialize modal lightbox:', error)
+        }
+      }
+
+      // Initialize wishlist functionality for modal
+      const wishlistButtons = modalElement.querySelectorAll('.add_to_wishlist')
+      wishlistButtons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault()
+          const productId = button.getAttribute('data-product-id')
+          console.log('💖 Adding product to wishlist:', productId)
+          // Wishlist functionality can be implemented here
+        })
+      })
     }
 
     // Initialize buttons immediately

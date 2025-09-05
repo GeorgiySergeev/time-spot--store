@@ -74,6 +74,9 @@ export const API_CONFIG = {
   SHOW_ERROR_UI: true,
   LOG_ERRORS: true,
 
+  // Fallback Mode (use sample data when API fails)
+  FALLBACK_MODE: true,
+
   // SEO Configuration
   SEO: {
     ENABLED: true,

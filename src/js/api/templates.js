@@ -13,7 +13,7 @@ export const createProductCard = (product) => `
         <a href="wishlist.html" class="wishlist-btn" title="Добавить в избранное" data-product-id="${product.id}">
           <i class="icon-heart"></i>
         </a>
-        <a href="#" class="quick-view" title="Быстрый просмотр" data-bs-toggle="modal" data-bs-target="#productModal" data-product-id="${product.id}">
+        <a href="#" class="quick-view" title="Быстрый просмотр" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-product-id="${product.id}">
           <i class="icon-magnifier icons"></i>
         </a>
       </div>
@@ -280,6 +280,134 @@ export const getCategoryName = (category) => {
 export const createProductCount = (total, start, end) => `
   <div class="product-count">
     Показано ${start}-${end} из ${total} товаров
+  </div>
+`
+
+// Modal content template for product quick view
+export const createModalContent = (product) => `
+  <div class="row gx-3 product-details-inner">
+    <div class="col-lg-5 col-md-6 col-sm-6">
+      <!-- Product Details Left -->
+      <div class="product-large-slider">
+        <div class="pro-large-img">
+          <a
+            href="${product.imageUrl}"
+            class="glightbox zoom-icon"
+            data-gallery="modal-gallery"
+            data-glightbox="title: ${product.name}; description: High quality product view">
+            <img
+              src="${product.imageUrl}"
+              alt="${product.name}" />
+            <span class="zoom-icon-overlay">
+              <i class="fa fa-search-plus"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="product-nav">
+        <div class="pro-nav-thumb">
+          <img src="${product.imageUrl}" alt="${product.name}" />
+        </div>
+      </div>
+      <!--// Product Details Left -->
+    </div>
+
+    <div class="col-lg-7 col-md-6 col-sm-6">
+      <div class="product-details-view-content">
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <div class="product-rating d-flex">
+            <ul class="d-flex">
+              <li><a href="#"><i class="icon-star"></i></a></li>
+              <li><a href="#"><i class="icon-star"></i></a></li>
+              <li><a href="#"><i class="icon-star"></i></a></li>
+              <li><a href="#"><i class="icon-star"></i></a></li>
+              <li><a href="#"><i class="icon-star"></i></a></li>
+            </ul>
+          </div>
+          <div class="price-box">
+            <span class="new-price">${product.formattedPrice}</span>
+          </div>
+          <p>
+            ${product.description || 'Описание товара отсутствует.'}
+          </p>
+
+          <div class="single-add-to-cart">
+            <form action="#" class="cart-quantity d-flex">
+              <div class="quantity">
+                <div class="cart-plus-minus">
+                  <input
+                    type="number"
+                    class="input-text"
+                    name="quantity"
+                    value="1"
+                    title="Qty" />
+                </div>
+              </div>
+              <button class="add-to-cart" type="submit">
+                ${product.inStock ? 'Заказать товар' : 'Нет в наличии'}
+              </button>
+            </form>
+          </div>
+          <ul class="single-add-actions">
+            <li class="add-to-wishlist">
+              <a href="wishlist.html" class="add_to_wishlist" data-product-id="${product.id}">
+                <i class="icon-heart"></i>
+                Добавить в избранное
+              </a>
+            </li>
+          </ul>
+          <ul class="stock-cont">
+            <li class="product-stock-status">
+              Бренд: <a href="#">${product.brand}</a>
+            </li>
+            <li class="product-stock-status">
+              Категория: <a href="#">${getCategoryName(product.category)}</a>
+            </li>
+            <li class="product-stock-status">
+              Наличие: <span class="${product.inStock ? 'in-stock' : 'out-of-stock'}">
+                ${product.inStock ? 'В наличии' : 'Нет в наличии'}
+              </span>
+            </li>
+          </ul>
+          <div class="share-product-socail-area">
+            <p>Поделиться товаром</p>
+            <ul class="single-product-share">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+`
+
+// Loading state for modal
+export const createModalLoadingState = () => `
+  <div class="text-center modal-loading" style="padding: 3rem;">
+    <div class="loading-spinner">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Загрузка...</span>
+      </div>
+    </div>
+    <div style="color: #666; font-size: 1.1rem; margin-top: 1rem;">
+      Загрузка информации о товаре...
+    </div>
+  </div>
+`
+
+// Error state for modal
+export const createModalErrorState = (message) => `
+  <div class="text-center modal-error" style="padding: 3rem;">
+    <div class="error-icon" style="color: #dc3545; font-size: 2rem; margin-bottom: 1rem;">
+      <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <h4 style="color: #dc3545; margin-bottom: 1rem;">Ошибка загрузки</h4>
+    <div style="color: #666; font-size: 1rem; margin-bottom: 2rem;">
+      ${message}
+    </div>
   </div>
 `
 

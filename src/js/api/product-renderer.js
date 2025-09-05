@@ -257,6 +257,10 @@ const createProductThumb = (product) => {
   quickViewBtn.title = 'Быстрый просмотр'
   quickViewBtn.setAttribute('data-bs-toggle', 'modal')
   quickViewBtn.setAttribute('data-bs-target', '#exampleModalCenter')
+  quickViewBtn.setAttribute(
+    'data-product-id',
+    String(product.id || product._id),
+  )
   const quickViewIcon = document.createElement('i')
   quickViewIcon.className = 'icon-magnifier icons'
   quickViewBtn.appendChild(quickViewIcon)
