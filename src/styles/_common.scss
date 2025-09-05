@@ -252,8 +252,8 @@ a:focus {
 .pagination-box {
   display: flex;
   margin-top: 40px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
+  // border: 1px solid #ddd;
+  // border-radius: 3px;
   padding: 10px;
   justify-content: center;
   @media #{$large-mobile} {

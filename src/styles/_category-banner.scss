@@ -1,0 +1,106 @@
+.banner-layout1 {
+  overflow: hidden;
+  padding: 0 156px;
+}
+@media (max-width: 1500px) {
+  .banner-layout1 {
+    padding: 0 15px;
+  }
+}
+@media (max-width: 991px) {
+  .banner-layout1 {
+    padding: 0 10px;
+  }
+}
+.banner-style {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: rgb(23 27 34 / 0.95);
+  padding: 0 25px;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .banner-style {
+    padding: 30px 20px;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+  }
+}
+.banner-style .banner-img {
+  position: relative;
+  width: 320px;
+  height: 359px;
+}
+.banner-style .banner-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@media (max-width: 767px) {
+  .banner-style .star-rating {
+    margin: 0 auto;
+  }
+}
+.banner-style .product-price {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--smoke-color);
+  font-family: var(--body-font);
+  display: block;
+  color: var(--rating-color1);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 30px;
+}
+.banner-style .product-price span {
+  color: var(--theme-color);
+}
+@media (max-width: 767px) {
+  .banner-style .product-price {
+    justify-content: center;
+  }
+}
+.banner-style .banner-title {
+  font-size: 40px;
+  margin: 0 0 5px 0;
+  text-transform: capitalize;
+}
+.banner-style .vs-btn {
+  padding: 19px 30px;
+}
+@media (max-width: 767px) {
+  .banner-style .banner-content {
+    padding-top: 30px;
+  }
+}
+.banner-style.style2 {
+  border-radius: 0 10px 10px 0;
+  gap: 40px;
+}
+@media (max-width: 767px) {
+  .banner-style.style2 {
+    border-radius: 0 0 10px 10px;
+  }
+}
+.banner-style.style2 .banner-title a {
+  color: var(--title-color);
+}
+.banner-style.style2 .banner-title a:hover {
+  color: var(--theme-color);
+}
+.banner-style.style2 .product-price {
+  color: var(--text-color7);
+}
+.banner-style.style2 .star-rating::before {
+  color: var(--black-color);
+}
+.banner-style.style2 .star-rating span::before {
+  color: var(--black-color);
+}

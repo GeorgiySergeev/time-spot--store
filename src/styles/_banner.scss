@@ -8,6 +8,8 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 
+  background-image: url('img/banner/banner-bg-1-1.png');
+
   & a {
     display: block;
     position: relative;
@@ -28,11 +30,6 @@
 
       .category-banner {
         transform: translate(-50%, -50%) scale(1.05);
-        // background: linear-gradient(
-        //   135deg,
-        //   rgba(0, 0, 0, 0.8),
-        //   rgba(0, 0, 0, 0.6)
-        // );
 
         .category-banner__label {
           transform: translateY(-2px);
@@ -135,6 +132,176 @@
   }
 }
 
+// Parallax Section Styles
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+
+  .parallax-bg {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background: url('/img/banner/9.jpg') no-repeat center/cover;
+    z-index: 1;
+    will-change: transform;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.3) 100%
+      );
+      z-index: 2;
+    }
+  }
+
+  .parallax-content {
+    position: relative;
+    z-index: 3;
+    will-change: transform, opacity;
+  }
+}
+
+// Parallax Element Animations
+.parallax-element {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+
+  &.banner__label {
+    transform: translateZ(0);
+
+    // AOS integration - enhanced label animation
+    &[data-aos='fade-down'] {
+      &.aos-animate {
+        transform: translateZ(0) translateY(0);
+      }
+    }
+  }
+
+  &.banner__name {
+    transform: translateZ(0);
+
+    // AOS integration - enhanced title animation
+    &[data-aos='fade-up'] {
+      &.aos-animate {
+        transform: translateZ(0) translateY(0);
+      }
+    }
+  }
+
+  &.banner__text {
+    transform: translateZ(0);
+
+    // AOS integration - enhanced text animation
+    &[data-aos='fade-up'] {
+      &.aos-animate {
+        transform: translateZ(0) translateY(0);
+      }
+    }
+  }
+
+  &.btn {
+    transform: translateZ(0);
+    transition:
+      transform 0.1s ease-out,
+      background-color 0.3s ease,
+      box-shadow 0.3s ease;
+
+    // AOS integration - enhanced button animation
+    &[data-aos='zoom-in'] {
+      &.aos-animate {
+        transform: translateZ(0) scale(1);
+      }
+    }
+
+    &:hover {
+      transform: translateZ(0) translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+// Enhanced banner-bg-1 with parallax support
+.banner-bg-1 {
+  background: transparent; // Remove static background
+  position: relative;
+
+  &.parallax-section {
+    background: transparent;
+  }
+}
+
+// Performance optimizations for parallax
+@media (prefers-reduced-motion: reduce) {
+  .parallax-element,
+  .parallax-bg,
+  .parallax-content {
+    transform: none !important;
+    will-change: auto;
+    transition: none;
+  }
+
+  // Disable AOS animations for reduced motion
+  [data-aos] {
+    pointer-events: auto !important;
+  }
+
+  [data-aos].aos-animate,
+  [data-aos]:not(.aos-animate) {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+// Enhanced AOS animations for banner
+.banner-area {
+  // Stagger animation for better visual flow
+  .banner__label[data-aos] {
+    transition-delay: 0.2s;
+  }
+
+  .banner__name[data-aos] {
+    transition-delay: 0.4s;
+  }
+
+  .banner__text[data-aos] {
+    transition-delay: 0.6s;
+  }
+
+  .btn[data-aos] {
+    transition-delay: 0.8s;
+  }
+}
+
+// Mobile parallax adjustments
+@media (max-width: 768px) {
+  .parallax-section {
+    min-height: 300px;
+
+    .parallax-bg {
+      background-attachment: scroll; // Better mobile performance
+      background-size: cover;
+    }
+  }
+
+  .parallax-element {
+    // Reduce parallax intensity on mobile
+    &[data-parallax-speed] {
+      transform: translate3d(0, 0, 0) !important;
+    }
+  }
+}
+
 .banner-bg-1 {
   background: url('/img/banner/9.jpg') no-repeat scroll center/cover;
 }
@@ -144,6 +311,10 @@
   font-size: 1.6rem;
   color: $gold;
   margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  // Enhanced visibility for parallax
+  position: relative;
+  z-index: 4;
   // font-family: 'Rubik', sans-serif;
 }
 
@@ -154,6 +325,10 @@
   font-family: 'Times New Roman', Times, serif;
   line-height: 1.1;
   margin-bottom: 2.5rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  // Enhanced visibility for parallax
+  position: relative;
+  z-index: 4;
 }
 @media (max-width: 61.94em) {
   .banner__name {
@@ -170,6 +345,10 @@
 .banner__text {
   color: $white;
   font-size: 1.6rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  // Enhanced visibility for parallax
+  position: relative;
+  z-index: 4;
 }
 
 .banner-static a {

@@ -3,16 +3,33 @@
   @include('../components/head/head.html')
   <body class="page__body">
     <!-- @include('../components/blocks/skiplink.html') -->
+    @include('../components/layout/mobile.html')
     <div class="site-container">
-      @include('../components/layout/header.html')
+      <!-- Header Start -->
+      <!-- @include('../components/layout/header.html') -->
+      <!-- Header End -->
+
+      <!-- Header-2 Start -->
+      @include('../components/layout/header-2.html')
+      <!-- Header-2 End -->
+
+      <!-- Breadcrumb Area Start -->
+      <!-- @include('../components/blocks/breadcrumb.html') -->
+      <!-- Breadcrumb Area End -->
+
+      <!-- Main  -->
       <main class="page__main" id="main">
         <!-- Hero Section Start -->
         @include('../components/blocks/hero.html')
         <!-- Hero Section End -->
 
         <!-- Brand Area Start -->
-        @include('../components/blocks/brand.html')
+        <!-- @include('../components/blocks/brand.html') -->
         <!-- Brand Area End -->
+
+        <!-- Banner Area Start -->
+        <!-- @include('../components/blocks/category-banner.html') -->
+        <!-- Banner Area End -->
 
         <!-- Banner Area Start -->
         @include('../components/blocks/banner.html')

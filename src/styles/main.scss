@@ -45,6 +45,7 @@
 
 // Theme CSS
 @import '_header';
+@import '_header-2.scss';
 @import '_categories-toggler';
 @import '_hero';
 @import '_support';
@@ -64,5 +65,5 @@
 @import '_checkout';
 @import '_error-404';
 @import '_compare';
-@import '_my-account';
-@import '_login-register';
+// @import '_my-account';
+// @import '_login-register';

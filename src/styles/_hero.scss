@@ -4,22 +4,22 @@
 
 .hero-slider-one {
   & .single-slide {
-    height: 550px;
+    height: 75vh;
     display: flex;
     align-items: center;
     background-size: cover;
     background-position: center right;
     position: relative;
 
-    @media #{$desktop-device} {
-      height: 620px;
-    }
-    @media #{$tablet-device} {
-      height: 520px;
-    }
-    @media #{$large-mobile} {
-      height: 420px;
-    }
+    // @media #{$desktop-device} {
+    //   height: 620px;
+    // }
+    // @media #{$tablet-device} {
+    //   height: 520px;
+    // }
+    // @media #{$large-mobile} {
+    //   height: 420px;
+    // }
   }
 
   & .hero-overlay {
@@ -128,5 +128,55 @@
       animation-name: fadeInRight;
       animation-duration: 0.9s;
     }
+  }
+}
+
+//
+
+.breadcumb-wrapper {
+  background-color: var(--title-color);
+  background-image: url('/img/bg/breadcumb-bg-2.jpg');
+  position: relative;
+  min-height: 561px;
+  display: flex;
+  align-items: end;
+  padding: 129px 0 125px;
+}
+@media (max-width: 1199px) {
+  .breadcumb-wrapper {
+    min-height: 420px;
+    padding: 167px 0 100px;
+  }
+}
+@media (max-width: 991px) {
+  .breadcumb-wrapper {
+    padding-top: 200px;
+    padding-bottom: 50px;
+  }
+}
+@media (max-width: 767px) {
+  .breadcumb-wrapper {
+    min-height: 385px;
+  }
+}
+.breadcumb-wrapper .breadcumb-element {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  z-index: 1;
+}
+.breadcumb-wrapper .overlay {
+  background-color: var(--title-color);
+  opacity: 80%;
+}
+@media (max-width: 991px) {
+  .breadcumb-content {
+    display: block;
+  }
+  .breadcumb-title {
+    max-width: 100%;
+  }
+  .breadcumb-menu {
+    margin-top: 15px;
   }
 }
