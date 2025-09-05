@@ -5,7 +5,7 @@
 export const createProductCard = (product) => `
   <div class="single-product-area mt-30">
     <div class="product-thumb">
-      <a href="${product.url}">
+      <a href="product-details.html" class="product-detail-link" data-product-id="${product.id}">
         <img class="primary-image" src="${product.imageUrl}" alt="${product.name}" loading="lazy">
       </a>
       ${!product.inStock ? '<div class="label-product label_out">Нет в наличии</div>' : ''}
@@ -20,10 +20,10 @@ export const createProductCard = (product) => `
     </div>
     <div class="product-caption">
       <h4 class="product-brand">
-        <a href="${product.url}">${product.brand}</a>
+        <a href="product-details.html" class="product-detail-link" data-product-id="${product.id}">${product.brand}</a>
       </h4>
       <h4 class="product-name">
-        <a href="${product.url}">${product.model}</a>
+        <a href="product-details.html" class="product-detail-link" data-product-id="${product.id}">${product.model}</a>
       </h4>
       <div class="price-box">
         <span class="new-price">${product.formattedPrice}</span>
@@ -42,7 +42,7 @@ export const createProductListItem = (product) => `
       <div class="col-lg-3 col-md-3">
         <div class="single-product">
           <div class="product-image">
-            <a href="${product.url}">
+            <a href="product-details.html" class="product-detail-link" data-product-id="${product.id}">
               <img src="${product.imageUrl}" alt="${product.name}" loading="lazy">
             </a>
           </div>
@@ -50,7 +50,7 @@ export const createProductListItem = (product) => `
       </div>
       <div class="col-lg-6 col-md-6">
         <div class="product-content-list text-left">
-          <h4><a href="${product.url}" class="product-name">${product.name}</a></h4>
+          <h4><a href="product-details.html" class="product-detail-link product-name" data-product-id="${product.id}">${product.name}</a></h4>
           <div class="product-meta">
             <span class="product-brand">Бренд: ${product.brand}</span>
             <span class="product-model">Модель: ${product.model}</span>

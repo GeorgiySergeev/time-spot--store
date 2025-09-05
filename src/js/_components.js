@@ -1,5 +1,6 @@
 import './components/burger.js'
 import './components/dialog.js'
 import './components/product-tabs.js'
+import './components/product-detail-navigation.js'
 // import './components/img-loading-error.js'
 // import './components/product-gallery.js'

@@ -4,28 +4,15 @@ import { getProductById } from './api.js'
 
 const BASE_IMAGE_URL = 'https://websphere.miy.link/admin/storage/uploads'
 
-// Get product ID from URL parameters
-export const getProductIdFromUrl = () => {
-  const urlParams = new URLSearchParams(window.location.search)
-  const productId = urlParams.get('id')
-
-  if (!productId) {
-    console.warn('No product ID found in URL parameters')
-    return null
-  }
-
-  console.log('Product ID from URL:', productId)
-  return productId
-}
-
-// Render single product details
+// Render single product details (main function called from navigation)
 export const renderProductDetails = async (productId) => {
   try {
-    // showLoadingState()
+    console.log('🔍 Fetching product details for ID:', productId)
+    showLoadingState()
 
     // Fetch product data
     const productData = await getProductById(productId)
-    console.log('Fetched product data:', productData)
+    console.log('✅ Fetched product data:', productData)
 
     // Normalize the product data (handle API response structure)
     const normalizedData = normalizeProductData(productData)
@@ -34,15 +21,29 @@ export const renderProductDetails = async (productId) => {
       throw new Error('Product not found or invalid data structure')
     }
 
+    // Remove loading state
+    removeLoadingState()
+
     // Render the product details
     updateProductInfo(normalizedData)
     updateProductImages(normalizedData)
     updateProductActions(normalizedData)
 
-    console.log('Successfully rendered product details for ID:', productId)
+    console.log('✅ Successfully rendered product details for ID:', productId)
   } catch (error) {
-    console.error('Error rendering product details:', error)
-    showErrorState(error.message)
+    console.error('❌ Error rendering product details:', error)
+    removeLoadingState()
+
+    // Show fallback data if API fails
+    if (
+      error.message.includes('Network Error') ||
+      error.response?.status >= 500
+    ) {
+      console.log('🔄 API failed, showing fallback data')
+      showFallbackProductData(productId)
+    } else {
+      showErrorState(error.message)
+    }
   }
 }
 
@@ -309,30 +310,106 @@ const formatPrice = (price) => {
 const showLoadingState = () => {
   const container = document.querySelector('.product-details-inner')
   if (container) {
+    // Add loading overlay to specific container instead of whole page
+    const existingLoader = container.querySelector('.product-loading')
+    if (existingLoader) return // Already showing
+
     const loadingDiv = document.createElement('div')
-    loadingDiv.className = 'loading-overlay'
+    loadingDiv.className = 'product-loading'
     loadingDiv.innerHTML = `
-      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                  background: rgba(0,0,0,0.5); display: flex; align-items: center;
-                  justify-content: center; z-index: 9999;">
-        <div style="background: white; padding: 2rem; border-radius: 8px; text-align: center;">
-          <div style="color: #333; font-size: 1.2rem; margin-bottom: 1rem;">
-            <i class="fa fa-spinner fa-spin"></i> Загрузка товара...
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                  background: rgba(255,255,255,0.9); display: flex; align-items: center;
+                  justify-content: center; z-index: 100; min-height: 300px;">
+        <div style="text-align: center; color: #333;">
+          <div style="font-size: 2rem; margin-bottom: 1rem;">
+            <i class="fa fa-spinner fa-spin"></i>
+          </div>
+          <div style="font-size: 1.1rem;">
+            Загрузка товара...
           </div>
         </div>
       </div>
     `
-    document.body.appendChild(loadingDiv)
+    container.style.position = 'relative'
+    container.appendChild(loadingDiv)
+  }
+}
+
+// Remove loading state
+const removeLoadingState = () => {
+  const loadingElements = document.querySelectorAll(
+    '.product-loading, .loading-overlay',
+  )
+  loadingElements.forEach((el) => el.remove())
+}
+
+// Show fallback product data when API fails
+const showFallbackProductData = (productId) => {
+  console.log('💾 Using fallback data for product ID:', productId)
+
+  const fallbackProduct = {
+    id: productId,
+    brand: 'Time Sphere',
+    model: 'Classic Watch',
+    name: 'Time Sphere Classic Watch',
+    price: 299,
+    description:
+      'Этот товар временно недоступен через API. Показываются образцы данных.',
+    img: { path: '/img/product/product-01.png' },
+    category: 'watch',
+    in_stock: true,
+    sku: 'TS-CLASSIC-001',
+    rating: 5,
+  }
+
+  const normalizedData = {
+    id: fallbackProduct.id,
+    brand: fallbackProduct.brand,
+    model: fallbackProduct.model,
+    name: fallbackProduct.name,
+    price: fallbackProduct.price,
+    description: fallbackProduct.description,
+    img: fallbackProduct.img,
+    category: fallbackProduct.category,
+    inStock: fallbackProduct.in_stock,
+    sku: fallbackProduct.sku,
+    rating: fallbackProduct.rating,
+  }
+
+  // Show notice about fallback data
+  showFallbackNotice()
+
+  // Render the fallback product details
+  updateProductInfo(normalizedData)
+  updateProductImages(normalizedData)
+  updateProductActions(normalizedData)
+}
+
+// Show notice about using fallback data
+const showFallbackNotice = () => {
+  const container = document.querySelector('.product-details-inner')
+  if (container) {
+    const notice = document.createElement('div')
+    notice.className = 'alert alert-info'
+    notice.style.cssText =
+      'margin-bottom: 2rem; padding: 1rem; background: #d1ecf1; border: 1px solid #bee5eb; border-radius: 4px; color: #0c5460;'
+    notice.innerHTML = `
+      <div style="display: flex; align-items: center;">
+        <i class="fa fa-info-circle" style="margin-right: 0.5rem; font-size: 1.2rem;"></i>
+        <div>
+          <strong>Образцы данных:</strong> Информация о товаре временно недоступна через API.
+          <a href="shop.html" style="color: #0c5460; text-decoration: underline; margin-left: 1rem;">Перейти к каталогу</a>
+        </div>
+      </div>
+    `
+    container.insertBefore(notice, container.firstChild)
   }
 }
 
 // Show error state
 const showErrorState = (errorMessage) => {
   // Remove loading overlay
-  const loadingOverlay = document.querySelector('.loading-overlay')
-  if (loadingOverlay) {
-    loadingOverlay.remove()
-  }
+  removeLoadingState()
 
   const container = document.querySelector('.product-details-inner')
   if (container) {
@@ -344,16 +421,21 @@ const showErrorState = (errorMessage) => {
         <div style="color: #666; font-size: 1.1rem; margin-bottom: 2rem;">
           ${errorMessage}
         </div>
-        <button onclick="window.location.reload()"
-                style="background: #007bff; color: white; border: none;
-                       padding: 1rem 2rem; border-radius: 4px; cursor: pointer;">
-          <i class="fa fa-refresh"></i> Попробовать снова
-        </button>
-        <a href="shop.html"
-           style="background: #28a745; color: white; text-decoration: none;
-                  padding: 1rem 2rem; border-radius: 4px; margin-left: 1rem; display: inline-block;">
-          <i class="fa fa-arrow-left"></i> Вернуться к товарам
-        </a>
+        <div style="margin-bottom: 2rem;">
+          <button onclick="window.location.reload()"
+                  style="background: #007bff; color: white; border: none;
+                         padding: 1rem 2rem; border-radius: 4px; cursor: pointer; margin-right: 1rem;">
+            <i class="fa fa-refresh"></i> Попробовать снова
+          </button>
+          <a href="shop.html"
+             style="background: #28a745; color: white; text-decoration: none;
+                    padding: 1rem 2rem; border-radius: 4px; display: inline-block;">
+            <i class="fa fa-arrow-left"></i> Вернуться к товарам
+          </a>
+        </div>
+        <div style="color: #999; font-size: 0.9rem;">
+          Если проблема повторяется, обратитесь к администратору
+        </div>
       </div>
     `
   }
@@ -377,14 +459,3 @@ export const initProductDetailsPage = () => {
   console.log('Initializing product details page for ID:', productId)
   renderProductDetails(productId)
 }
-
-// Auto-initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  // Only run on product-details page
-  if (
-    window.location.pathname.includes('product-details') ||
-    document.querySelector('.product-details-inner')
-  ) {
-    initProductDetailsPage()
-  }
-})
