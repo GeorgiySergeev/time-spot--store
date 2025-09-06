@@ -6,3 +6,71 @@
 @use '../../node_modules/animate.css/animate.css';
 // AOS (Animate On Scroll)
 @use '../../node_modules/aos/dist/aos.css';
+
+// Custom AOS styles for better viewport detection
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+}
+
+// Ensure elements are hidden before animation
+[data-aos='fade-up'] {
+  transform: translate3d(0, 40px, 0);
+}
+
+[data-aos='fade-down'] {
+  transform: translate3d(0, -40px, 0);
+}
+
+[data-aos='fade-left'] {
+  transform: translate3d(40px, 0, 0);
+}
+
+[data-aos='fade-right'] {
+  transform: translate3d(-40px, 0, 0);
+}
+
+[data-aos='zoom-in'] {
+  transform: scale(0.6);
+}
+
+[data-aos='zoom-out'] {
+  transform: scale(1.2);
+}
+
+// Swiper Testimonials Styles
+.swiper-3 {
+  padding: 20px 0 60px;
+
+  .swiper-slide {
+    height: auto;
+  }
+
+  .swiper-pagination {
+    bottom: 20px;
+
+    .swiper-pagination-bullet {
+      background: #007bff;
+      opacity: 0.5;
+
+      &.swiper-pagination-bullet-active {
+        opacity: 1;
+        background: #007bff;
+      }
+    }
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #007bff;
+    font-size: 20px;
+
+    &:after {
+      font-size: 20px;
+    }
+  }
+}

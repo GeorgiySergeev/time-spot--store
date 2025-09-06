@@ -1,10 +1,23 @@
 import AOS from 'aos'
 
+// Make AOS available globally for debugging
+if (typeof window !== 'undefined') {
+  window.AOS = AOS
+}
+
 /**
  * Initialize AOS (Animate On Scroll) library
  * Adds smooth scroll animations to elements
  */
 export function initAOS() {
+  // Check if AOS is available
+  if (typeof AOS === 'undefined') {
+    console.error('❌ AOS library not loaded!')
+    return
+  }
+
+  console.log('🎨 Initializing AOS...')
+
   AOS.init({
     // Global settings
     duration: 1000, // Animation duration in milliseconds
@@ -13,8 +26,8 @@ export function initAOS() {
     mirror: false, // Whether elements should animate out while scrolling past them
     anchorPlacement: 'top-bottom', // Defines which position of the element triggers animation
 
-    // Advanced settings
-    offset: 120, // Offset (in px) from the original trigger point
+    // Advanced settings - optimized for viewport detection
+    offset: 50, // Reduced offset for earlier trigger (was 120px)
     delay: 0, // Delay in milliseconds
     disable: false, // Conditions for disabling AOS
 
@@ -28,7 +41,11 @@ export function initAOS() {
     throttleDelay: 99, // Delay on throttle used while scrolling the page
   })
 
-  console.log('🎨 AOS (Animate On Scroll) initialized')
+  console.log('🎨 AOS (Animate On Scroll) initialized successfully')
+  console.log(
+    '📊 AOS elements found:',
+    document.querySelectorAll('[data-aos]').length,
+  )
 }
 
 /**
@@ -37,6 +54,70 @@ export function initAOS() {
 export function refreshAOS() {
   AOS.refresh()
   console.log('🔄 AOS refreshed')
+}
+
+/**
+ * Configure AOS for specific elements with custom viewport settings
+ * @param {string} selector - CSS selector for elements
+ * @param {Object} options - AOS options for these elements
+ */
+export function configureAOSForElements(selector, options = {}) {
+  const elements = document.querySelectorAll(selector)
+  elements.forEach((element) => {
+    // Set custom data attributes for AOS
+    Object.keys(options).forEach((key) => {
+      element.setAttribute(`data-aos-${key}`, options[key])
+    })
+  })
+
+  // Refresh AOS to apply new settings
+  AOS.refresh()
+  console.log(
+    `🎯 AOS configured for ${elements.length} elements matching "${selector}"`,
+  )
+}
+
+/**
+ * Initialize AOS with responsive settings
+ * Different settings for mobile and desktop
+ */
+export function initAOSResponsive() {
+  // Check if AOS is available
+  if (typeof AOS === 'undefined') {
+    console.error('❌ AOS library not loaded!')
+    return
+  }
+
+  const isMobile = window.innerWidth <= 768
+  console.log(
+    `🎨 Initializing AOS for ${isMobile ? 'mobile' : 'desktop'} viewport...`,
+  )
+
+  AOS.init({
+    duration: isMobile ? 800 : 1000,
+    easing: 'ease-in-out',
+    once: true,
+    mirror: false,
+    anchorPlacement: 'top-bottom',
+    offset: isMobile ? 30 : 50, // Smaller offset on mobile
+    delay: 0,
+    disable: false,
+    startEvent: 'DOMContentLoaded',
+    animatedClassName: 'aos-animate',
+    initClassName: 'aos-init',
+    useClassNames: false,
+    disableMutationObserver: false,
+    debounceDelay: 50,
+    throttleDelay: 99,
+  })
+
+  console.log(
+    `🎨 AOS initialized for ${isMobile ? 'mobile' : 'desktop'} viewport`,
+  )
+  console.log(
+    '📊 AOS elements found:',
+    document.querySelectorAll('[data-aos]').length,
+  )
 }
 
 /**

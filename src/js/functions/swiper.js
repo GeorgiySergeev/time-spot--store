@@ -1,9 +1,15 @@
 // Swiper
 import Swiper from 'swiper'
-import { Autoplay, Thumbs } from 'swiper/modules'
+import {
+  Autoplay,
+  Thumbs,
+  Pagination,
+  Navigation,
+  Keyboard,
+} from 'swiper/modules'
 
 // Configure Swiper to use modules
-Swiper.use([Autoplay, Thumbs])
+Swiper.use([Autoplay, Thumbs, Pagination, Navigation, Keyboard])
 
 console.log('Swiper')
 
@@ -70,9 +76,35 @@ export const initHeroSwiper = () => {
 // Product Swiper Configuration
 const productSwiperConfig = {
   direction: 'horizontal',
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
   loop: true,
   slidesPerView: 4,
   spaceBetween: 20,
+  breakpoints: {
+    // Mobile devices (up to 767px)
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    // Small mobile (480px and up)
+    480: {
+      slidesPerView: 2,
+      spaceBetween: 15,
+    },
+    // Large mobile (768px and up)
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 15,
+    },
+    // Tablet (992px and up)
+    992: {
+      slidesPerView: 4,
+      spaceBetween: 20,
+    },
+  },
 }
 
 export const initProductSwiper = () => {
@@ -86,6 +118,9 @@ export const initProductSwiper = () => {
   console.log('Product Swiper initialized:', swiper)
   return swiper
 }
+
+// Make initProductSwiper available globally for dynamic rendering
+window.initProductSwiper = initProductSwiper
 
 // Brand Swiper Configuration
 const brandSwiperConfig = {
@@ -226,11 +261,46 @@ export const productPageSlider = () => {
   return { mainSwiper, thumbsSwiper }
 }
 
+// Testimonials Swiper Configuration
+const testimonialsSwiperConfig = {
+  direction: 'horizontal',
+  loop: true,
+  slidesPerView: 1,
+  spaceBetween: 20,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  grabCursor: true,
+  keyboard: {
+    enabled: true,
+  },
+}
+
+export const initTestimonialsSwiper = () => {
+  const swiperElement = document.querySelector('.swiper-3')
+  if (!swiperElement) {
+    console.warn('Testimonials swiper element not found')
+    return null
+  }
+  const swiper = new Swiper('.swiper-3', testimonialsSwiperConfig)
+  console.log('Testimonials Swiper initialized:', swiper)
+  return swiper
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initHeroSwiper()
   initProductSwiper()
   initBrandSwiper()
-
+  initTestimonialsSwiper()
   // Add a small delay for product page swiper to ensure DOM is ready
   setTimeout(() => {
     productPageSlider()

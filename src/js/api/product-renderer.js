@@ -52,23 +52,82 @@ const renderProductCards = (products, container) => {
   // Clear existing content
   container.innerHTML = ''
 
-  // Render each product
-  products.forEach((product, index) => {
-    try {
-      const columnWrapper = document.createElement('div')
-      columnWrapper.className = 'col-lg-3 col-md-6'
+  // Check if container has swiper class or if we should use swiper mode
+  // Swiper should only be used for product galleries on product-details page
+  const useSwiper =
+    container.classList.contains('swiper-product') ||
+    container.closest('.swiper-product') ||
+    (window.location.pathname.includes('product-details') &&
+      container.closest('.product-details-inner'))
 
-      const gridCard = createProductCard(product)
-      columnWrapper.appendChild(gridCard)
+  if (useSwiper) {
+    // Create swiper structure
+    const swiperContainer = document.createElement('div')
+    swiperContainer.className = 'row product-active-lg-4 swiper-product'
 
-      container.appendChild(columnWrapper)
-    } catch (error) {
-      console.error(`Error rendering product ${index}:`, error, product)
-      // Continue with other products
-    }
-  })
+    const swiperWrapper = document.createElement('div')
+    swiperWrapper.className = 'swiper-wrapper'
 
-  console.log(`Успешно отображено ${products.length} товаров`)
+    // Add navigation buttons
+    const nextBtn = document.createElement('div')
+    nextBtn.className = 'swiper-button-next next-btn'
+
+    const prevBtn = document.createElement('div')
+    prevBtn.className = 'swiper-button-prev prev-btn'
+
+    // Render each product as swiper slide
+    products.forEach((product, index) => {
+      try {
+        const slideWrapper = document.createElement('div')
+        slideWrapper.className = 'swiper-slide'
+
+        const productCardHTML = createProductCard(product)
+        const productCard = document.createElement('div')
+        productCard.innerHTML = productCardHTML
+        slideWrapper.appendChild(productCard.firstElementChild || productCard)
+
+        swiperWrapper.appendChild(slideWrapper)
+      } catch (error) {
+        console.error(`Error rendering product ${index}:`, error, product)
+        // Continue with other products
+      }
+    })
+
+    swiperContainer.appendChild(swiperWrapper)
+    swiperContainer.appendChild(nextBtn)
+    swiperContainer.appendChild(prevBtn)
+
+    container.appendChild(swiperContainer)
+
+    // Initialize swiper after DOM update
+    setTimeout(() => {
+      if (window.initProductSwiper) {
+        window.initProductSwiper()
+      }
+    }, 100)
+
+    console.log(`Успешно отображено ${products.length} товаров в слайдере`)
+  } else {
+    // Render each product in grid layout
+    products.forEach((product, index) => {
+      try {
+        const columnWrapper = document.createElement('div')
+        columnWrapper.className = 'col-lg-3 col-md-6'
+
+        const gridCardHTML = createProductCard(product)
+        const gridCard = document.createElement('div')
+        gridCard.innerHTML = gridCardHTML
+        columnWrapper.appendChild(gridCard.firstElementChild || gridCard)
+
+        container.appendChild(columnWrapper)
+      } catch (error) {
+        console.error(`Error rendering product ${index}:`, error, product)
+        // Continue with other products
+      }
+    })
+
+    console.log(`Успешно отображено ${products.length} товаров в сетке`)
+  }
 }
 
 // Render products in list view
@@ -83,8 +142,10 @@ const renderProductList = (products, container) => {
   // Render each product
   products.forEach((product, index) => {
     try {
-      const listCard = createProductListCard(product)
-      listContainer.appendChild(listCard)
+      const listCardHTML = createProductListCard(product)
+      const listCard = document.createElement('div')
+      listCard.innerHTML = listCardHTML
+      listContainer.appendChild(listCard.firstElementChild || listCard)
     } catch (error) {
       console.error(`Error rendering product ${index}:`, error, product)
       // Continue with other products
@@ -207,12 +268,13 @@ const createProductThumb = (product) => {
   // Product link
   const productLink = document.createElement('a')
   productLink.href = product.url || `product-details.html?id=${product.id}`
+  productLink.setAttribute('data-product-id', product.id || product._id)
 
   // Primary image
   const primaryImg = document.createElement('img')
   primaryImg.className = 'primary-image'
 
-  // Handle different image sources
+  // !Handle different image sources
   if (product.img && product.img.path) {
     primaryImg.src = `${BASE_IMAGE_URL}/${product.img.path}`
   } else if (product.image) {
@@ -242,7 +304,7 @@ const createProductThumb = (product) => {
   const wishlistBtn = document.createElement('a')
   wishlistBtn.href = 'wishlist.html'
   wishlistBtn.className = 'wishlist-btn'
-  wishlistBtn.title = 'Добавить в избранное'
+  wishlistBtn.title = 'Добавить в избранное!!!'
   // Attach product id for wishlist logic
   wishlistBtn.setAttribute('data-product-id', String(product.id || product._id))
   const wishlistIcon = document.createElement('i')
@@ -291,6 +353,7 @@ const createProductCaption = (product) => {
   nameH4.className = 'product-name'
   const nameLink = document.createElement('a')
   nameLink.href = product.url || `product-details.html?id=${product._id}`
+  nameLink.setAttribute('data-product-id', product.id || product._id)
   nameLink.textContent = product.model || product.title || 'Название товара'
   nameH4.appendChild(nameLink)
 
@@ -346,6 +409,7 @@ const createProductListCard = (product) => {
 
   const imageLink = document.createElement('a')
   imageLink.href = product.url || `product-details.html?id=${product.id}`
+  imageLink.setAttribute('data-product-id', product.id || product._id)
 
   const img = document.createElement('img')
   if (product.img && product.img.path) {
@@ -374,6 +438,7 @@ const createProductListCard = (product) => {
   const nameLink = document.createElement('a')
   nameLink.href = product.url || `product-details.html?id=${product.id}`
   nameLink.className = 'product-name'
+  nameLink.setAttribute('data-product-id', product.id || product._id)
   console.log('product.model', product.model)
   nameLink.textContent = product.model || product.title || 'Название товара'
   nameH4.appendChild(nameLink)

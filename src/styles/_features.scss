@@ -1,0 +1,65 @@
+.fact-area .row [class^='col']:nth-child(odd) .fact {
+  background-color: $fact-color-1;
+}
+
+.fact-area .row [class^='col']:nth-child(even) .fact {
+  background-color: $fact-color-2;
+}
+
+@media (max-width: 61.94em) {
+  .fact-area .row [class^='col']:nth-child(1) .fact,
+  .fact-area .row [class^='col']:nth-child(4) .fact {
+    background-color: $fact-color-1;
+  }
+  .fact-area .row [class^='col']:nth-child(2) .fact,
+  .fact-area .row [class^='col']:nth-child(3) .fact {
+    background-color: $fact-color-2;
+  }
+}
+
+@media (max-width: 35.94em) {
+  .fact-area .row [class^='col']:nth-child(odd) .fact {
+    background-color: $fact-color-1;
+  }
+  .fact-area .row [class^='col']:nth-child(even) .fact {
+    background-color: $fact-color-2;
+  }
+}
+
+.fact {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+}
+.fact__icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  color: $gold;
+}
+.fact__content {
+  text-align: left;
+}
+.fact__content h3 {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0;
+}
+.fact__content p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}

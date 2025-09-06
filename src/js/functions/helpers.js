@@ -88,18 +88,81 @@ const initOffCanvas = () => {
 }
 
 /**
- * Countdown Activation (Note: Requires countdown library replacement)
- * This functionality depends on a countdown plugin that needs to be replaced
+ * Countdown Timer Implementation
+ * Custom vanilla JavaScript countdown timer
  */
 const initCountdown = () => {
   const countdownElements = $$('[data-countdown]')
 
   countdownElements.forEach((element) => {
-    // TODO: Implement countdown functionality with a vanilla JS library
-    // or create custom countdown implementation
-    console.warn(
-      'Countdown functionality requires external library replacement',
-    )
+    const targetDate = element.getAttribute('data-countdown')
+    if (!targetDate) return
+
+    // Parse target date
+    const target = new Date(targetDate).getTime()
+
+    // Create countdown display structure
+    element.innerHTML = `
+      <div class="countdown-timer">
+        <div class="countdown-item">
+          <span class="countdown-number" data-days>00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" data-hours>00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" data-minutes>00</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" data-seconds>00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+    `
+
+    // Update countdown every second
+    const updateCountdown = () => {
+      const now = new Date().getTime()
+      const distance = target - now
+
+      if (distance < 0) {
+        // Countdown finished
+        element.innerHTML =
+          '<div class="countdown-finished">Offer Expired</div>'
+        return
+      }
+
+      // Calculate time units
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      )
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+      // Update display
+      const daysEl = element.querySelector('[data-days]')
+      const hoursEl = element.querySelector('[data-hours]')
+      const minutesEl = element.querySelector('[data-minutes]')
+      const secondsEl = element.querySelector('[data-seconds]')
+
+      if (daysEl) daysEl.textContent = days.toString().padStart(2, '0')
+      if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0')
+      if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0')
+      if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0')
+    }
+
+    // Initial update
+    updateCountdown()
+
+    // Update every second
+    const countdownInterval = setInterval(updateCountdown, 1000)
+
+    // Store interval ID for potential cleanup
+    element.dataset.intervalId = countdownInterval
   })
 }
 
@@ -620,7 +683,7 @@ const initializeApp = () => {
   // Initialize all converted functionality
   initMenuSticky()
   initOffCanvas()
-  // initCountdown()
+  initCountdown()
   initCategoryMenu()
   initCategorySubMenuToggle()
   initResponsiveMobileMenu()
@@ -662,7 +725,7 @@ window.utils = {
   // Core functionality
   initMenuSticky,
   initOffCanvas,
-  // initCountdown,
+  initCountdown,
   initCategoryMenu,
   initCategorySubMenuToggle,
   initResponsiveMobileMenu,

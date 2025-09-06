@@ -1,3 +1,84 @@
 /*--
     14. Deals Offer Css
 --------------------------------*/
+
+/* Countdown Timer Styles */
+.countdown-deals {
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+  border-radius: 3px;
+  height: 50px;
+  margin: 20px 0;
+
+  .countdown-timer {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .countdown-item {
+    background: $theme-color;
+    padding: 10px 8px;
+    min-width: 60px;
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    overflow: hidden;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    .countdown-number {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .countdown-label {
+      font-size: 10px;
+      opacity: 0.9;
+    }
+  }
+
+  .countdown-finished {
+    background: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+
+/* Responsive countdown styles */
+@media (max-width: 768px) {
+  .countdown-deals {
+    .countdown-timer {
+      gap: 10px;
+    }
+
+    .countdown-item {
+      min-width: 50px;
+      padding: 8px 6px;
+
+      .countdown-number {
+        font-size: 14px;
+      }
+
+      .countdown-label {
+        font-size: 9px;
+      }
+    }
+  }
+}

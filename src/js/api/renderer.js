@@ -179,20 +179,14 @@ const renderProducts = (containerId = API_CONFIG.UI.DEFAULT_CONTAINER) => {
       catalogState.productsPerPage,
     )
 
-    // Render products based on view mode
-    let content = ''
+    // Render products using enhanced renderer with swiper support
     if (catalogState.currentView === 'grid') {
-      content = `<div class="row">${paginated.products
-        .map(
-          (product) =>
-            `<div class="col-lg-3 col-md-6">${createProductCard(product)}</div>`,
-        )
-        .join('')}</div>`
+      // Use enhanced product renderer with swiper support
+      renderProductCardsEnhanced(paginated.products, container)
     } else {
-      content = paginated.products.map(createProductListItem).join('')
+      // Use list view renderer
+      renderProductListEnhanced(paginated.products, container)
     }
-
-    setContent(container, content)
 
     // Update pagination and product count
     updatePagination(paginated.totalPages)
@@ -219,7 +213,15 @@ const loadAndRenderProducts = async (
   containerId = API_CONFIG.UI.DEFAULT_CONTAINER,
   filters = {},
 ) => {
+  console.log('🔄 loadAndRenderProducts called with:', { containerId, filters })
   const container = getContainer(containerId)
+  console.log('📦 Container element:', container)
+
+  if (!container) {
+    console.error('❌ Cannot load products - container not found:', containerId)
+    return
+  }
+
   showLoading(containerId)
 
   try {
@@ -236,9 +238,164 @@ const loadAndRenderProducts = async (
     // Update filter sidebar if it exists
     updateFilterSidebar()
   } catch (error) {
-    console.error('Error loading products:', error)
-    showError(container, error.message, containerId)
+    console.error('Error loading products from API:', error)
+    console.log('🔄 Falling back to sample products...')
+
+    // Fallback to sample products if API fails
+    try {
+      const sampleProducts = getSampleProducts()
+      catalogState.allProducts = sampleProducts
+      catalogState.availableFilters = extractFiltersFromProducts(sampleProducts)
+
+      // Render products with fallback data
+      renderProducts(containerId)
+
+      console.log(
+        `✅ Loaded ${sampleProducts.length} sample products as fallback`,
+      )
+    } catch (fallbackError) {
+      console.error('Error loading fallback products:', fallbackError)
+      showError(container, 'Не удалось загрузить товары', containerId)
+    }
   }
+}
+
+// Extract filter options from products data (fallback function)
+const extractFiltersFromProducts = (products) => {
+  const brands = [...new Set(products.map((p) => p.brand).filter(Boolean))]
+  const categories = [
+    ...new Set(products.map((p) => p.category).filter(Boolean)),
+  ]
+  const priceRange = products.reduce(
+    (acc, p) => {
+      acc.min = Math.min(acc.min, p.price || 0)
+      acc.max = Math.max(acc.max, p.price || 0)
+      return acc
+    },
+    { min: Infinity, max: 0 },
+  )
+
+  return {
+    brands: brands.sort(),
+    categories: categories.sort(),
+    priceRange: {
+      min: priceRange.min === Infinity ? 0 : priceRange.min,
+      max: priceRange.max,
+    },
+  }
+}
+
+// Enhanced product cards renderer with swiper support
+const renderProductCardsEnhanced = (products, container) => {
+  // Clear existing content
+  container.innerHTML = ''
+
+  // Check if we should use swiper mode
+  // Swiper should only be used for product galleries on product-details page
+  const useSwiper =
+    container.classList.contains('swiper-product') ||
+    container.closest('.swiper-product') ||
+    (window.location.pathname.includes('product-details') &&
+      container.closest('.product-details-inner'))
+
+  if (useSwiper) {
+    // Create swiper structure
+    const swiperContainer = document.createElement('div')
+    swiperContainer.className = 'row product-active-lg-4 swiper-product'
+
+    const swiperWrapper = document.createElement('div')
+    swiperWrapper.className = 'swiper-wrapper'
+
+    // Add navigation buttons
+    const nextBtn = document.createElement('div')
+    nextBtn.className = 'swiper-button-next next-btn'
+
+    const prevBtn = document.createElement('div')
+    prevBtn.className = 'swiper-button-prev prev-btn'
+
+    // Render each product as swiper slide
+    products.forEach((product, index) => {
+      try {
+        const slideWrapper = document.createElement('div')
+        slideWrapper.className = 'swiper-slide'
+
+        const productCardHTML = createProductCard(product)
+        const productCard = document.createElement('div')
+        productCard.innerHTML = productCardHTML
+        slideWrapper.appendChild(productCard.firstElementChild || productCard)
+
+        swiperWrapper.appendChild(slideWrapper)
+      } catch (error) {
+        console.error(`Error rendering product ${index}:`, error, product)
+        // Continue with other products
+      }
+    })
+
+    swiperContainer.appendChild(swiperWrapper)
+    swiperContainer.appendChild(nextBtn)
+    swiperContainer.appendChild(prevBtn)
+
+    container.appendChild(swiperContainer)
+
+    // Initialize swiper after DOM update
+    setTimeout(() => {
+      if (window.initProductSwiper) {
+        window.initProductSwiper()
+      }
+    }, 100)
+
+    console.log(`✅ Rendered ${products.length} products in swiper mode`)
+  } else {
+    // Render each product in grid layout
+    const rowWrapper = document.createElement('div')
+    rowWrapper.className = 'row'
+
+    products.forEach((product, index) => {
+      try {
+        const columnWrapper = document.createElement('div')
+        columnWrapper.className = 'col-lg-3 col-md-6'
+
+        const gridCardHTML = createProductCard(product)
+        const gridCard = document.createElement('div')
+        gridCard.innerHTML = gridCardHTML
+        columnWrapper.appendChild(gridCard.firstElementChild || gridCard)
+
+        rowWrapper.appendChild(columnWrapper)
+      } catch (error) {
+        console.error(`Error rendering product ${index}:`, error, product)
+        // Continue with other products
+      }
+    })
+
+    container.appendChild(rowWrapper)
+    console.log(`✅ Rendered ${products.length} products in grid mode`)
+  }
+}
+
+// Enhanced product list renderer
+const renderProductListEnhanced = (products, container) => {
+  // Clear existing content
+  container.innerHTML = ''
+
+  // Create the main container for list view
+  const listContainer = document.createElement('div')
+  listContainer.className = 'shop-product-list-wrap'
+
+  // Render each product
+  products.forEach((product, index) => {
+    try {
+      const listCardHTML = createProductListItem(product)
+      const listCard = document.createElement('div')
+      listCard.innerHTML = listCardHTML
+      listContainer.appendChild(listCard.firstElementChild || listCard)
+    } catch (error) {
+      console.error(`Error rendering product ${index}:`, error, product)
+      // Continue with other products
+    }
+  })
+
+  container.appendChild(listContainer)
+  console.log(`✅ Rendered ${products.length} products in list mode`)
 }
 
 // Update filter sidebar
@@ -280,7 +437,14 @@ const updateProductCount = (showing, start, end, total) => {
 // Show loading state
 const showLoading = (containerId) => {
   const container = getContainer(containerId)
-  setContent(container, createLoadingState())
+  if (container) {
+    setContent(container, createLoadingState())
+  } else {
+    console.error(
+      'Cannot show loading state - container not found:',
+      containerId,
+    )
+  }
 }
 
 // Show error state
@@ -452,19 +616,97 @@ const getSampleProducts = () => [
     formattedPrice: '$4,500',
     sku: 'cartier-tank',
   },
+  {
+    id: 4,
+    brand: 'Patek Philippe',
+    model: 'Calatrava',
+    name: 'Patek Philippe Calatrava',
+    price: 12000,
+    imageUrl: './img/products/4-450x450.jpg',
+    category: 'watch',
+    inStock: true,
+    url: 'product-details.html?id=4',
+    formattedPrice: '$12,000',
+    sku: 'patek-calatrava',
+  },
+  {
+    id: 5,
+    brand: 'Hublot',
+    model: 'Big Bang',
+    name: 'Hublot Big Bang',
+    price: 6800,
+    imageUrl: './img/products/5-450x450.jpg',
+    category: 'watch',
+    inStock: true,
+    url: 'product-details.html?id=5',
+    formattedPrice: '$6,800',
+    sku: 'hublot-bigbang',
+  },
+  {
+    id: 6,
+    brand: 'Audemars Piguet',
+    model: 'Royal Oak',
+    name: 'Audemars Piguet Royal Oak',
+    price: 15000,
+    imageUrl: './img/products/1-450x450.jpg',
+    category: 'watch',
+    inStock: true,
+    url: 'product-details.html?id=6',
+    formattedPrice: '$15,000',
+    sku: 'ap-royal-oak',
+  },
+  {
+    id: 7,
+    brand: 'Breitling',
+    model: 'Navitimer',
+    name: 'Breitling Navitimer',
+    price: 4200,
+    imageUrl: './img/products/2-450x450.jpg',
+    category: 'watch',
+    inStock: true,
+    url: 'product-details.html?id=7',
+    formattedPrice: '$4,200',
+    sku: 'breitling-navitimer',
+  },
+  {
+    id: 8,
+    brand: 'TAG Heuer',
+    model: 'Carrera',
+    name: 'TAG Heuer Carrera',
+    price: 2800,
+    imageUrl: './img/products/3-450x450.jpg',
+    category: 'watch',
+    inStock: true,
+    url: 'product-details.html?id=8',
+    formattedPrice: '$2,800',
+    sku: 'tag-carrera',
+  },
 ]
 
 // Initialize catalog
 const initializeCatalog = (containerId = API_CONFIG.UI.DEFAULT_CONTAINER) => {
+  console.log('🎯 initializeCatalog called with containerId:', containerId)
   setupGlobalFunctions()
   initializeFilterEvents()
   initializeSortEvents()
   initializeViewToggle()
 
+  // Set higher products per page for catalog pages
+  if (
+    window.location.pathname.includes('watch') ||
+    window.location.pathname.includes('jewelry')
+  ) {
+    catalogState.productsPerPage = 24 // Show more products on catalog pages
+    console.log('📊 Set products per page to 24 for catalog page')
+  }
+
   // Auto-load products if container exists
   const container = getContainer(containerId)
   if (container) {
+    console.log('✅ Container found, calling loadAndRenderProducts...')
     loadAndRenderProducts(containerId)
+  } else {
+    console.log('❌ Container not found for ID:', containerId)
   }
 }
 

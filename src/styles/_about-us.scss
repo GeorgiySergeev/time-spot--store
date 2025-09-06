@@ -14,7 +14,7 @@
   }
 }
 .service-bg {
-  background: url(../images/bg/about-us-policy-bg.jpg);
+  background: url('/img/bg/about-us-policy-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -78,4 +78,9 @@
 
 .about-us_img {
   max-width: 450px;
+}
+.short-desc {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #afafaf;
 }
