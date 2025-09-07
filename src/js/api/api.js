@@ -9,20 +9,20 @@ import {
   normalizeProduct,
 } from './config.js'
 
-// Get products with optional filtering
-const getProducts = async (filters = {}) => {
+// Get all watch products with optional filtering
+const getAllWatchsProducts = async (filters = {}) => {
   try {
     // Validate configuration first
     if (!validateConfig()) {
       throw new Error('API configuration is invalid')
     }
 
-    const baseUrl = getApiUrl(API_CONFIG.ENDPOINTS.PRODUCTS)
+    const baseUrl = getApiUrl(API_CONFIG.ENDPOINTS.WATCH)
     const queryString = buildApiQuery(filters)
     const url = queryString ? `${baseUrl}?${queryString}` : baseUrl
 
     if (API_CONFIG.DEBUG) {
-      console.log('Fetching products from:', url)
+      console.log('Fetching watch products from:', url)
     }
 
     const headers = getApiHeaders()
@@ -88,8 +88,8 @@ const extractFiltersFromProducts = (products) => {
   }
 }
 
-// Get single product by ID
-const getProductById = async (productId) => {
+// Get single watch product by ID
+const getWatchProductById = async (productId) => {
   try {
     // Validate configuration first
     if (!validateConfig()) {
@@ -97,7 +97,7 @@ const getProductById = async (productId) => {
     }
 
     // Construct URL with product ID
-    const url = getApiUrl(`${API_CONFIG.ENDPOINTS.PRODUCT_BY_ID}/${productId}`)
+    const url = getApiUrl(`${API_CONFIG.ENDPOINTS.WATCH_BY_ID}/${productId}`)
 
     if (API_CONFIG.DEBUG) {
       console.log('Fetching product by ID from:', url)
@@ -129,10 +129,10 @@ const getProductById = async (productId) => {
   }
 }
 
-// Get available brands for filters
-const getBrands = async () => {
+// Get available watch brands for filters
+const getWatchBrands = async () => {
   try {
-    const { filters } = await getProducts()
+    const { filters } = await getAllWatchsProducts()
     return filters.brands
   } catch (error) {
     console.error('Failed to load brands:', error)
@@ -140,16 +140,16 @@ const getBrands = async () => {
   }
 }
 
-// Get products by category
-const getProductsByCategory = async (category, filters = {}) => {
-  return getProducts({ ...filters, category })
+// Get watch products by category
+const getWatchsProductsByCategory = async (category, filters = {}) => {
+  return getAllWatchsProducts({ ...filters, category })
 }
 
 // Export the functions
 export {
-  getProducts,
-  getProductById,
-  getBrands,
-  getProductsByCategory,
+  getAllWatchsProducts,
+  getWatchProductById,
+  getWatchBrands,
+  getWatchsProductsByCategory,
   extractFiltersFromProducts,
 }

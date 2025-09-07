@@ -8,8 +8,12 @@ export const API_CONFIG = {
 
   // Endpoints
   ENDPOINTS: {
-    PRODUCTS: '/content/items/watch',
-    PRODUCT_BY_ID: '/content/item/watch',
+    WATCH: '/content/items/watch',
+    JEWELRY: '/content/items/jewelry',
+    ACCESSORIES: '/content/items/accessories',
+    WATCH_BY_ID: '/content/item/watch',
+    JEWELRY_BY_ID: '/content/item/jewelry',
+    ACCESSORIES_BY_ID: '/content/item/accessories',
     CATEGORIES: '/content/items/watch',
     // Future endpoints
     BLOG: '/content/blog',
@@ -26,7 +30,7 @@ export const API_CONFIG = {
   // Image Configuration
   IMAGES: {
     BASE_URL: 'https://websphere.miy.link/admin/storage/uploads',
-    DEFAULT_IMAGE: './img/products/default-450x450.jpg',
+    DEFAULT_IMAGE: '/img/default/single-product-item.jpg',
     LAZY_LOADING: true,
   },
 
@@ -83,7 +87,7 @@ export const API_CONFIG = {
     STRUCTURED_DATA: true,
     OPEN_GRAPH: true,
     META_DESCRIPTION_MAX: 160,
-    TITLE_TEMPLATE: '{productName} - Time Sphere',
+    TITLE_TEMPLATE: '{productName} - Time-Spot24',
   },
 }
 

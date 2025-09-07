@@ -1,7 +1,11 @@
 // Unified Product Renderer for Time-Sphere Catalog
 // Combines functionality from api/ and api-2/ folders
 
-import { getProducts, getProductById, getBrands } from './api.js'
+import {
+  getAllWatchsProducts,
+  getWatchProductById,
+  getWatchBrands,
+} from './api.js'
 import {
   createProductCard,
   createProductListItem,
@@ -228,7 +232,7 @@ const loadAndRenderProducts = async (
     // Merge with current filters
     const finalFilters = { ...catalogState.currentFilters, ...filters }
 
-    const response = await getProducts(finalFilters)
+    const response = await getAllWatchsProducts(finalFilters)
     catalogState.allProducts = response.products
     catalogState.availableFilters = response.filters
 
@@ -583,7 +587,7 @@ const getSampleProducts = () => [
     model: 'Submariner',
     name: 'Rolex Submariner',
     price: 8500,
-    imageUrl: './img/products/1-450x450.jpg',
+    imageUrl: '/img/products/1-1-450x450.jpg',
     category: 'watch',
     inStock: true,
     url: 'product-details.html?id=1',
@@ -596,7 +600,7 @@ const getSampleProducts = () => [
     model: 'Speedmaster',
     name: 'Omega Speedmaster',
     price: 3200,
-    imageUrl: './img/products/2-450x450.jpg',
+    imageUrl: '/img/products/2-2-450x450.jpg',
     category: 'watch',
     inStock: true,
     url: 'product-details.html?id=2',
@@ -609,7 +613,7 @@ const getSampleProducts = () => [
     model: 'Tank',
     name: 'Cartier Tank',
     price: 4500,
-    imageUrl: './img/products/3-450x450.jpg',
+    imageUrl: '/img/products/3-3-450x450.jpg',
     category: 'watch',
     inStock: false,
     url: 'product-details.html?id=3',
@@ -622,7 +626,7 @@ const getSampleProducts = () => [
     model: 'Calatrava',
     name: 'Patek Philippe Calatrava',
     price: 12000,
-    imageUrl: './img/products/4-450x450.jpg',
+    imageUrl: '/img/products/4-4-450x450.jpg',
     category: 'watch',
     inStock: true,
     url: 'product-details.html?id=4',
@@ -635,7 +639,7 @@ const getSampleProducts = () => [
     model: 'Big Bang',
     name: 'Hublot Big Bang',
     price: 6800,
-    imageUrl: './img/products/5-450x450.jpg',
+    imageUrl: '/img/products/5-5-450x450.jpg',
     category: 'watch',
     inStock: true,
     url: 'product-details.html?id=5',
@@ -648,7 +652,7 @@ const getSampleProducts = () => [
     model: 'Royal Oak',
     name: 'Audemars Piguet Royal Oak',
     price: 15000,
-    imageUrl: './img/products/1-450x450.jpg',
+    imageUrl: '/img/products/1-1-450x450.jpg',
     category: 'watch',
     inStock: true,
     url: 'product-details.html?id=6',
@@ -661,7 +665,7 @@ const getSampleProducts = () => [
     model: 'Navitimer',
     name: 'Breitling Navitimer',
     price: 4200,
-    imageUrl: './img/products/2-450x450.jpg',
+    imageUrl: '/img/products/2-2-450x450.jpg',
     category: 'watch',
     inStock: true,
     url: 'product-details.html?id=7',
@@ -674,7 +678,7 @@ const getSampleProducts = () => [
     model: 'Carrera',
     name: 'TAG Heuer Carrera',
     price: 2800,
-    imageUrl: './img/products/3-450x450.jpg',
+    imageUrl: '/img/products/3-3-450x450.jpg',
     category: 'watch',
     inStock: true,
     url: 'product-details.html?id=8',

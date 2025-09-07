@@ -1,6 +1,7 @@
 // Product details page rendering functionality - Functional approach
 
-import { getProductById } from './api.js'
+import { getWatchProductById } from './api.js'
+
 import {
   createProductInfo,
   createProductDetails,
@@ -271,7 +272,7 @@ export const renderProductDetails = withErrorHandling(async (productId) => {
   showLoadingState()
 
   try {
-    const productData = await getProductById(productId)
+    const productData = await getWatchProductById(productId)
     const normalizedData = normalizeProductData(productData)
 
     if (!normalizedData) {

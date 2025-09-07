@@ -280,7 +280,7 @@ const createProductThumb = (product) => {
   } else if (product.image) {
     primaryImg.src = product.image
   } else {
-    primaryImg.src = './img/products/2-450x450.jpg' // fallback
+    primaryImg.src = './img/default/default.jpg' // fallback
   }
 
   primaryImg.alt = product.model || 'Product'
@@ -417,7 +417,7 @@ const createProductListCard = (product) => {
   } else if (product.image) {
     img.src = product.image
   } else {
-    img.src = './img/products/2-450x450.jpg'
+    img.src = '/img/default/default.jpg'
   }
   img.alt = 'Product Images'
 

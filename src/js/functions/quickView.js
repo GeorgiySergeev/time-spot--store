@@ -3,7 +3,7 @@
  * Handles Bootstrap modal initialization and product quick view
  */
 
-import { getProductById } from '../api/api.js'
+import { getWatchProductById } from '../api/api.js'
 import {
   createModalContent,
   createModalLoadingState,
@@ -89,7 +89,7 @@ const initQuickView = () => {
         console.log(`🔄 Loading product data for ID: ${productId}`)
 
         // Fetch product data using the API
-        const product = await getProductById(productId)
+        const product = await getWatchProductById(productId)
 
         if (!product) {
           throw new Error('Товар не найден')

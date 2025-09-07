@@ -1,7 +1,7 @@
 // Dynamic Product Details Page Renderer
 // Handles dynamic rendering of Single Product Details Page with thumbnail slider functionality
 
-import { getProductById } from './api.js'
+import { getWatchProductById } from './api.js'
 import {
   createProductGallery,
   createMainImagesSwiper,
@@ -192,22 +192,29 @@ const updateProductImages = (product) => {
   )
   if (thumbsSwiperWrapper) {
     thumbsSwiperWrapper.innerHTML = gallery.gallery
-      .map(
-        (image, index) => `
-      <div class="swiper-slide">
-        <div class="pro-nav-thumb">
-          <img
-            src="${image.src}"
-            alt="${image.alt}" />
-          <a
-            href="${image.src}"
-            class="glightbox hidden-gallery-item"
-            data-gallery="product-gallery"
-            data-glightbox="title: ${image.title}; description: ${image.description}"></a>
+      .map((image, index) => {
+        // Use default thumbnail image for thumbnails
+        const thumbnailSrc =
+          gallery.gallery.length === 1 &&
+          image.src.includes('single-product-item.jpg')
+            ? '/img/default/reviewer-60x60.jpg'
+            : image.src
+
+        return `
+        <div class="swiper-slide">
+          <div class="pro-nav-thumb">
+            <img
+              src="${thumbnailSrc}"
+              alt="${image.alt}" />
+            <a
+              href="${image.src}"
+              class="glightbox hidden-gallery-item"
+              data-gallery="product-gallery"
+              data-glightbox="title: ${image.title}; description: ${image.description}"></a>
+          </div>
         </div>
-      </div>
-    `,
-      )
+      `
+      })
       .join('')
   }
 
@@ -375,7 +382,7 @@ export const renderProductDetails = withErrorHandling(async (productId) => {
   showLoadingState()
 
   try {
-    const productData = await getProductById(productId)
+    const productData = await getWatchProductById(productId)
     const normalizedData = normalizeProductData(productData)
 
     if (!normalizedData) {

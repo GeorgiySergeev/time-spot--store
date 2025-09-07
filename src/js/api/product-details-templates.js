@@ -7,7 +7,22 @@ const BASE_IMAGE_URL = 'https://websphere.miy.link/admin/storage/uploads'
 export const createProductGallery = (product) => {
   const images = product.images || product.gallery || []
   const mainImage = images[0] ||
-    product.img || { path: '/img/products/2-450x450.jpg' }
+    product.img || { path: '/img/default/single-product-item.jpg' }
+
+  // If no images available, create a default gallery with the default image
+  if (images.length === 0) {
+    return {
+      mainImage: '/img/default/single-product-item.jpg',
+      gallery: [
+        {
+          src: '/img/default/single-product-item.jpg',
+          alt: `${product.model || product.name || 'Product'} - Default Image`,
+          title: `${product.model || product.name || 'Product'} - Default View`,
+          description: `Default product image for ${product.model || product.name || 'Product'}`,
+        },
+      ],
+    }
+  }
 
   return {
     mainImage: mainImage.path

@@ -349,3 +349,53 @@ The foundation is now complete and ready for core catalog functionality implemen
 5. **Enhance mobile responsiveness** for filter interactions
 
 **Current Status**: ✅ **Phase 1 Complete** - Ready for Phase 2 implementation
+
+---
+
+## 🔄 **JAVASCRIPT REFACTORING PLAN**
+
+### **Current Architecture Problems**
+
+1. **Dual API Structure**: Confusing `api/` and `api-2/` folders
+2. **Class-Based Architecture**: Heavy use of classes (`ProductCatalogState`, etc.)
+3. **Mixed Paradigms**: Imperative and OOP patterns mixed
+4. **Tight Coupling**: Components directly manipulating DOM
+5. **Complex State**: State management scattered across files
+6. **Hard to Scale**: Adding categories requires extensive modifications
+
+### **New Functional Architecture**
+
+**Structure:**
+
+```
+src/js/
+├── core/           # Pure functional utilities
+│   ├── state.js    # Immutable state management
+│   ├── effects.js  # Side effects (API, DOM)
+│   ├── actions.js  # Action creators
+│   └── utils.js    # Pure utility functions
+├── modules/        # Feature modules
+│   ├── catalog/    # Product catalog
+│   ├── product-details/
+│   └── ui/         # Reusable components
+├── config/         # Configuration
+│   ├── api.js
+│   ├── categories.js
+│   └── ui.js
+└── app.js          # Main application
+```
+
+**Benefits:**
+
+- **Functional**: Pure functions, predictable, testable
+- **Declarative**: Describes what, not how
+- **Modular**: Category-agnostic, easy to extend
+- **Scalable**: Add categories in <1 hour
+
+### **Implementation Timeline: 10-15 days**
+
+**Phase 1**: Core utilities (2-3 days)
+**Phase 2**: Catalog refactoring (3-4 days)
+**Phase 3**: State management (2-3 days)
+**Phase 4**: UI components (2-3 days)
+**Phase 5**: Integration (1-2 days)

@@ -21,7 +21,9 @@ const initProductTabs = () => {
     }
 
     // Find all product tab containers
-    const productTabContainers = document.querySelectorAll('.product-area')
+    const productTabContainers = document.querySelectorAll(
+      '.product-description-area',
+    )
 
     if (productTabContainers.length === 0) {
       console.log('ℹ️ No product tab containers found')
@@ -29,8 +31,8 @@ const initProductTabs = () => {
     }
 
     productTabContainers.forEach((container, index) => {
-      const tabMenu = container.querySelector('.product-tab-menu')
-      const tabContent = container.querySelector('.product-tab__content')
+      const tabMenu = container.querySelector('.product-details-tab')
+      const tabContent = container.querySelector('.product_details_tab_content')
 
       if (!tabMenu || !tabContent) {
         console.warn(
@@ -100,7 +102,7 @@ const initFallbackTabs = () => {
       event.preventDefault()
 
       const targetId = tabLink.getAttribute('href')
-      const container = tabLink.closest('.product-area')
+      const container = tabLink.closest('.product-description-area')
 
       if (container && targetId) {
         // Remove active classes from all tabs and panes
@@ -206,9 +208,9 @@ setTimeout(() => {
   console.log('📦 Product Tabs: Delayed initialization check...')
 
   // Only re-initialize if tabs aren't working
-  const activeTab = document.querySelector('.product-tab-menu .active')
+  const activeTab = document.querySelector('.product-details-tab .active')
   const activePane = document.querySelector(
-    '.product-tab__content .tab-pane.active',
+    '.product_details_tab_content .tab-pane.active',
   )
 
   if (!activeTab || !activePane) {
