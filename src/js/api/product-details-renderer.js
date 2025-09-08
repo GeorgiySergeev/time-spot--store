@@ -47,7 +47,7 @@ const createFallbackProduct = (productId) => ({
   price: 299,
   description:
     'Этот товар временно недоступен через API. Показываются образцы данных.',
-  img: { path: '/img/product/product-01.png' },
+  img: { path: '/img/products/1-450x450.jpg' },
   category: 'watch',
   inStock: true,
   sku: 'TS-CLASSIC-001',

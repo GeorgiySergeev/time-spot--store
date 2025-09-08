@@ -16,27 +16,27 @@ class ProductGallery {
     // Gallery images data
     this.images = [
       {
-        src: 'assets/images/product/product-01.png',
+        src: './img/products/1-450x450.jpg',
         title: 'Product Image 1',
         description: 'High quality product view',
       },
       {
-        src: 'assets/images/product/product-02.png',
+        src: './img/products/2-450x450.jpg',
         title: 'Product Image 2',
         description: 'Another view of the product',
       },
       {
-        src: 'assets/images/product/product-03.png',
+        src: './img/products/3-450x450.jpg',
         title: 'Product Image 3',
         description: 'Detailed product view',
       },
       {
-        src: 'assets/images/product/product-04.png',
+        src: './img/products/4-450x450.jpg',
         title: 'Product Image 4',
         description: 'Close-up product view',
       },
       {
-        src: 'assets/images/product/product-05.png',
+        src: './img/products/5-450x450.jpg',
         title: 'Product Image 5',
         description: 'Final product view',
       },

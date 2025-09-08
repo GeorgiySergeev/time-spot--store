@@ -1,6 +1,20 @@
+// Legacy imports for backward compatibility
 import './_components.js'
 import './_functions.js'
 import './_api.js'
+
+// New functional architecture
+import './main-functional.js'
+
+// Integration tests (development only)
+if (
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+) {
+  import('./test/integration.test.js')
+}
+
+console.log('🔄 Time-Sphere: Legacy and Functional architectures loaded')
 
 // Import page-specific modules
 import './pages/product-details.js'

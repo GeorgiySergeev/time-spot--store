@@ -1,4 +1,5 @@
 /**
+/**
  * Share Modal Functionality
  * Provides safe initialization and error handling for share buttons
  */

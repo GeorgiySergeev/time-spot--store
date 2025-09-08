@@ -458,7 +458,7 @@ export const createProductDetails = (product) => `
 export const createProductGallery = (product, baseImageUrl) => {
   const mainImage = product.img?.path
     ? `${baseImageUrl}/${product.img.path}`
-    : '/img/product/default.jpg'
+    : '/img/products/1-450x450.jpg'
 
   return {
     mainImage,
