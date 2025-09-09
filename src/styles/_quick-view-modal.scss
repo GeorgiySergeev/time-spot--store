@@ -1,0 +1,21 @@
+.quick-view-modal {
+  background: #fafafa;
+}
+
+.product-info {
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+  }
+  .product-rating {
+    ul {
+      li {
+        a {
+          list-style: none;
+          color: #333;
+        }
+      }
+    }
+  }
+}

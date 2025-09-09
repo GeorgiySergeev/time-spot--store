@@ -4,6 +4,7 @@
  */
 
 import { getProductById } from '../api/api.js'
+import { initQuickViewModalSwiper } from './swiper.js'
 import {
   createModalContent,
   createModalLoadingState,
@@ -90,6 +91,7 @@ const initQuickView = () => {
 
         // Fetch product data using the API
         const product = await getProductById(productId)
+        console.log('🔄 Product data:', product)
 
         if (!product) {
           throw new Error('Товар не найден')
@@ -99,6 +101,13 @@ const initQuickView = () => {
         modalInnerArea.innerHTML = createModalContent(product)
 
         console.log('📝 Modal content updated successfully')
+
+        // Initialize swiper for quick view slider after content is injected
+        try {
+          initQuickViewModalSwiper()
+        } catch (e) {
+          console.warn('⚠️ Failed to init quick view swiper:', e)
+        }
 
         // Initialize any additional components (like lightbox) after content is loaded
         initModalComponents()

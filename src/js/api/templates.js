@@ -288,27 +288,22 @@ export const createModalContent = (product) => `
   <div class="row gx-3 product-details-inner">
     <div class="col-lg-5 col-md-6 col-sm-6">
       <!-- Product Details Left -->
-      <div class="product-large-slider">
-        <div class="pro-large-img">
-          <a
-            href="${product.imageUrl}"
-            class="glightbox zoom-icon"
-            data-gallery="modal-gallery"
-            data-glightbox="title: ${product.name}; description: High quality product view">
-            <img
-              src="${product.imageUrl}"
-              alt="${product.name}" />
-            <span class="zoom-icon-overlay">
-              <i class="fa fa-search-plus"></i>
-            </span>
-          </a>
+      <div class="swiper" id="quick_view_slider">
+    <div class="swiper-wrapper">
+      ${product.images
+        .map(
+          (image) => `
+        <div class="swiper-slide">
+          <img src="${image}" alt="${product.name}" />
         </div>
-      </div>
-      <div class="product-nav">
-        <div class="pro-nav-thumb">
-          <img src="${product.imageUrl}" alt="${product.name}" />
-        </div>
-      </div>
+      `,
+        )
+        .join('')}
+
+    </div>
+
+  </div>
+
       <!--// Product Details Left -->
     </div>
 
@@ -316,15 +311,16 @@ export const createModalContent = (product) => `
       <div class="product-details-view-content">
         <div class="product-info">
           <h3>${product.name}</h3>
-          <div class="product-rating d-flex">
-            <ul class="d-flex">
-              <li><a href="#"><i class="icon-star"></i></a></li>
-              <li><a href="#"><i class="icon-star"></i></a></li>
-              <li><a href="#"><i class="icon-star"></i></a></li>
-              <li><a href="#"><i class="icon-star"></i></a></li>
-              <li><a href="#"><i class="icon-star"></i></a></li>
-            </ul>
-          </div>
+          <ul class="product-rating d-flex">
+            ${Array.from(
+              { length: 5 },
+              (_, i) => `
+              <li class="${i < (product.rating || 5) ? '' : 'bad-reting'}">
+                <a href="#"><i class="icon-star"></i></a>
+              </li>
+            `,
+            ).join('')}
+          </ul>
           <div class="price-box">
             <span class="new-price">${product.formattedPrice}</span>
           </div>
@@ -334,16 +330,7 @@ export const createModalContent = (product) => `
 
           <div class="single-add-to-cart">
             <form action="#" class="cart-quantity d-flex">
-              <div class="quantity">
-                <div class="cart-plus-minus">
-                  <input
-                    type="number"
-                    class="input-text"
-                    name="quantity"
-                    value="1"
-                    title="Qty" />
-                </div>
-              </div>
+              
               <button class="add-to-cart" type="submit">
                 ${product.inStock ? 'Заказать товар' : 'Нет в наличии'}
               </button>
@@ -370,14 +357,7 @@ export const createModalContent = (product) => `
               </span>
             </li>
           </ul>
-          <div class="share-product-socail-area">
-            <p>Поделиться товаром</p>
-            <ul class="single-product-share">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-            </ul>
-          </div>
+
         </div>
       </div>
     </div>

@@ -75,6 +75,7 @@ export const initHeroSwiper = () => {
 
 // Product Swiper Configuration
 const productSwiperConfig = {
+  autoplay: false,
   direction: 'horizontal',
   navigation: {
     nextEl: '.swiper-button-next',
@@ -296,8 +297,38 @@ export const initTestimonialsSwiper = () => {
   return swiper
 }
 
+const quickViewModalSwiperConfig = {
+  direction: 'horizontal',
+  loop: true,
+  slidesPerView: 1,
+  spaceBetween: 10,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+    dynamicBullets: true,
+  },
+}
+
+export const initQuickViewModalSwiper = () => {
+  const swiperElement = document.getElementById('quick_view_slider')
+  if (!swiperElement) {
+    console.warn('Quick view modal swiper element not found')
+    return null
+  }
+  // Reuse existing instance if already initialized
+  if (swiperElement.swiper) {
+    swiperElement.swiper.update()
+    return swiperElement.swiper
+  }
+
+  const swiper = new Swiper(swiperElement, quickViewModalSwiperConfig)
+  console.log('Quick view modal Swiper initialized:', swiper)
+
+  return swiper
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  initHeroSwiper()
+  // initHeroSwiper()
   initProductSwiper()
   initBrandSwiper()
   initTestimonialsSwiper()
@@ -305,4 +336,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     productPageSlider()
   }, 100)
+  initQuickViewModalSwiper()
 })
