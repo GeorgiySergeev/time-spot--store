@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium Hero Test - Time Sphere</title>
+    <link rel="stylesheet" href="build/css/main.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+      }
+
+      .test-info {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        z-index: 1000;
+        font-size: 14px;
+        max-width: 300px;
+      }
+
+      .test-info h3 {
+        margin: 0 0 10px 0;
+        color: #d4af37;
+      }
+
+      .test-info ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .test-info li {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Test Info Panel -->
+    <div class="test-info">
+      <h3>Premium Hero Test</h3>
+      <ul>
+        <li>Кинематографичный дизайн</li>
+        <li>Видео-фон (если доступен)</li>
+        <li>Элегантная типографика</li>
+        <li>Плавные анимации</li>
+        <li>Адаптивный дизайн</li>
+      </ul>
+    </div>
+
+    <!-- Premium Hero Section -->
+    <section class="hero-premium">
+      <!-- Video Background Layer -->
+      <div class="hero-video-container">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="img/hero/hero-poster.jpg">
+          <source src="video/hero-watch-mechanism.mp4" type="video/mp4" />
+          <source src="video/hero-watch-mechanism.webm" type="video/webm" />
+          <!-- Fallback image for browsers that don't support video -->
+          <div
+            class="hero-fallback-bg"
+            style="background-image: url('img/hero/slider-4.jpg')"></div>
+        </video>
+      </div>
+
+      <!-- Dark Gradient Overlay -->
+      <div class="hero-overlay-premium"></div>
+
+      <!-- Content Layer -->
+      <div class="hero-content-premium">
+        <div class="container">
+          <div class="hero-content-wrapper">
+            <!-- Animated Underline -->
+            <div class="hero-underline"></div>
+
+            <!-- Main Content -->
+            <div
+              class="hero-text-content"
+              data-aos="fade-up"
+              data-aos-duration="1200">
+              <h1 class="hero-title-premium">
+                <span class="hero-title-line">TIMELESS</span>
+                <span class="hero-title-line">ELEGANCE</span>
+              </h1>
+
+              <p class="hero-subtitle-premium">
+                От легендарных швейцарских часов до эксклюзивных ювелирных
+                изделий — каждая деталь создана для тех, кто ценит безупречное
+                качество и неподвластную времени красоту.
+              </p>
+
+              <div class="hero-price-premium">
+                <span class="price-label">Начиная от</span>
+                <span class="price-value">$1,499</span>
+              </div>
+
+              <div class="hero-cta-premium">
+                <a href="watch.html" class="btn-premium-outline">
+                  <span class="btn-text">Исследовать Коллекцию</span>
+                  <span class="btn-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M5 12H19M19 12L12 5M19 12L12 19"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div
+        class="hero-scroll-indicator"
+        data-aos="fade-in"
+        data-aos-delay="2000">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span class="scroll-text">Прокрутите вниз</span>
+      </div>
+    </section>
+
+    <!-- Demo Content -->
+    <section
+      style="padding: 100px 20px; background: #f8f8f8; text-align: center">
+      <div class="container">
+        <h2 style="color: #333; margin-bottom: 30px">
+          Демонстрация адаптивности
+        </h2>
+        <p style="color: #666; font-size: 18px; line-height: 1.6">
+          Этот раздел показывает, как hero-секция работает с остальным контентом
+          страницы. Попробуйте изменить размер окна браузера, чтобы увидеть
+          адаптивность дизайна.
+        </p>
+
+        <div
+          style="
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+          ">
+          <div
+            style="
+              background: white;
+              padding: 30px;
+              border-radius: 8px;
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            ">
+            <h3 style="color: #d4af37; margin-bottom: 15px">
+              Премиум качество
+            </h3>
+            <p style="color: #666">
+              Каждый элемент создан с вниманием к деталям и безупречным
+              исполнением.
+            </p>
+          </div>
+          <div
+            style="
+              background: white;
+              padding: 30px;
+              border-radius: 8px;
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            ">
+            <h3 style="color: #d4af37; margin-bottom: 15px">Элегантность</h3>
+            <p style="color: #666">
+              Минималистичный дизайн, который подчеркивает красоту продукта.
+            </p>
+          </div>
+          <div
+            style="
+              background: white;
+              padding: 30px;
+              border-radius: 8px;
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            ">
+            <h3 style="color: #d4af37; margin-bottom: 15px">Иммерсивность</h3>
+            <p style="color: #666">
+              Кинематографичный опыт, который погружает в мир роскоши.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+      })
+
+      // Add some interactive effects
+      document.addEventListener('DOMContentLoaded', function () {
+        // Add click effect to CTA button
+        const ctaButton = document.querySelector('.btn-premium-outline')
+        if (ctaButton) {
+          ctaButton.addEventListener('click', function (e) {
+            e.preventDefault()
+
+            // Add ripple effect
+            const ripple = document.createElement('span')
+            ripple.style.position = 'absolute'
+            ripple.style.borderRadius = '50%'
+            ripple.style.background = 'rgba(255, 255, 255, 0.3)'
+            ripple.style.transform = 'scale(0)'
+            ripple.style.animation = 'ripple 0.6s linear'
+            ripple.style.left = '50%'
+            ripple.style.top = '50%'
+            ripple.style.width = '20px'
+            ripple.style.height = '20px'
+            ripple.style.marginLeft = '-10px'
+            ripple.style.marginTop = '-10px'
+
+            this.appendChild(ripple)
+
+            setTimeout(() => {
+              ripple.remove()
+            }, 600)
+          })
+        }
+      })
+
+      // Add CSS for ripple effect
+      const style = document.createElement('style')
+      style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `
+      document.head.appendChild(style)
+    </script>
+  </body>
+</html>

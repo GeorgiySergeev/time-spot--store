@@ -1,101 +1,80 @@
 <!-- Hero Section Start -->
-<section class="hero-slider hero-slider-one swiper">
-  <div class="swiper-wrapper">
-    <!-- Single Slide Start -->
-    <div
-      class="single-slide swiper-slide"
-      style="background-image: url(img/hero/slider-4.jpg)">
-      <div class="hero-overlay"></div>
-      <!-- Hero Content One Start -->
-      <div class="hero-content-one container-xl">
-        <div class="hero-content-one__wrapper">
-          <div class="slider-content-text text-left" data-aos="fade-right">
-            <h3>Эксклюзивное предложение -20% на этой неделе</h3>
-            <h2 class="hero__title hero-text-gold">TIMELESS CLASSIC</h2>
-            <h4>
-              От легендарных Rolex Submariner до элегантных Patek Philippe —
-              каждая модель создана для тех, кто ценит безупречное качество без
-              компромиссов.
-            </h4>
-            <p>
-              Начиная от
-              <strong>$1.499.00</strong>
-            </p>
-            <div class="slide-btn-group">
-              <a href="watch.html" class="btn btn-bordered btn-style-1">
-                Каталог
-              </a>
-            </div>
+<section class="hero-premium">
+  <!-- Video Background Layer -->
+  <div class="hero-video-container">
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="img/hero/hero-poster.jpg">
+      <source src="video/hero-watch-mechanism.mp4" type="video/mp4" />
+      <source src="video/hero-watch-mechanism.webm" type="video/webm" />
+      <!-- Fallback image for browsers that don't support video -->
+      <div
+        class="hero-fallback-bg"
+        style="background-image: url('img/hero/slider-4.jpg')"></div>
+    </video>
+  </div>
+
+  <!-- Dark Gradient Overlay -->
+  <div class="hero-overlay-premium"></div>
+
+  <!-- Content Layer -->
+  <div class="hero-content-premium">
+    <div class="container">
+      <div class="hero-content-wrapper">
+        <!-- Animated Underline -->
+        <div class="hero-underline"></div>
+
+        <!-- Main Content -->
+        <div
+          class="hero-text-content"
+          data-aos="fade-up"
+          data-aos-duration="1200">
+          <h1 class="hero-title-premium">
+            <span class="hero-title-line">TIMELESS</span>
+            <span class="hero-title-line">ELEGANCE</span>
+          </h1>
+
+          <p class="hero-subtitle-premium">
+            От легендарных швейцарских часов до эксклюзивных ювелирных изделий —
+            каждая деталь создана для тех, кто ценит безупречное качество и
+            неподвластную времени красоту.
+          </p>
+
+          <div class="hero-price-premium">
+            <span class="price-label">Начиная от</span>
+            <span class="price-value">$1,499</span>
+          </div>
+
+          <div class="hero-cta-premium">
+            <a href="watch.html" class="btn-premium-outline">
+              <span class="btn-text">Исследовать Коллекцию</span>
+              <span class="btn-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M5 12H19M19 12L12 5M19 12L12 19"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
           </div>
         </div>
       </div>
-      <!-- Hero Content One End -->
     </div>
-    <!-- Single Slide End -->
+  </div>
 
-    <!-- Single Slide Start -->
-    <div
-      class="single-slide swiper-slide"
-      style="background-image: url(img/hero/slider-2.jpg)">
-      <div class="hero-overlay"></div>
-      <!-- Hero Content One Start -->
-      <div class="hero-content-one container">
-        <div class="hero-content-one__wrapper">
-          <div class="slider-content-text text-left" data-aos="fade-left">
-            <h5>ЛУЧШИЕ ЧАСЫ-СУПЕР-КЛОНЫ</h5>
-            <h2 class="hero-text-gold">H-Vault Classico</h2>
-            <p>Реплики Rolex премиум-класса и других люксовых брендов</p>
-            <p>
-              Начиная от
-              <strong>$1.499.00</strong>
-            </p>
-            <div class="slide-btn-group">
-              <a href="watch.html" class="btn btn-bordered btn-style-1">
-                Каталог
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Hero Content One End -->
+  <!-- Scroll Indicator -->
+  <div class="hero-scroll-indicator" data-aos="fade-in" data-aos-delay="2000">
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
     </div>
-    <!-- Single Slide End -->
-
-    <!-- Single Slide Start -->
-    <div
-      class="single-slide swiper-slide"
-      style="background-image: url(img/hero/slider-3.jpg)">
-      <div class="hero-overlay"></div>
-      <!-- Hero Content One Start -->
-      <div class="hero-content-one container">
-        <div class="hero-content-one__wrapper">
-          <div class="slider-content-text text-left" data-aos="fade-left">
-            <h5>Эксклюзивное предложение -20% на этой неделе</h5>
-            <h2 class="hero-text-gold">H-Vault Classico</h2>
-            <p>
-              Мы не просто копируем роскошь — мы воссоздаём её с поразительной
-              точностью. Реплики Rolex премиум-класса и других люксовых брендов
-            </p>
-            <p>
-              Начиная от
-              <strong>$1.499.00</strong>
-            </p>
-            <div class="slide-btn-group">
-              <a href="watch.html" class="btn btn-bordered btn-style-1">
-                Каталог
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Hero Content One End -->
-    </div>
-
-    <!-- Single Slide End -->
-
-    <!-- Single Slide Start -->
-
-    <!-- Single Slide End -->
+    <span class="scroll-text">Прокрутите вниз</span>
   </div>
 </section>
 <!-- Hero Section End -->

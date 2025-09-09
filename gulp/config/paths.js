@@ -16,4 +16,6 @@ export const paths = {
   buildJsFolder: `${buildFolder}/js`,
   srcComponentsFolder: `${srcFolder}/components`,
   assetsFolder: `${srcFolder}/assets`,
+  srcVideoFolder: `${srcFolder}/video`,
+  buildVideoFolder: `${buildFolder}/video`,
 }
