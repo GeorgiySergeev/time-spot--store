@@ -1,9 +1,9 @@
 // Updated Product Templates for Cockpit CMS Structure
 // Data structure: id, brand, model, price, img, category, in_stock
 
-// Product card for grid view
+// ! Product card for grid view
 export const createProductCard = (product) => `
-  <div class="single-product-area mt-30">
+  <div class="single-product-area mt-30 ">
     <div class="product-thumb">
       <a href="product-details.html" class="product-detail-link" data-product-id="${product.id}">
         <img class="primary-image" src="${product.imageUrl}" alt="${product.name}" loading="lazy">
@@ -35,7 +35,7 @@ export const createProductCard = (product) => `
   </div>
 `
 
-// Product list item for list view
+// ! Product list item for list view
 export const createProductListItem = (product) => `
   <div class="shop-product-list-wrap">
     <div class="row product-layout-list mt-30">
@@ -71,7 +71,7 @@ export const createProductListItem = (product) => `
   </div>
 `
 
-// Product actions component
+// ! Product actions component
 export const createProductActions = (product) => `
   <div class="block2">
     <ul class="stock-cont">
@@ -95,7 +95,7 @@ export const createProductActions = (product) => `
   </div>
 `
 
-// Add to cart button (for future e-commerce if needed)
+// ! Add to cart button (for future e-commerce if needed)
 export const createAddToCartButton = (product) => `
   <div class="add-to-cart">
     <div class="product-button-action">
@@ -106,7 +106,7 @@ export const createAddToCartButton = (product) => `
   </div>
 `
 
-// Notify when available button
+// ! Notify when available button
 export const createNotifyButton = (product) => `
   <div class="notify-available">
     <div class="product-button-action">
@@ -117,7 +117,7 @@ export const createNotifyButton = (product) => `
   </div>
 `
 
-// Loading state
+// ! Loading state
 export const createLoadingState = () => `
   <div class="text-center loading-products" style="width: 100%; padding: 3rem;">
     <div class="loading-spinner">
@@ -131,7 +131,7 @@ export const createLoadingState = () => `
   </div>
 `
 
-// Error state with retry functionality
+// ! Error state with retry functionality
 export const createErrorState = (message, onRetry, onShowSamples) => `
   <div class="text-center error-products" style="width: 100%; padding: 3rem;">
     <div class="error-icon" style="color: #dc3545; font-size: 3rem; margin-bottom: 1rem;">
@@ -152,7 +152,7 @@ export const createErrorState = (message, onRetry, onShowSamples) => `
   </div>
 `
 
-// Empty state when no products found
+// ! Empty state when no products found
 export const createEmptyState = (filters = {}) => {
   const hasFilters = Object.keys(filters).some(
     (key) =>
@@ -188,10 +188,15 @@ export const createEmptyState = (filters = {}) => {
   `
 }
 
-// Filter sidebar template
+// ===============================================
+// Filter Sidebar Templates
+// ===============================================
+
+// ! Filter sidebar template
 export const createFilterSidebar = (filters, currentFilters = {}) => `
   <div class="shop-sidebar">
     <!-- Price Range Filter -->
+
     <div class="filter-widget mb-4">
       <h5 class="filter-title">Цена</h5>
       <div class="price-filter">
@@ -252,7 +257,7 @@ export const createFilterSidebar = (filters, currentFilters = {}) => `
   </div>
 `
 
-// Sort controls template
+// ! Sort controls template
 export const createSortControls = (currentSort = '') => `
   <div class="product-short">
     <label for="sort-select">Сортировка:</label>
@@ -266,7 +271,7 @@ export const createSortControls = (currentSort = '') => `
   </div>
 `
 
-// Helper function to get category display name
+// ! Helper function to get category display name
 export const getCategoryName = (category) => {
   const categoryNames = {
     watch: 'Часы',
@@ -276,14 +281,18 @@ export const getCategoryName = (category) => {
   return categoryNames[category] || category
 }
 
-// Product count display
+// ! Product count display
 export const createProductCount = (total, start, end) => `
   <div class="product-count">
     Показано ${start}-${end} из ${total} товаров
   </div>
 `
 
-// Modal content template for product quick view
+// ===============================================
+// ? Product Quick View Modal Templates
+// ===============================================
+
+// !  Modal content template for product quick view
 export const createModalContent = (product) => `
   <div class="row gx-3 product-details-inner">
     <div class="col-lg-5 col-md-6 col-sm-6">
@@ -330,7 +339,7 @@ export const createModalContent = (product) => `
 
           <div class="single-add-to-cart">
             <form action="#" class="cart-quantity d-flex">
-              
+
               <button class="add-to-cart" type="submit">
                 ${product.inStock ? 'Заказать товар' : 'Нет в наличии'}
               </button>
@@ -364,7 +373,7 @@ export const createModalContent = (product) => `
   </div>
 `
 
-// Loading state for modal
+// ! Loading state for modal
 export const createModalLoadingState = () => `
   <div class="text-center modal-loading" style="padding: 3rem;">
     <div class="loading-spinner">
@@ -378,7 +387,7 @@ export const createModalLoadingState = () => `
   </div>
 `
 
-// Error state for modal
+// ! Error state for modal
 export const createModalErrorState = (message) => `
   <div class="text-center modal-error" style="padding: 3rem;">
     <div class="error-icon" style="color: #dc3545; font-size: 2rem; margin-bottom: 1rem;">
@@ -391,11 +400,13 @@ export const createModalErrorState = (message) => `
   </div>
 `
 
-// Product Details Page Templates
+// ===============================================
+// ? Product Details Page Templates
+// ===============================================
 
-// Product info section template
+//  Product info section template
 export const createProductInfo = (product) => `
-  <h3>${product.model || product.name || product.title || 'Product Name'}</h3>
+  <h3 class="product-title text-white">${product.model || product.name || product.title || 'Product Name'}</h3>
   <div class="product-rating d-flex">
     <ul class="d-flex">
       ${Array.from(
@@ -422,7 +433,7 @@ export const createProductInfo = (product) => `
   </p>
 `
 
-// Product details section template
+//  Product details section template
 export const createProductDetails = (product) => `
   <ul class="stock-cont">
     <li class="product-sku">Артикул: <span>${product.sku || product.id || 'P006'}</span></li>
@@ -434,7 +445,7 @@ export const createProductDetails = (product) => `
   </ul>
 `
 
-// Product image gallery template
+//  Product image gallery template
 export const createProductGallery = (product, baseImageUrl) => {
   const mainImage = product.img?.path
     ? `${baseImageUrl}/${product.img.path}`
@@ -457,7 +468,7 @@ export const createProductGallery = (product, baseImageUrl) => {
   }
 }
 
-// Thumbnail template
+//  Thumbnail template
 export const createThumbnail = (image, index) => `
   <div class="pro-nav-thumb ${image.active ? 'active' : ''}" data-index="${index}">
     <img src="${image.url}" alt="${image.alt}">
@@ -468,7 +479,7 @@ export const createThumbnail = (image, index) => `
   </div>
 `
 
-// Product loading state template
+//  Product loading state template
 export const createProductLoadingState = () => `
   <div class="product-loading" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
        background: rgba(255,255,255,0.9); display: flex; align-items: center;
@@ -484,7 +495,7 @@ export const createProductLoadingState = () => `
   </div>
 `
 
-// Product error state template
+//  Product error state template
 export const createProductErrorState = (errorMessage) => `
   <div class="col-12 text-center" style="padding: 3rem;">
     <div style="color: #ff6b6b; font-size: 1.4rem; margin-bottom: 1rem;">
@@ -511,7 +522,11 @@ export const createProductErrorState = (errorMessage) => `
   </div>
 `
 
-// Fallback notice template
+// ===============================================
+//  END Product Details Page Templates
+// ===============================================
+
+// ! Fallback notice template
 export const createFallbackNotice = () => `
   <div class="alert alert-info" style="margin-bottom: 2rem; padding: 1rem; background: #d1ecf1;
        border: 1px solid #bee5eb; border-radius: 4px; color: #0c5460;">
@@ -525,7 +540,7 @@ export const createFallbackNotice = () => `
   </div>
 `
 
-// Helper function for price formatting
+// ! Helper function for price formatting
 const formatPrice = (price) => {
   if (typeof price === 'number') {
     return `$${price.toFixed(2)}`
@@ -540,7 +555,7 @@ const formatPrice = (price) => {
   return '$0.00'
 }
 
-// Pagination template
+// ! Pagination template
 export const createPagination = (currentPage, totalPages, onPageChange) => {
   if (totalPages <= 1) return ''
 

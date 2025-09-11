@@ -3,7 +3,7 @@
 
 const BASE_IMAGE_URL = 'https://websphere.miy.link/admin/storage/uploads'
 
-// Main product gallery template
+// ! Main product gallery template
 export const createProductGallery = (product) => {
   const images = product.images || product.gallery || []
   const mainImage = images[0] ||
@@ -25,12 +25,12 @@ export const createProductGallery = (product) => {
   }
 }
 
-// Product main images swiper template
+// ! Product main images swiper template
 export const createMainImagesSwiper = (product) => {
   const gallery = createProductGallery(product)
 
   return `
-    <div class="swiper product-main-swiper" id="product_page_slider">
+    <div class="swiper product-main-swiper " id="product_page_slider">
       <div class="swiper-wrapper">
         ${gallery.gallery
           .map(
@@ -58,7 +58,7 @@ export const createMainImagesSwiper = (product) => {
   `
 }
 
-// Product thumbnail navigation swiper template
+// ! Product thumbnail navigation swiper template
 export const createThumbnailSwiper = (product) => {
   const gallery = createProductGallery(product)
 
@@ -88,7 +88,7 @@ export const createThumbnailSwiper = (product) => {
   `
 }
 
-// Product information section template
+//  ! Product information section template
 export const createProductInfo = (product) => {
   const rating = product.rating || product.stars || 5
   const reviewsCount = product.reviewsCount || product.reviewCount || 1
@@ -192,7 +192,7 @@ export const createProductInfo = (product) => {
   `
 }
 
-// Product description tabs template
+// ! Product description tabs template
 export const createProductDescriptionTabs = (product) => {
   return `
     <div class="product-description-area section-pt">
@@ -244,7 +244,7 @@ export const createProductDescriptionTabs = (product) => {
   `
 }
 
-// Breadcrumb template
+// ! Breadcrumb template
 export const createBreadcrumb = (product) => {
   return `
     <div class="breadcrumb-area">
@@ -269,7 +269,7 @@ export const createBreadcrumb = (product) => {
   `
 }
 
-// Loading state template
+// ! Loading state template
 export const createProductLoadingState = () => {
   return `
     <div class="product-loading" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000;">
@@ -285,7 +285,7 @@ export const createProductLoadingState = () => {
   `
 }
 
-// Error state template
+// ! Error state template
 export const createProductErrorState = (errorMessage) => {
   return `
     <div class="col-12 text-center" style="padding: 3rem;">
@@ -303,7 +303,7 @@ export const createProductErrorState = (errorMessage) => {
   `
 }
 
-// Fallback notice template
+// ! Fallback notice template
 export const createFallbackNotice = () => {
   return `
     <div class="alert alert-info" style="margin-bottom: 2rem;">
@@ -313,7 +313,7 @@ export const createFallbackNotice = () => {
   `
 }
 
-// Utility function to format price
+// ! Utility function to format price
 const formatPrice = (price) => {
   if (typeof price === 'number') {
     return `$${price.toFixed(2)}`
@@ -328,7 +328,7 @@ const formatPrice = (price) => {
   return '$0.00'
 }
 
-// Create fallback product data
+// ! Create fallback product data
 export const createFallbackProduct = (productId) => ({
   id: productId,
   brand: 'Time Sphere',

@@ -35,44 +35,6 @@
     );
     z-index: 1;
   }
-  & .slick-arrow {
-    background-color: rgba(0, 0, 0, 0.2);
-    border: medium none;
-    color: #ffffff;
-    font-size: 24px;
-    height: 40px;
-    position: absolute;
-    top: 50%;
-    width: 40px;
-    z-index: 999;
-    visibility: hidden;
-    @include opacity(0);
-    @include transition(0.4s);
-    @include transform(translateY(-50%));
-    &:hover {
-      background-color: $theme-color;
-    }
-    @media #{$small-mobile} , #{$large-mobile} {
-      height: 40px;
-      width: 40px;
-    }
-  }
-  & .slick-arrow.slick-next {
-    right: 20px;
-  }
-  & .slick-arrow.slick-prev {
-    left: 20px;
-  }
-  &:hover .slick-arrow {
-    visibility: visible;
-    @include opacity(1);
-    &.slick-next {
-      right: 0px;
-    }
-    &.slick-prev {
-      left: 0px;
-    }
-  }
 }
 
 .hero-content-one {
@@ -93,6 +55,24 @@
   }
 
   & .slider-content-text {
+    &__line {
+      display: block;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideInUp 1.2s ease-out forwards;
+
+      &:first-child {
+        animation-delay: 0.5s;
+      }
+
+      &:last-child {
+        animation-delay: 0.8s;
+        color: $premium-gold-light;
+      }
+    }
     & h5 {
       color: $white;
       font-size: clamp(1rem, 4vw, 1.5rem);
@@ -100,12 +80,14 @@
       font-weight: 400;
     }
     & h2 {
-      color: $gold-light;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: $premium-white;
+      margin-bottom: 2rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
       font-size: clamp(4rem, 4vw, 5rem);
-      line-height: 44px;
       font-weight: 700;
       line-height: 4.3rem;
-      margin-bottom: 20px;
 
       @media #{$tablet-device} {
         font-size: clamp(6rem, 4vw, 8rem);
@@ -113,7 +95,7 @@
 
       @media #{$laptop-device} {
         font-size: clamp(12rem, 4vw, 15rem);
-        line-height: 8.3rem;
+        line-height: 5rem;
       }
     }
 
@@ -210,5 +192,76 @@
   }
   .breadcumb-menu {
     margin-top: 15px;
+  }
+}
+
+// Animations
+@keyframes drawLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
   }
 }

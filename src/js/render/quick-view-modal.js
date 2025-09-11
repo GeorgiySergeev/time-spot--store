@@ -4,7 +4,7 @@
  */
 
 import { getProductById } from '../api/api.js'
-import { initQuickViewModalSwiper } from './swiper.js'
+import { initQuickViewModalSwiper } from '../functions/swiper.js'
 import {
   createModalContent,
   createModalLoadingState,
