@@ -2,7 +2,7 @@ import AOS from 'aos'
 
 // Make AOS available globally for debugging
 if (typeof window !== 'undefined') {
-  window.AOS = AOS
+  window.Aos = AOS
 }
 
 /**
