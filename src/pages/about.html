@@ -4,6 +4,7 @@
 
   <body>
     <div class="main-wrapper">
+      @include('../components/layout/offcanvas.html')
       <!--  Header Start -->
       @include('../components/layout/header-2.html')
       @include('../components/blocks/hero-shop.html')
@@ -31,7 +32,7 @@
       <!-- Page Conttent -->
       <main class="about-us-page section-ptb">
         <div class="about-us_area section-pb">
-          <div class="container-xl">
+          <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6">
                 <div class="about-us_img">
@@ -137,6 +138,7 @@
             </div>
           </div>
         </div>
+        @include('../components/blocks/fact-area.html')
       </main>
       <!--// Page Conttent -->
 
@@ -185,7 +187,7 @@
       <!-- our-brand-area end -->
 
       <!-- footer Start -->
-      @include('../components/layout/footer-2.html')
+      @include('../components/layout/footer.html')
       <!-- footer End -->
     </div>
     @include('../components/layout/modal.html')

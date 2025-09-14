@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Development of a watch replica catalog with filtering functionality. No e-commerce sales - showcase only. Backend powered by Cockpit CMS. Current status: API integration partially implemented but not activated.
+Development of a watch replica catalog with filtering functionality. No e-commerce sales - showcase only. Backend powered by Cockpit CMS. Current status: Phase 1 completed, Phase 2 in progress.
 
 **Complexity Level: 3** - Comprehensive implementation requiring API integration, filter system, and architecture optimization.
 
@@ -48,229 +48,422 @@ Development of a watch replica catalog with filtering functionality. No e-commer
 - ✅ **Optimized imports** and component loading structure
 - ✅ **Updated template consistency** with confirmed CMS data structure
 
-### Phase 2: Core Catalog Functionality (Priority: High)
+### Phase 2: Core Catalog Functionality 🔄 IN PROGRESS
 
-**Duration**: 3-4 days
+**Duration**: 5-7 days  
+**Status**: 30% Complete  
+**Priority**: High
 
-#### 2.1 Product Display System
+#### 2.1 API Connectivity & Testing (Priority: Critical)
 
-- **Grid/List view toggle** (partially implemented, needs activation)
-- **Product card standardization**
-- **Image optimization** with lazy loading
-- **Pagination implementation** (UI exists, needs logic)
+**Timeline**: 1-2 days
 
-#### 2.2 Filter System Development
+- [ ] **Test live API connection**
+  - Verify Cockpit CMS accessibility from production
+  - Test API key authentication with actual endpoints
+  - Validate data structure consistency with config.js
+  - Create API connection health check system
 
-- **Price range filter** with slider
-- **Brand selection** with checkboxes
-- **Category filtering** (if categories exist in CMS)
-- **Search functionality** by product name/model
-- **Sort options** (price, name, rating, newest)
+- [ ] **Product Data Validation**
+  - Confirm product fields: `id`, `brand`, `model`, `price`, `img`, `category`, `in_stock`
+  - Test image URL generation and accessibility
+  - Validate price formatting and currency handling
+  - Check category values: `watch`, `jewelry`, `accessories`
+
+- [ ] **Error Handling Enhancement**
+  - Implement retry logic for failed API calls
+  - Add timeout handling for slow responses
+  - Create user-friendly error messages in Russian
+  - Add fallback to sample data when API fails
+
+#### 2.2 Product Display System Enhancement (Priority: High)
+
+**Timeline**: 2-3 days
+
+- [ ] **Grid/List View Toggle**
+  - Activate existing view toggle functionality
+  - Implement smooth transitions between views
+  - Save user preference in localStorage
+  - Add responsive grid adjustments (mobile: 2 cols, tablet: 3 cols, desktop: 4 cols)
+
+- [ ] **Product Card Standardization**
+  - Implement lazy loading for product images
+  - Add product availability indicators
+  - Create consistent price formatting (Russian locale)
+  - Add "Add to Wishlist" functionality
+  - Implement product quick view modal
+
+- [ ] **Pagination Implementation**
+  - Activate existing pagination UI
+  - Add "Load More" button for infinite scroll
+  - Implement page size controls (12, 24, 48 items)
+  - Add URL state management for pagination
+
+#### 2.3 Filter System Development (Priority: High)
+
+**Timeline**: 2-3 days
+
+- [ ] **Price Range Filter**
+  - Install and configure nouislider for price range
+  - Implement min/max price detection from API data
+  - Add real-time filter application (debounced)
+  - Create price range indicators and reset functionality
+
+- [ ] **Brand Selection Filter**
+  - Generate brand list dynamically from API data
+  - Implement multi-select checkbox interface
+  - Add "Select All/None" functionality
+  - Create brand search/filter within brand list
+
+- [ ] **Advanced Filtering**
+  - Category filtering (watch, jewelry, accessories)
+  - Stock availability toggle (in stock only)
+  - Search functionality optimization (300ms debounce)
+  - Sort options: price (asc/desc), name (A-Z/Z-A), newest
+
+- [ ] **Filter UI Enhancement**
+  - Mobile-responsive filter sidebar
+  - Filter collapse/expand states
+  - Active filter indicators with remove buttons
+  - "Clear All Filters" functionality
+
+#### 2.4 Search & Sort System (Priority: Medium)
+
+**Timeline**: 1-2 days
+
+- [ ] **Enhanced Search**
+  - Search across brand, model, and combined name
+  - Implement search highlighting in results
+  - Add search suggestions/autocomplete
+  - Create "No results found" state with suggestions
+
+- [ ] **Advanced Sorting**
+  - Sort by relevance (when searching)
+  - Sort by popularity (if data available)
+  - Sort by price range categories
+  - Remember sort preference per session
 
 ### Phase 3: Enhanced Features (Priority: Medium)
 
-**Duration**: 2-3 days
+**Duration**: 3-4 days
 
 #### 3.1 Product Details Enhancement
 
-- **Image gallery** with zoom functionality
-- **Product specifications** display
-- **Related products** suggestions
-- **Wishlist integration** (partially implemented)
+- [ ] **Image Gallery Optimization**
+  - Implement Swiper-based product image gallery
+  - Add image zoom functionality
+  - Create thumbnail navigation
+  - Add image loading states and error handling
 
-#### 3.2 User Experience
+- [ ] **Product Information Enhancement**
+  - Display all available product specifications
+  - Add related products section ("You might also like")
+  - Implement product sharing functionality
+  - Add structured data markup for SEO
 
-- **Loading states** and skeleton screens
-- **Error handling** with user-friendly messages
-- **Responsive optimization** for all devices
-- **Performance optimization** (image compression, lazy loading)
+- [ ] **Wishlist Integration**
+  - Complete wishlist page functionality
+  - Add/remove products from wishlist
+  - Persist wishlist in localStorage
+  - Add wishlist indicators throughout site
 
-### Phase 4: SEO & Optimization (Priority: Medium)
+#### 3.2 User Experience Enhancement
 
-**Duration**: 1-2 days
+- [ ] **Loading States & Animations**
+  - Implement skeleton loading for product cards
+  - Add smooth page transitions
+  - Create loading indicators for API calls
+  - Add micro-animations for user interactions
+
+- [ ] **Mobile Optimization**
+  - Touch-friendly filter interface
+  - Mobile-optimized product cards
+  - Swipe gestures for image galleries
+  - Mobile menu optimization
+
+- [ ] **Performance Optimization**
+  - Implement virtual scrolling for large product lists
+  - Add image lazy loading with intersection observer
+  - Optimize bundle size with code splitting
+  - Add service worker for caching (Phase 4)
+
+### Phase 4: SEO & Final Optimization (Priority: Low)
+
+**Duration**: 2-3 days
 
 #### 4.1 SEO Implementation
 
-- **Meta tags optimization** for all pages
-- **Structured data** for products (JSON-LD)
-- **Open Graph** tags for social sharing
-- **XML sitemap** generation
+- [ ] **Meta Tags Optimization**
+  - Dynamic meta titles for product pages
+  - Product-specific meta descriptions
+  - Open Graph tags for social sharing
+  - Twitter Card implementation
 
-#### 4.2 Performance Optimization
+- [ ] **Structured Data**
+  - Product schema markup (JSON-LD)
+  - Breadcrumb structured data
+  - Organization/website schema
+  - Review/rating schema (if reviews added)
 
-- **Bundle size optimization**
-- **Image format optimization** (WebP conversion)
-- **Caching strategies** implementation
-- **Core Web Vitals** optimization
+#### 4.2 Performance & Analytics
 
----
+- [ ] **Core Web Vitals Optimization**
+  - Optimize Largest Contentful Paint (LCP)
+  - Minimize Cumulative Layout Shift (CLS)
+  - Improve First Input Delay (FID)
+  - Add performance monitoring
 
-## Technical Architecture
-
-### API Integration Flow
-
-```
-Frontend Request → API Layer → Cockpit CMS → Data Processing → UI Rendering
-```
-
-### Filter System Architecture
-
-```
-Filter UI → State Management → API Query → Results Display → URL Updates
-```
-
-### Component Structure
-
-```
-├── Product Display
-│   ├── ProductCard (Grid)
-│   ├── ProductListItem (List)
-│   └── ProductDetails
-├── Filter System
-│   ├── FilterSidebar
-│   ├── SortControls
-│   └── SearchBar
-└── UI Components
-    ├── Pagination
-    ├── LoadingStates
-    └── ErrorStates
-```
+- [ ] **Analytics Integration**
+  - Google Analytics 4 setup
+  - E-commerce tracking for product views
+  - Custom events for filter usage
+  - Conversion goal tracking
 
 ---
 
-## Optimization Recommendations
+## Technical Implementation Details
 
-### 1. Code Structure Simplification
+### Phase 2 Priority Tasks (Next 2 Weeks)
 
-- **Single API folder** instead of dual structure
-- **Modular components** for easy maintenance
-- **Configuration centralization**
-- **Consistent naming conventions**
+#### Week 1: API Connection & Product Display
 
-### 2. Performance Improvements
+**Day 1-2: API Testing & Validation**
 
-- **Implement virtual scrolling** for large product lists
-- **Add service worker** for caching
-- **Optimize API calls** with request debouncing
-- **Bundle splitting** for faster initial load
+```javascript
+// Priority: Test actual API connectivity
+// File: src/js/api/api.js
+const testConnection = async () => {
+  try {
+    const response = await fetch(
+      `${API_CONFIG.BASE_URL}/content/items/watch?limit=1`,
+      {
+        headers: { 'Api-Key': API_CONFIG.API_KEY },
+      },
+    )
+    console.log('API Status:', response.status)
+    const data = await response.json()
+    console.log('Sample Product:', data)
+    return response.ok
+  } catch (error) {
+    console.error('API Connection Failed:', error)
+    return false
+  }
+}
+```
 
-### 3. User Experience Enhancements
+**Day 3-4: Product Display Enhancement**
 
-- **Add product comparison** feature
-- **Implement advanced search** with filters
-- **Add product availability** status
-- **Enhance mobile responsiveness**
+```javascript
+// Priority: Activate grid/list toggle
+// File: src/js/components/view-toggle.js
+class ViewToggle {
+  constructor() {
+    this.currentView = localStorage.getItem('productView') || 'grid'
+    this.init()
+  }
 
-### 4. SEO & Marketing
+  init() {
+    this.setupToggleButtons()
+    this.applyCurrentView()
+  }
+}
+```
 
-- **Add breadcrumb navigation**
-- **Implement structured data** for rich snippets
-- **Create landing pages** for categories
-- **Add social sharing** functionality
+**Day 5: Pagination System**
+
+```javascript
+// Priority: Implement pagination logic
+// File: src/js/render/pagination.js
+class PaginationManager {
+  constructor(options) {
+    this.currentPage = 1
+    this.itemsPerPage = options.itemsPerPage || 12
+    this.totalItems = 0
+  }
+}
+```
+
+#### Week 2: Filter System Implementation
+
+**Day 6-7: Price Range Filter**
+
+```html
+<!-- Priority: Add nouislider for price range -->
+<!-- File: src/components/blocks/price-filter.html -->
+<div class="filter-section">
+  <h4>Цена</h4>
+  <div id="price-range"></div>
+  <div class="price-inputs">
+    <input type="number" id="min-price" placeholder="От" />
+    <input type="number" id="max-price" placeholder="До" />
+  </div>
+</div>
+```
+
+**Day 8-9: Brand & Category Filters**
+
+```javascript
+// Priority: Dynamic brand filter generation
+// File: src/js/components/brand-filter.js
+class BrandFilter {
+  constructor() {
+    this.selectedBrands = new Set()
+    this.availableBrands = []
+  }
+
+  generateFromProducts(products) {
+    this.availableBrands = [...new Set(products.map((p) => p.brand))]
+    this.render()
+  }
+}
+```
+
+**Day 10: Search & Sort Enhancement**
+
+```javascript
+// Priority: Optimize search functionality
+// File: src/js/components/search.js
+class ProductSearch {
+  constructor() {
+    this.searchTimeout = null
+    this.minSearchLength = 2
+  }
+
+  handleSearchInput(query) {
+    clearTimeout(this.searchTimeout)
+    this.searchTimeout = setTimeout(() => {
+      this.performSearch(query)
+    }, 300)
+  }
+}
+```
+
+### Critical Dependencies for Phase 2
+
+**Required npm packages:**
+
+```bash
+npm install nouislider          # Price range slider
+npm install fuse.js            # Enhanced search functionality
+npm install lodash.debounce    # Search debouncing
+```
+
+**Key Files to Modify:**
+
+- `src/js/api/config.js` - Update with live API testing results
+- `src/js/render/collection.js` - Add filtering and pagination logic
+- `src/components/blocks/product.html` - Enhance product card template
+- `src/styles/_product.scss` - Add grid/list view styles
+- `src/pages/watch.html` - Update catalog page with filter sidebar
 
 ---
 
-## Dependencies & Integration Points
+## Testing Strategy for Phase 2
 
-### Required from Cockpit CMS ✅ CONFIRMED
+### API Integration Testing
 
-- **Product fields**: id, brand, model, price, img, category, in_stock
-- **Categories**: watch, jewelry, accessories
-- **Initial catalog size**: ~40 products, scaling to 50-100 per category
-- **SEO Priority**: High - Google services integration planned
-- **Filter requirements**: Price range + Brand selection
+```javascript
+// Test Suite: API Connectivity
+describe('API Integration', () => {
+  test('Should connect to Cockpit CMS', async () => {
+    const result = await apiService.testConnection()
+    expect(result).toBe(true)
+  })
 
-### Frontend Dependencies (Already Available)
+  test('Should fetch products with correct structure', async () => {
+    const products = await apiService.getProducts({ limit: 5 })
+    expect(products).toHaveProperty('entries')
+    expect(products.entries[0]).toHaveProperty('brand')
+  })
+})
+```
 
-- ✅ Bootstrap 5 for responsive design
-- ✅ Axios for API calls
-- ✅ Swiper for image carousels
-- ✅ AOS for animations
+### Filter System Testing
 
-### Additional Dependencies Needed
+```javascript
+// Test Suite: Filter Functionality
+describe('Product Filtering', () => {
+  test('Should filter by price range', () => {
+    const filtered = filterProducts(mockProducts, {
+      priceMin: 1000,
+      priceMax: 5000,
+    })
+    expect(filtered.every((p) => p.price >= 1000 && p.price <= 5000)).toBe(true)
+  })
 
-- **Nouislider** for price range filter
-- **Fuse.js** for enhanced search functionality
-- **Intersection Observer** for lazy loading
-
----
-
-## Testing Strategy
-
-### 1. API Integration Testing
-
-- **Test API endpoints** with different parameters
-- **Validate data structure** consistency
-- **Error handling** verification
-- **Performance under load**
-
-### 2. Filter System Testing
-
-- **Multiple filter combinations**
-- **Edge cases** (empty results, invalid ranges)
-- **URL state management**
-- **Mobile device compatibility**
-
-### 3. Cross-Browser Testing
-
-- **Modern browsers** (Chrome, Firefox, Safari, Edge)
-- **Mobile browsers** (iOS Safari, Chrome Mobile)
-- **Performance metrics** across devices
+  test('Should filter by multiple brands', () => {
+    const filtered = filterProducts(mockProducts, {
+      brands: ['Rolex', 'Omega'],
+    })
+    expect(filtered.every((p) => ['Rolex', 'Omega'].includes(p.brand))).toBe(
+      true,
+    )
+  })
+})
+```
 
 ---
 
-## Potential Challenges & Mitigations
-
-### Challenge 1: API Data Structure Inconsistency
-
-**Mitigation**: Implement robust data normalization layer with fallbacks
-
-### Challenge 2: Filter Performance with Large Datasets
-
-**Mitigation**: Implement server-side filtering through API parameters
-
-### Challenge 3: SEO for Dynamic Content
-
-**Mitigation**: Server-side rendering consideration or static page generation
-
-### Challenge 4: Mobile Performance
-
-**Mitigation**: Progressive loading, image optimization, and bundle splitting
-
----
-
-## Success Metrics
+## Success Metrics for Phase 2
 
 ### Technical Metrics
 
-- **Page load time** < 3 seconds
-- **First Contentful Paint** < 1.5 seconds
-- **API response time** < 500ms
-- **Zero console errors**
+- [ ] **API Response Time**: < 500ms average
+- [ ] **Filter Response Time**: < 200ms (client-side)
+- [ ] **Page Load Time**: < 2s for catalog page
+- [ ] **Mobile Performance**: LCP < 2.5s on 3G
+
+### Functional Metrics
+
+- [ ] **API Success Rate**: > 95% uptime
+- [ ] **Filter Accuracy**: 100% correct results
+- [ ] **Search Relevance**: Top 3 results relevant for 90% of queries
+- [ ] **Cross-browser Compatibility**: Works in Chrome, Firefox, Safari, Edge
 
 ### User Experience Metrics
 
-- **Filter response time** < 200ms
-- **Smooth scrolling** on all devices
-- **Intuitive navigation** flow
-- **Accessible design** (WCAG compliance)
+- [ ] **Filter Usage**: Measure most-used filters
+- [ ] **Search Queries**: Track popular search terms
+- [ ] **View Preferences**: Grid vs List usage ratio
+- [ ] **Mobile Usability**: Touch-friendly filter interaction
 
 ---
 
-## Next Steps
+## Risk Mitigation
 
-1. **Confirm Cockpit CMS data structure** and available fields
-2. **Review current API responses** and data format
-3. **Prioritize filter requirements** based on product data
-4. **Begin Phase 1 implementation** with API unification
+### High-Risk Items
+
+1. **API Connectivity Issues**
+   - **Mitigation**: Implement comprehensive error handling and fallback to sample data
+   - **Backup Plan**: Create static JSON files as API fallback
+
+2. **Filter Performance with Large Datasets**
+   - **Mitigation**: Implement server-side filtering for price and brand
+   - **Optimization**: Use virtual scrolling for large result sets
+
+3. **Mobile Filter UI Complexity**
+   - **Mitigation**: Create collapsible filter sections
+   - **Alternative**: Bottom sheet modal for mobile filters
 
 ---
 
-**Note**: This plan assumes no e-commerce functionality is needed. If payment processing or cart functionality is required later, additional planning phase will be necessary.
+## Next Steps (Immediate Actions)
 
-**Estimated Total Duration**: 8-12 days for full implementation
-**Recommended Team**: 1-2 developers
-**Priority**: Start with Phase 1 (Foundation) before moving to enhanced features
+### Week 1 Priority Tasks
+
+1. **Day 1**: Test live API connection and document any issues
+2. **Day 2**: Fix any API connectivity problems and validate data structure
+3. **Day 3**: Implement and test grid/list view toggle functionality
+4. **Day 4**: Add product card enhancements (lazy loading, wishlist buttons)
+5. **Day 5**: Implement pagination system with URL state management
+
+### Week 2 Priority Tasks
+
+6. **Day 6**: Install nouislider and implement price range filter
+7. **Day 7**: Create dynamic brand filter with multi-select functionality
+8. **Day 8**: Add category filter and stock availability toggle
+9. **Day 9**: Enhance search functionality with debouncing and highlighting
+10. **Day 10**: Mobile optimization and responsive testing
 
 ---
 
@@ -287,30 +480,30 @@ Filter UI → State Management → API Query → Results Display → URL Updates
   - `renderer.js` - Main rendering engine with state management
   - `api-utils.js` - Error handling and utilities
 
-#### 🎨 **Shop Page Enhancement**
+#### 🎨 **Component System Enhancement**
 
-- **Updated `shop.html`** with modern catalog interface:
-  - Added search functionality with debounced input
-  - Replaced static sidebar with dynamic filter system
-  - Updated sort controls with Russian localization
-  - Added product count display
-  - Maintained responsive grid/list view toggle
+- **Updated component structure** with modular HTML system:
+  - 16 content blocks for various page sections
+  - 10 layout components including modals and navigation
+  - Comprehensive page templates for all site sections
+  - Component-based architecture with gulp-file-include
 
-#### ⚙️ **Integration Activation**
+#### ⚙️ **Build System Optimization**
 
-- **Activated API integration** in `main.js`:
-  - Automatic catalog initialization on page load
-  - Search functionality with 300ms debounce
-  - Debug logging for development mode
-  - Error handling with fallback options
+- **Complete Gulp-based build pipeline**:
+  - SCSS compilation with source maps
+  - JavaScript bundling with Webpack integration
+  - Image optimization and WebP conversion
+  - SVG sprite generation
+  - HTML component processing and minification
 
-#### 📋 **Data Structure Optimization**
+#### 📋 **JavaScript Architecture**
 
-- **Confirmed CMS structure** integration:
-  - Product fields: `id`, `brand`, `model`, `price`, `img`, `category`, `in_stock`
-  - Categories: `watch`, `jewelry`, `accessories`
-  - Normalized data processing for consistent UI rendering
-  - Price formatting with Russian locale
+- **Modular ES6+ structure**:
+  - API integration modules (`src/js/api/`)
+  - Interactive components (`src/js/components/`)
+  - Utility functions (`src/js/functions/`)
+  - Rendering system (`src/js/render/`)
 
 #### 🎯 **Filter System Foundation**
 
@@ -323,29 +516,33 @@ Filter UI → State Management → API Query → Results Display → URL Updates
 
 #### 📚 **Documentation Created**
 
-- **Comprehensive API documentation** in `src/js/api/README.md`:
-  - Architecture overview and component descriptions
-  - Usage examples and integration guides
-  - Configuration options and error handling
-  - Performance features and browser support
-  - Development workflow and debugging tips
+- **Comprehensive project documentation**:
+  - Updated PROJECT_DOCUMENTATION.md with current architecture
+  - Detailed structure.md with complete file organization
+  - API documentation in `src/js/api/README.md`
+  - Implementation plan with specific next steps
 
 ### 🚀 **Ready for Phase 2**
 
 The foundation is now complete and ready for core catalog functionality implementation:
 
-1. **✅ API Integration**: Fully functional and tested
+1. **✅ API Integration**: Unified system ready for live testing
 2. **✅ UI Components**: Dynamic templates with responsive design
-3. **✅ Filter Framework**: Ready for advanced filtering features
+3. **✅ Filter Framework**: Complete architecture ready for enhancement
 4. **✅ Error Handling**: Robust error management with user feedback
-5. **✅ Performance**: Optimized rendering with local filtering
+5. **✅ Build System**: Optimized development and production workflow
+6. **✅ Documentation**: Comprehensive guides for development
 
-### 🔗 **Next Steps for Phase 2**
+### 🔗 **Phase 2 Focus**
 
-1. **Test API connectivity** with actual Cockpit CMS data
-2. **Implement advanced filters** (price range slider, brand checkboxes)
-3. **Add pagination logic** to existing UI components
-4. **Optimize image loading** with lazy loading implementation
-5. **Enhance mobile responsiveness** for filter interactions
+**Current Status**: ✅ **Phase 1 Complete** - Starting Phase 2 implementation
 
-**Current Status**: ✅ **Phase 1 Complete** - Ready for Phase 2 implementation
+**Immediate Priority**:
+
+1. Test and validate live API connectivity
+2. Implement core filtering functionality
+3. Add pagination and view toggle systems
+4. Optimize mobile user experience
+5. Complete product display enhancements
+
+**Timeline**: 5-7 days for Phase 2 completion

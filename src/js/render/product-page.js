@@ -5,6 +5,8 @@
 
 import { getProductById } from '../api/api.js'
 import { formatPrice } from '../api/config.js'
+import { productPageSlider } from '../functions/swiper.js'
+import { initLightbox } from '../functions/lightbox.js'
 
 /**
  * Create product title markup
@@ -12,7 +14,7 @@ import { formatPrice } from '../api/config.js'
  * @returns {string} - HTML markup for product title
  */
 export const createProductTitle = (product) => {
-  return `<h3 class="product-title">${product.model || product.name || 'Product Name'}</h3>`
+  return `<h3 class="product-title text-white">${product.model || product.name || 'Product Name'}</h3>`
 }
 
 /**
@@ -62,28 +64,6 @@ export const createProductStock = (product) => {
 }
 
 /**
- * Create main product image markup
- * @param {Object} product - Product data
- * @returns {string} - HTML markup for main product image
- */
-export const createMainProductImage = (product) => {
-  const imageUrl =
-    product.imageUrl ||
-    product.images?.[0] ||
-    '/img/products/default-450x450.jpg'
-  const altText = product.model || product.name || 'Product Image'
-
-  return `
-    <img src="${imageUrl}" alt="${altText}" id="main-product-image" />
-    <a href="${imageUrl}" class="glightbox zoom-icon"
-       data-gallery="product-gallery"
-       data-glightbox="title: ${altText}; description: High quality product view">
-      <i class="fa fa-search"></i>
-    </a>
-  `
-}
-
-/**
  * Create thumbnail markup
  * @param {string} imageSrc - Thumbnail image source
  * @param {string} altText - Thumbnail alt text
@@ -92,13 +72,11 @@ export const createMainProductImage = (product) => {
  */
 export const createThumbnail = (imageSrc, altText, index) => {
   return `
-    <div class="swiper-slide">
-      <div class="pro-nav-thumb ${index === 0 ? 'active' : ''}" data-index="${index}">
-        <img src="${imageSrc}" alt="${altText}" />
-        <a href="${imageSrc}" class="glightbox hidden-gallery-item"
-           data-gallery="product-gallery"
-           data-glightbox="title: ${altText}; description: High quality product view"></a>
-      </div>
+    <div class="swiper-slide pro-nav-thumb">
+      <img src="${imageSrc}" alt="${altText}" />
+      <a href="${imageSrc}" class="glightbox hidden-gallery-item"
+         data-gallery="product-gallery"
+         data-glightbox="title: ${altText}; description: High quality product view"></a>
     </div>
   `
 }
@@ -113,7 +91,26 @@ export const createProductGallery = (product) => {
     product.imageUrl || '/img/products/default-450x450.jpg',
   ]
 
-  // Create thumbnails
+  // Create main images for main swiper
+  const mainImages = images
+    .map((img, index) => {
+      const altText = `Product Image ${index + 1}`
+      return `
+        <div class="swiper-slide">
+          <div class="pro-large-img img-zoom">
+            <img src="${img}" alt="${altText}" id="main-product-image" />
+            <a href="${img}" class="glightbox zoom-icon"
+               data-gallery="product-gallery"
+               data-glightbox="title: ${altText}; description: High quality product view">
+              <i class="fa fa-search"></i>
+            </a>
+          </div>
+        </div>
+      `
+    })
+    .join('')
+
+  // Create thumbnails for thumbs swiper
   const thumbnails = images
     .map((img, index) => {
       const altText = `Product Image ${index + 1}`
@@ -125,11 +122,7 @@ export const createProductGallery = (product) => {
     <!-- Main Product Images Swiper -->
     <div class="swiper product-main-swiper" id="product_page_slider">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <div class="pro-large-img img-zoom">
-            ${createMainProductImage(product)}
-          </div>
-        </div>
+        ${mainImages}
       </div>
     </div>
 
@@ -138,6 +131,10 @@ export const createProductGallery = (product) => {
       <div class="swiper-wrapper">
         ${thumbnails}
       </div>
+      <!-- Navigation buttons for thumbnails -->
+
+      <!-- Scrollbar for thumbnails -->
+      <div class="swiper-scrollbar swiper-scrollbar-thumbs"></div>
     </div>
   `
 }
@@ -157,7 +154,7 @@ export const createProductInfo = (product) => {
             { length: 5 },
             (_, i) => `
             <li class="${i < (product.rating || 5) ? '' : 'bad-reting'}">
-              <a href="#"><i class="icon-star"></i></a>
+              <a href="#"><i class="icon-star text-warning"></i></a>
             </li>
           `,
           ).join('')}
@@ -172,20 +169,16 @@ export const createProductInfo = (product) => {
 
       <div class="single-add-to-cart">
         <form action="#" class="cart-quantity d-flex">
-          <div class="quantity">
-            <div class="cart-plus-minus">
-              <input type="number" class="input-text" name="quantity" value="1" title="Qty" />
-            </div>
-          </div>
+
           <button class="add-to-cart" type="submit">
-            Добавить в корзину
+            Купить
           </button>
         </form>
       </div>
       <ul class="single-add-actions">
         <li class="add-to-wishlist">
           <a href="wishlist.html" class="add_to_wishlist">
-            <i class="icon-heart"></i>
+            <i class="icon-heart text-warning"></i>
             Добавить в избранное
           </a>
         </li>
@@ -210,9 +203,9 @@ export const createProductInfo = (product) => {
       <div class="share-product-socail-area">
         <p>Поделиться товаром</p>
         <ul class="single-product-share">
-          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-facebook"></i></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-instagram"></i></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-telegram"></i></i></a></li>
         </ul>
       </div>
     </div>
@@ -301,8 +294,14 @@ export const renderProductDetails = async (productId) => {
         </div>
       `
 
-      // Bind gallery events after rendering
+      // Swiper will handle all gallery interactions automatically
       bindGalleryEvents()
+
+      // Initialize Swiper and Lightbox after DOM is updated
+      setTimeout(() => {
+        productPageSlider()
+        initLightbox()
+      }, 50)
     }
 
     console.log('Product details rendered successfully:', product)
@@ -320,122 +319,12 @@ export const renderProductDetails = async (productId) => {
 
 /**
  * Bind events for product gallery
+ * Swiper handles all thumbnail interactions automatically
  */
 const bindGalleryEvents = () => {
-  // Thumbnail click events
-  const thumbnails = document.querySelectorAll('.pro-nav-thumb')
-
-  thumbnails.forEach((thumb) => {
-    thumb.addEventListener('click', (e) => {
-      e.preventDefault()
-      const index = parseInt(thumb.getAttribute('data-index'))
-      switchToImage(index)
-    })
-  })
-
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    const container = document.querySelector('.product-details-inner')
-    if (container && isInViewport(container)) {
-      switch (e.key) {
-        case 'ArrowLeft':
-          e.preventDefault()
-          previousImage()
-          break
-        case 'ArrowRight':
-          e.preventDefault()
-          nextImage()
-          break
-      }
-    }
-  })
-}
-
-/**
- * Switch to a specific image in the gallery
- * @param {number} index - Image index
- */
-const switchToImage = (index) => {
-  const thumbnails = document.querySelectorAll('.pro-nav-thumb')
-  const mainImage = document.getElementById('main-product-image')
-  const zoomLink = document.querySelector('.zoom-icon')
-
-  if (!mainImage || index < 0 || index >= thumbnails.length) return
-
-  // Get image source from thumbnail
-  const thumbnailImg = thumbnails[index].querySelector('img')
-  if (thumbnailImg) {
-    mainImage.src = thumbnailImg.src
-    mainImage.alt = thumbnailImg.alt
-
-    // Update zoom link
-    if (zoomLink) {
-      zoomLink.href = thumbnailImg.src
-      zoomLink.setAttribute(
-        'data-glightbox',
-        `title: ${thumbnailImg.alt}; description: High quality product view`,
-      )
-    }
-  }
-
-  // Update active states
-  updateActiveStates(index)
-}
-
-/**
- * Update active states for thumbnails
- * @param {number} activeIndex - Active thumbnail index
- */
-const updateActiveStates = (activeIndex) => {
-  const thumbnails = document.querySelectorAll('.pro-nav-thumb')
-
-  thumbnails.forEach((thumb, index) => {
-    if (index === activeIndex) {
-      thumb.classList.add('active')
-    } else {
-      thumb.classList.remove('active')
-    }
-  })
-}
-
-/**
- * Navigate to next image
- */
-const nextImage = () => {
-  const thumbnails = document.querySelectorAll('.pro-nav-thumb')
-  const activeThumb = document.querySelector('.pro-nav-thumb.active')
-  let currentIndex = Array.from(thumbnails).indexOf(activeThumb)
-
-  const nextIndex = (currentIndex + 1) % thumbnails.length
-  switchToImage(nextIndex)
-}
-
-/**
- * Navigate to previous image
- */
-const previousImage = () => {
-  const thumbnails = document.querySelectorAll('.pro-nav-thumb')
-  const activeThumb = document.querySelector('.pro-nav-thumb.active')
-  let currentIndex = Array.from(thumbnails).indexOf(activeThumb)
-
-  const prevIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length
-  switchToImage(prevIndex)
-}
-
-/**
- * Check if element is in viewport
- * @param {Element} element - Element to check
- * @returns {boolean} - Whether element is in viewport
- */
-const isInViewport = (element) => {
-  const rect = element.getBoundingClientRect()
-  return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  )
+  // Swiper's thumbs functionality handles all interactions
+  // No additional event binding needed
+  console.log('Gallery events handled by Swiper')
 }
 
 // Auto-initialize when DOM is ready and we're on product details page
@@ -472,7 +361,6 @@ export default {
   createProductDescription,
   createProductSku,
   createProductStock,
-  createMainProductImage,
   createThumbnail,
   createProductGallery,
   createProductInfo,

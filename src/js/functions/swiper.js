@@ -6,10 +6,20 @@ import {
   Pagination,
   Navigation,
   Keyboard,
+  Mousewheel,
+  Scrollbar,
 } from 'swiper/modules'
 
 // Configure Swiper to use modules
-Swiper.use([Autoplay, Thumbs, Pagination, Navigation, Keyboard])
+Swiper.use([
+  Autoplay,
+  Thumbs,
+  Pagination,
+  Navigation,
+  Keyboard,
+  Mousewheel,
+  Scrollbar,
+])
 
 console.log('Swiper')
 
@@ -177,16 +187,28 @@ export const initBrandSwiper = () => {
 // Product Page Thumbs Configuration
 const productPageThumbsConfig = {
   direction: 'horizontal',
-  slidesPerView: 'auto',
+  slidesPerView: 'auto', // Let Swiper calculate based on content
   spaceBetween: 10,
-  freeMode: false,
+  freeMode: true, // Enable free scrolling
   watchSlidesProgress: true,
   slideToClickedSlide: true,
-  centerInsufficientSlides: true,
-  allowTouchMove: true, // Enable touch for clicking
-  simulateTouch: true, // Enable touch simulation for clicks
-  preventClicks: false,
-  preventClicksPropagation: false,
+  centerInsufficientSlides: false,
+  clickable: true,
+  allowTouchMove: true,
+  simulateTouch: true,
+  preventClicks: true,
+  preventClicksPropagation: true,
+
+  // Enable mousewheel for thumbnails
+  mousewheel: {
+    enabled: true,
+    forceToAxis: true,
+  },
+  // Add scrollbar for better UX
+  scrollbar: {
+    el: '.swiper-scrollbar-thumbs',
+    draggable: true,
+  },
   breakpoints: {
     320: {
       slidesPerView: 'auto',
@@ -200,6 +222,10 @@ const productPageThumbsConfig = {
       slidesPerView: 'auto',
       spaceBetween: 12,
     },
+    1024: {
+      slidesPerView: 'auto',
+      spaceBetween: 15,
+    },
   },
 }
 
@@ -208,29 +234,38 @@ const productPageMainConfig = {
   loop: false,
   spaceBetween: 10,
   grabCursor: true,
+  slidesPerView: 1,
+  centeredSlides: true,
 }
 
 export const productPageSlider = () => {
   const thumbsElement = document.querySelector('.product-thumbs-swiper')
   const mainElement = document.querySelector('.product-main-swiper')
 
+  console.log('🔍 Looking for swiper elements:', {
+    thumbsElement: !!thumbsElement,
+    mainElement: !!mainElement,
+    thumbsHTML: thumbsElement?.innerHTML?.substring(0, 100),
+    mainHTML: mainElement?.innerHTML?.substring(0, 100),
+  })
+
   if (!thumbsElement || !mainElement) {
-    console.warn('Product page swiper elements not found:', {
+    console.warn('❌ Product page swiper elements not found:', {
       thumbsElement: !!thumbsElement,
       mainElement: !!mainElement,
     })
     return null
   }
 
-  console.log('Initializing product page swipers...')
+  console.log('✅ Initializing product page swipers...')
 
   // Initialize thumbs swiper first
   const thumbsSwiper = new Swiper(
     '.product-thumbs-swiper',
     productPageThumbsConfig,
   )
-  console.log('Product Thumbs Swiper initialized:', thumbsSwiper)
-  console.log('Thumbs slides count:', thumbsSwiper.slides.length)
+  console.log('✅ Product Thumbs Swiper initialized:', thumbsSwiper)
+  console.log('📊 Thumbs slides count:', thumbsSwiper.slides.length)
 
   // Initialize main swiper with thumbs
   const mainSwiper = new Swiper('.product-main-swiper', {
@@ -239,25 +274,35 @@ export const productPageSlider = () => {
       swiper: thumbsSwiper,
     },
   })
-  console.log('Product Main Swiper initialized:', mainSwiper)
-  console.log('Main slides count:', mainSwiper.slides.length)
+  console.log('✅ Product Main Swiper initialized:', mainSwiper)
+  console.log('📊 Main slides count:', mainSwiper.slides.length)
 
-  // Add explicit click event handlers for thumbnails
-  const thumbnailSlides = thumbsElement.querySelectorAll('.swiper-slide')
-  thumbnailSlides.forEach((slide, index) => {
-    slide.addEventListener('click', (e) => {
-      e.preventDefault()
-      e.stopPropagation()
-      console.log(`Thumbnail ${index} clicked`)
-      mainSwiper.slideTo(index)
+  // Test click functionality
+  console.log('🎯 Testing thumbnail click functionality...')
+  const thumbSlides = thumbsElement.querySelectorAll('.swiper-slide')
+  console.log('📋 Found thumbnail slides:', thumbSlides.length)
 
-      // Update active state manually
-      thumbnailSlides.forEach((s) =>
-        s.classList.remove('swiper-slide-thumb-active'),
-      )
-      slide.classList.add('swiper-slide-thumb-active')
+  thumbSlides.forEach((slide, index) => {
+    console.log(`📸 Thumbnail ${index}:`, {
+      hasProNavThumb: slide.classList.contains('pro-nav-thumb'),
+      hasImage: !!slide.querySelector('img'),
+      hasLink: !!slide.querySelector('a'),
     })
   })
+
+  // Test navigation buttons
+  const prevButton = document.querySelector('.swiper-button-prev-thumbs')
+  const nextButton = document.querySelector('.swiper-button-next-thumbs')
+  console.log('🔘 Navigation buttons:', {
+    prevButton: !!prevButton,
+    nextButton: !!nextButton,
+  })
+
+  // Test swiper functionality
+  console.log('🧪 Testing Swiper functionality...')
+  console.log('Thumbs swiper enabled:', thumbsSwiper.enabled)
+  console.log('Thumbs swiper allowTouchMove:', thumbsSwiper.allowTouchMove)
+  console.log('Thumbs swiper clickable:', thumbsSwiper.clickable)
 
   return { mainSwiper, thumbsSwiper }
 }
@@ -332,9 +377,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductSwiper()
   initBrandSwiper()
   initTestimonialsSwiper()
-  // Add a small delay for product page swiper to ensure DOM is ready
-  setTimeout(() => {
-    productPageSlider()
-  }, 100)
+  // Product page slider will be initialized after product is rendered
   initQuickViewModalSwiper()
 })

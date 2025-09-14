@@ -1,10 +1,28 @@
 <header class="vs-header layout1">
   <!-- Main Menu Area -->
-  <div class="sticky-wrapper position-relative">
-    <div class="container-xl custom-container">
-      <div class="row justify-content-between align-items-center">
-        <div class="col-xl-4 d-none d-xl-block">
-          <nav class="main-menu menu-style1 d-none d-lg-block">
+  <div class="container">
+    <div class="custom-container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="header-logo style3">
+          <a href="index.html">
+            <h2 class="logo-text">TIME-SPOT24</h2>
+            <!-- <img src="/img/svg/logo.svg" alt="time-spot24" class="logo" /> -->
+          </a>
+        </div>
+
+        <button
+          class="burger-menu-btn d-block d-md-none"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample"
+          aria-label="Open menu"
+          aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="d-none d-md-block">
+          <nav class="main-menu menu-style1">
             <ul>
               <li class="menu-item-has-children">
                 <a href="watch.html">часы</a>
@@ -15,41 +33,14 @@
               <li>
                 <a href="blog.html">обзоры</a>
               </li>
+              <li class="menu-item-has-children mega-menu-wrap">
+                <a href="about.html">о нас</a>
+              </li>
+              <li>
+                <a href="contacts.html">контакты</a>
+              </li>
             </ul>
           </nav>
-        </div>
-        <div class="col-xl-4 logo__wrapper">
-          <div class="header-logo style3">
-            <a href="index.html">
-              <h2 class="logo-text">TIME-SPOT24</h2>
-              <!-- <img src="/img/svg/logo.svg" alt="time-spot24" class="logo" /> -->
-            </a>
-          </div>
-          <button
-            class="burger-menu-btn d-block d-xl-none"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample"
-            aria-label="Open menu"
-            aria-expanded="false">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-        <div class="col-xl-4 col-lg-auto d-none d-xl-block">
-          <div
-            class="d-flex justify-content-between justify-content-lg-end align-items-center gap-3">
-            <nav class="main-menu menu-style1 d-none d-lg-block text-end">
-              <ul>
-                <li class="menu-item-has-children mega-menu-wrap">
-                  <a href="about.html">о нас</a>
-                </li>
-                <li>
-                  <a href="contacts.html">контакты</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
         </div>
       </div>
     </div>

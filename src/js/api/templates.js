@@ -3,7 +3,7 @@
 
 // ! Product card for grid view
 export const createProductCard = (product) => `
-  <div class="single-product-area mt-30 ">
+  <div class="single-product-area ">
     <div class="product-thumb">
       <a href="product-details.html" class="product-detail-link" data-product-id="${product.id}">
         <img class="primary-image" src="${product.imageUrl}" alt="${product.name}" loading="lazy">
@@ -303,7 +303,7 @@ export const createModalContent = (product) => `
         .map(
           (image) => `
         <div class="swiper-slide">
-          <img src="${image}" alt="${product.name}" />
+          <img src="${image}" alt="${product.name}" class="quick-view-product-image" />
         </div>
       `,
         )

@@ -34,21 +34,16 @@ const renderGrid = (products) =>
   products
     .map(
       (product) => `
-      <div class="col-lg-3 col-md-6">
+      <div class="product-card col-6 col-lg-3 col-md-3">
         ${createProductCard(product)}
       </div>
     `,
     )
     .join('')
 
-const renderList = (products) => products.map(createProductListItem).join('')
-
-const renderStrategies = {
-  grid: renderGrid,
-  list: renderList,
-}
-
+// ==================================
 // Main Rendering Functions
+// ==================================
 export const renderProducts = (
   products,
   containerId = 'products',
@@ -63,21 +58,23 @@ export const renderProducts = (
       return
     }
 
-    const renderStrategy = renderStrategies[viewType] || renderStrategies.grid
-    const content = renderStrategy(products)
+    // Use only grid rendering
+    const content = renderGrid(products)
 
     if (totalEl) {
       totalEl.textContent = products.length
     }
 
     setContent(container, content)
-    console.log(`Rendered ${products.length} products (${viewType} view)`)
+    console.log(`Rendered ${products.length} products (grid view)`)
   } catch (error) {
     console.error('Rendering error:', error)
     showError(container, error.message, containerId, viewType)
   }
 }
-
+// ==================================
+// ! End Main Rendering Functions
+// ==================================
 export const showLoading = (containerId = 'products') => {
   const container = getContainer(containerId)
   setContent(container, createLoadingState())
@@ -134,12 +131,13 @@ export const loadProducts = async (
     showLoading(containerId)
     const result = await getProducts(filters)
     const products = result.products || []
-    renderProducts(products, containerId, viewType)
+    // Always use grid view
+    renderProducts(products, containerId, 'grid')
     return products
   } catch (error) {
     console.error('Failed to load products:', error)
     const container = getContainer(containerId)
-    showError(container, error.message, containerId, viewType)
+    showError(container, error.message, containerId, 'grid')
   }
 }
 
@@ -200,7 +198,8 @@ export const showSampleProducts = (
     },
   ]
 
-  renderProducts(sampleProducts, containerId, viewType)
+  // Always use grid view
+  renderProducts(sampleProducts, containerId, 'grid')
 }
 
 // Initialize the collection renderer
