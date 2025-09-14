@@ -1,5 +1,16 @@
 // Swiper
 @use '../../node_modules/swiper/swiper-bundle.css';
+
+@use '../../node_modules/swiper/modules/effect-fade.scss';
+@use '../../node_modules/swiper/modules/pagination.scss';
+@use '../../node_modules/swiper/modules/parallax.scss';
+@use '../../node_modules/swiper/modules/thumbs.scss';
+@use '../../node_modules/swiper/modules/zoom.scss';
+@use '../../node_modules/swiper/modules/navigation.scss';
+@use '../../node_modules/swiper/modules/keyboard.scss';
+@use '../../node_modules/swiper/modules/mousewheel.scss';
+@use '../../node_modules/swiper/modules/scrollbar.scss';
+
 // Bootstrap
 @use '../../node_modules/bootstrap/scss/bootstrap.scss';
 // Animate

@@ -29,7 +29,8 @@
   }
   & input,
   textarea {
-    border: 1px solid #dddddd;
+    background-color: hsla(0, 0%, 15%, 0.5);
+    border: 1px solid hsl(0, 0%, 87%, 0.5);
     color: #222222;
     font-size: 14px;
     height: 45px;

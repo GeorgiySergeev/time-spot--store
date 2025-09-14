@@ -80,7 +80,7 @@
 
   &__name {
     display: block;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
     color: $gold;
     margin-bottom: 12px;
@@ -99,14 +99,6 @@
     transform: translateX(0);
     opacity: 1;
     transition: all 0.4s ease 0.3s;
-    padding: 8px 16px;
-    // background: linear-gradient(
-    //   45deg,
-    //   $theme-color,
-    //   lighten($theme-color, 10%)
-    // );
-    border-radius: 20px;
-    display: inline-block;
   }
 }
 

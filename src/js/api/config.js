@@ -26,7 +26,7 @@ export const API_CONFIG = {
   // Image Configuration
   IMAGES: {
     BASE_URL: 'https://websphere.miy.link/admin/storage/uploads',
-    DEFAULT_IMAGE: './img/products/default-450x450.jpg',
+    DEFAULT_IMAGE: '/img/products/default-450x450.jpg',
     LAZY_LOADING: true,
   },
 
@@ -138,9 +138,50 @@ export const getApiHeaders = (additionalHeaders = {}) => {
 export const getImageUrl = (imagePath) => {
   if (!imagePath) return API_CONFIG.IMAGES.DEFAULT_IMAGE
 
-  if (imagePath.startsWith('http')) return imagePath
+  if (typeof imagePath === 'string' && imagePath.startsWith('http')) {
+    return imagePath
+  }
 
-  return `${API_CONFIG.IMAGES.BASE_URL}/${imagePath}`
+  const relativePath =
+    typeof imagePath === 'string'
+      ? imagePath
+      : imagePath?.path || imagePath?.file || imagePath?.url || ''
+
+  if (!relativePath) return API_CONFIG.IMAGES.DEFAULT_IMAGE
+
+  return relativePath.startsWith('http')
+    ? relativePath
+    : `${API_CONFIG.IMAGES.BASE_URL}/${relativePath}`
+}
+
+// Normalize various possible image shapes (string | object | array) to array of URLs
+const getImageUrlsArray = (product) => {
+  // Common Cockpit field names: img, images, media, gallery
+  const raw =
+    product?.images ||
+    product?.gallery ||
+    product?.media ||
+    product?.imgs ||
+    product?.img
+
+  if (!raw) return []
+
+  if (Array.isArray(raw)) {
+    return raw
+      .map((item) => {
+        // item can be string path, asset object, or nested { path }
+        if (!item) return null
+        const pathLike =
+          typeof item === 'string'
+            ? item
+            : item.path || item.file || item.url || item.src
+        return pathLike ? getImageUrl(pathLike) : null
+      })
+      .filter(Boolean)
+  }
+
+  // Single value (string or object)
+  return [getImageUrl(raw?.path || raw?.file || raw?.url || raw)]
 }
 
 // Build API query parameters for filtering
@@ -189,21 +230,27 @@ export const buildApiQuery = (filters = {}) => {
 }
 
 // Product data normalization for confirmed CMS structure
-export const normalizeProduct = (product) => ({
-  id: product.id || product._id,
-  brand: product.brand || 'Unknown Brand',
-  model: product.model || 'Unknown Model',
-  name:
-    `${product.brand || ''} ${product.model || ''}`.trim() ||
-    'Untitled Product',
-  price: parseFloat(product.price) || 0,
-  imageUrl: getImageUrl(product.img?.path || product.img),
-  category: product.category || 'watch',
-  inStock: product.in_stock !== false, // Default to true if not specified
-  url: `product-details.html?id=${product.id || product._id}`,
-  formattedPrice: formatPrice(product.price),
-  sku: `${product.brand}-${product.model}`.replace(/\s+/g, '-').toLowerCase(),
-})
+export const normalizeProduct = (product) => {
+  const images = getImageUrlsArray(product)
+
+  return {
+    id: product.id || product._id,
+    brand: product.brand || 'Unknown Brand',
+    model: product.model || 'Unknown Model',
+    description: product.description || 'Описание товара отсутствует.',
+    name:
+      `${product.brand || ''} ${product.model || ''}`.trim() ||
+      'Untitled Product',
+    price: parseFloat(product.price) || 0,
+    images,
+    imageUrl: images[0] || getImageUrl(product.img?.path || product.img),
+    category: product.category || 'watch',
+    inStock: product.in_stock !== false, // Default to true if not specified
+    url: `product-details.html?id=${product.id || product._id}`,
+    formattedPrice: formatPrice(product.price),
+    sku: `${product.brand}-${product.model}`.replace(/\s+/g, '-').toLowerCase(),
+  }
+}
 
 // Price formatting helper
 export const formatPrice = (price) => {

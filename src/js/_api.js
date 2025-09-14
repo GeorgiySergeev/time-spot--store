@@ -1,2 +1,2 @@
-import './api/renderer.js'
-import { initializeCatalog } from './api/renderer.js'
+import './render/quick-view-modal.js'
+import './render/collection.js'

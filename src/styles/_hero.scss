@@ -31,47 +31,9 @@
     background: linear-gradient(
       135deg,
       rgba(0, 0, 0, 0.6) 0%,
-      rgba(0, 0, 0, 0.3) 100%
+      rgba(0, 0, 0, 0.7) 100%
     );
     z-index: 1;
-  }
-  & .slick-arrow {
-    background-color: rgba(0, 0, 0, 0.2);
-    border: medium none;
-    color: #ffffff;
-    font-size: 24px;
-    height: 40px;
-    position: absolute;
-    top: 50%;
-    width: 40px;
-    z-index: 999;
-    visibility: hidden;
-    @include opacity(0);
-    @include transition(0.4s);
-    @include transform(translateY(-50%));
-    &:hover {
-      background-color: $theme-color;
-    }
-    @media #{$small-mobile} , #{$large-mobile} {
-      height: 40px;
-      width: 40px;
-    }
-  }
-  & .slick-arrow.slick-next {
-    right: 20px;
-  }
-  & .slick-arrow.slick-prev {
-    left: 20px;
-  }
-  &:hover .slick-arrow {
-    visibility: visible;
-    @include opacity(1);
-    &.slick-next {
-      right: 0px;
-    }
-    &.slick-prev {
-      left: 0px;
-    }
   }
 }
 
@@ -79,18 +41,88 @@
   position: relative;
   z-index: 2;
 
+  &__wrapper {
+    width: 100%;
+    max-width: 820px;
+
+    @media #{$tablet-device} {
+      width: 75%;
+    }
+
+    @media #{$laptop-device} {
+      width: 50%;
+    }
+  }
+
   & .slider-content-text {
+    &__line {
+      display: block;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideInUp 1.2s ease-out forwards;
+
+      &:first-child {
+        animation-delay: 0.5s;
+      }
+
+      &:last-child {
+        animation-delay: 0.8s;
+        color: $premium-gold-light;
+      }
+    }
     & h5 {
       color: $white;
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      line-height: 24px;
+      font-weight: 400;
     }
-    & h1 {
-      color: $gold;
+    & h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: $premium-white;
+      margin-bottom: 2rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      font-size: clamp(4rem, 4vw, 5rem);
+      font-weight: 700;
+      line-height: 4.3rem;
+
+      @media #{$tablet-device} {
+        font-size: clamp(6rem, 4vw, 8rem);
+      }
+
+      @media #{$laptop-device} {
+        font-size: clamp(12rem, 4vw, 15rem);
+        line-height: 5rem;
+      }
     }
-    & p {
+
+    & h3 {
       color: $white;
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      line-height: 34px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    & h4 {
+      color: $white;
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      line-height: 34px;
+      font-weight: 100;
+    }
+
+    & p {
+      color: $gold-light;
       max-width: 560px;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
     }
     & .btn-style-1 {
+      width: 150px;
       margin-top: 25px;
       border-color: #fff;
       color: $white;
@@ -104,35 +136,15 @@
   }
 }
 
-.slick-current {
-  /*-- Hero Content One --*/
-  & .hero-content-one {
-    & h5 {
-      animation-name: rollIn;
-      animation-duration: 1.3s;
-    }
-    & h1 {
-      animation-name: bounceInLeft;
-      animation-duration: 1.5s;
-    }
-    & p {
-      animation-name: slideInLeft;
-      animation-duration: 0.7s;
-    }
-    & .btn {
-      animation-name: slideInUp;
-      animation-duration: 0.8s;
-    }
-    & .slider-inner-image {
-      @include opacity(1);
-      animation-name: fadeInRight;
-      animation-duration: 0.9s;
-    }
-  }
-}
+// @media screen and (max-width: 768px) {
+//   .hero-content-one {
+//     &__wrapper {
+//       width: 50%;
+//     }
+//   }
+// }
 
 // hero-2
-
 .breadcumb-wrapper {
   background-color: $theme-color;
   background-image: url('/img/bg/breadcumb-bg-2.jpg');
@@ -180,5 +192,76 @@
   }
   .breadcumb-menu {
     margin-top: 15px;
+  }
+}
+
+// Animations
+@keyframes drawLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
   }
 }
