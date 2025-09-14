@@ -4,6 +4,7 @@
 
   <body>
     <div class="main-wrapper">
+      @include('../components/layout/offcanvas.html')
       <!--  Header Start -->
       @include('../components/layout/header-2.html')
       <!--  Header Start -->
@@ -13,81 +14,42 @@
       @include('../components/layout/breadcrumb.html')
       <!-- main-content-wrap start -->
       <div class="main-content-wrap shop-page section-ptb">
-        <div class="container-xl">
+        <div class="container">
           <div class="row">
             <!-- Sidebar Start -->
-            @include('../components/blocks/sidebar.html')
+            @include('../components/layout/sidebar.html')
             <!-- Sidebar End -->
             <div class="col-lg-9 order-lg-2 order-1">
               <!-- shop-product-wrapper start -->
               <div class="shop-product-wrapper">
-                <div class="row align-itmes-center">
-                  <div class="col">
+                <div class="row align-itmes-center d-md-none">
+                  <div class="col pb-3">
                     <!-- shop-top-bar start -->
-                    <div class="shop-top-bar">
-                      <!-- product-view-mode start -->
-
-                      <div class="product-mode">
-                        <!--shop-item-filter-list-->
-                        <ul class="nav shop-item-filter-list" role="tablist">
-                          <li class="active">
-                            <a
-                              class="active grid-view"
-                              data-bs-toggle="tab"
-                              href="#grid">
-                              <i class="fa fa-th"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              class="list-view"
-                              data-bs-toggle="tab"
-                              href="#list">
-                              <i class="fa fa-th-list"></i>
-                            </a>
-                          </li>
-                        </ul>
-                        <!-- shop-item-filter-list end -->
-                      </div>
-                      <!-- product-view-mode end -->
-                      <!-- product-short start -->
-                      <div class="product-short">
-                        <p>всего товаров:</p>
-                        <span class="product-short-span" id="total_products">
-                          66
-                        </span>
-                        <p>Сортировать по :</p>
-                        <select class="nice-select" name="sortby">
-                          <option value="trending">Популярности</option>
-                          <option value="sales">Названию (А - Я)</option>
-                          <option value="sales">Названию (Я - А)</option>
-                          <option value="rating">Цене (по возрастанию)</option>
-                          <option value="date">Цене (по убыванию)</option>
-                          <option value="newest">Новинкам</option>
-                        </select>
-                      </div>
-                      <!-- product-short end -->
-                    </div>
+                    <form action="" class="w-50">
+                      <select name="brand" id="brand" class="w-100">
+                        <option value="">Rolex</option>
+                        <option value="">Omega</option>
+                        <option value="">Brand</option>
+                        <option value="">Brand</option>
+                        <option value="">Brand</option>
+                        <option value="">Brand</option>
+                        <option value="">Brand</option>
+                      </select>
+                    </form>
                     <!-- shop-top-bar end -->
                   </div>
                 </div>
 
                 <!-- shop-products-wrap start -->
                 <div class="shop-products-wrap">
-                  <div class="tab-content">
-                    <div class="tab-pane active" id="grid">
-                      <div class="shop-product-wrap">
-                        <div class="row" id="products">
-                          <!--! dynamic content will be added via product-renderer.js -->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane" id="list">
-                      <div class="shop-product-list-wrap">
-                        <div class="" id="">
-                          <!-- rendering products -->
-                        </div>
-                      </div>
+                  <div class="d-flex">
+                    <p class="d-block me-1">total:</p>
+                    <p class="d-block" id="total_products"></p>
+                  </div>
+
+                  <div class="shop-product-wrap">
+                    <div class="row" id="products">
+                      <!--! dynamic content will be added via product-renderer.js -->
                     </div>
                   </div>
                 </div>
@@ -118,7 +80,7 @@
       <!-- main-content-wrap end -->
 
       <!-- footer Start -->
-      @include('../components/layout/footer-2.html')
+      @include('../components/layout/footer.html')
       <!-- footer End -->
     </div>
 

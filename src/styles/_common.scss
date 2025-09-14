@@ -7,8 +7,9 @@
 
 /*-- CSS Custom Properties --*/
 :root {
+  --font-2: #{$content-font};
   --icon-font: 'FontAwesome', sans-serif;
-  --body-font: 'Rubik', sans-serif;
+  --body-font: 'Montserrat', sans-serif;
   --heading-font: 'Rubik', sans-serif;
   --theme-color: #{$theme-color};
   --white-color: #{$white};
@@ -153,6 +154,8 @@ a:focus {
   outline: 0;
   box-shadow: none !important;
 }
+
+// =======================================
 .header-sticky {
   &.is-sticky {
     position: fixed;
@@ -175,6 +178,36 @@ a:focus {
     - Common Classes
 -----------------------------------------*/
 
+.modal-content {
+  background: none;
+}
+.premium-title {
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: $gold-light;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+
+  @media (min-width: 1200px) {
+    font-size: 3.2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 2rem;
+  }
+}
+.premium-subtitle {
+  color: $grey;
+}
+.premium-divider {
+  border-bottom: 1px solid $gold-light;
+}
 .text-gold {
   color: $gold-light;
 }
@@ -202,7 +235,7 @@ a:focus {
 }
 @media #{$small-mobile} {
   .container {
-    width: 425px;
+    width: 100%;
   }
 }
 
@@ -398,7 +431,7 @@ body.scroll-lock {
     padding: 60px 0;
   }
   @media #{$small-mobile} {
-    padding: 60px 0;
+    padding: 20px 0;
   }
 }
 // Section Padding Top

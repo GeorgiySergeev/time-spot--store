@@ -2,6 +2,45 @@
   background: #fafafa;
 }
 
+// Fixed size for images in quick view modal
+.quick-view-modal {
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      max-height: 400px;
+      width: auto;
+      object-fit: contain;
+      max-width: 100%;
+    }
+  }
+
+  // Ensure consistent image container size
+  .swiper {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Specific class for quick view product images
+  .quick-view-product-image {
+    max-height: 400px;
+    width: auto;
+    object-fit: contain;
+    max-width: 100%;
+  }
+
+  // Product image container in modal
+  #quick_view_slider {
+    .swiper-wrapper {
+      align-items: center;
+    }
+  }
+}
+
 .product-info {
   h3 {
     font-size: 24px;

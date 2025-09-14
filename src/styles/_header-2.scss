@@ -1,3 +1,24 @@
+.custom-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.logo-text {
+  font-size: 28px;
+  font-weight: 600;
+  color: $theme-color;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+@media screen and (min-width: 767px) {
+  .logo-text {
+    font-size: 34px;
+  }
+}
+
 .burger-menu-btn {
   color: #ffffff;
   font-size: 22px;
@@ -235,7 +256,7 @@
   z-index: 41;
 }
 .vs-header.layout1 {
-  padding: 0 0 40px 0;
+  // padding: 20px 0 20px 0;
   position: absolute;
   // background: $body-bg-2;
   right: 0;
@@ -244,12 +265,12 @@
 }
 @media (max-width: 1199px) {
   .vs-header.layout1 {
-    padding: 20px 0 20px 0;
+    // padding: 20px 0 20px 0;
   }
 }
 @media (max-width: 991px) {
   .vs-header.layout1 {
-    padding-top: 0;
+    // padding-top: 0;
   }
 }
 .vs-header.layout2 {
@@ -309,7 +330,7 @@
 }
 @media (max-width: 1199px) {
   .header-logo.style3 {
-    padding: 20px 0 6px;
+    // padding: 20px 0 6px;
     margin-bottom: 0;
   }
 }
@@ -605,18 +626,14 @@
   margin: 0 0;
 }
 .menu-style1 > ul > li > a {
-  padding: 56px 25px;
+  padding: 0px 25px;
   position: relative;
   line-height: 1;
 }
-@media (max-width: 1919px) {
-  .menu-style1 > ul > li > a {
-    padding: 56px 20px;
-  }
-}
+
 @media (max-width: 1500px) {
   .menu-style1 > ul > li > a {
-    padding: 56px 4px;
+    padding: 0px 4px;
   }
 }
 .menu-style1 > ul > li > a::before {
