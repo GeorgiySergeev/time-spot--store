@@ -4,7 +4,7 @@
 export const API_CONFIG = {
   // API Credentials
   API_KEY: 'API-7c2cde63ceaca7aa2da97700466244e1f4f59c6e',
-  BASE_URL: 'https://websphere.miy.link/admin/api',
+  BASE_URL: 'https://time-spot24.wpsphere.miy.link/api',
 
   // Endpoints
   ENDPOINTS: {
@@ -25,8 +25,8 @@ export const API_CONFIG = {
 
   // Image Configuration
   IMAGES: {
-    BASE_URL: 'https://websphere.miy.link/admin/storage/uploads',
-    DEFAULT_IMAGE: '/img/products/default-450x450.jpg',
+    BASE_URL: 'https://time-spot24.wpsphere.miy.link/storage/uploads',
+    DEFAULT_IMAGE: '/img/product/default.jpg',
     LAZY_LOADING: true,
   },
 

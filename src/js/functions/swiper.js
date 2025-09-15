@@ -8,6 +8,7 @@ import {
   Keyboard,
   Mousewheel,
   Scrollbar,
+  EffectFade,
 } from 'swiper/modules'
 
 // Configure Swiper to use modules
@@ -19,12 +20,17 @@ Swiper.use([
   Keyboard,
   Mousewheel,
   Scrollbar,
+  EffectFade,
 ])
 
 console.log('Swiper')
 
 // Configuration for the main hero slider
 const heroSliderConfig = {
+  effect: 'fade',
+  fadeEffect: {
+    crossFade: true,
+  },
   // Optional parameters
   direction: 'horizontal',
   loop: true,
@@ -36,10 +42,6 @@ const heroSliderConfig = {
   },
 
   // Effect configuration
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true,
-  },
 
   // Enable grab cursor
   grabCursor: true,
@@ -373,7 +375,7 @@ export const initQuickViewModalSwiper = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // initHeroSwiper()
+  initHeroSwiper()
   initProductSwiper()
   initBrandSwiper()
   initTestimonialsSwiper()

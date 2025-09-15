@@ -1,12 +1,16 @@
 // Updated Product Templates for Cockpit CMS Structure
 // Data structure: id, brand, model, price, img, category, in_stock
 
+import { API_CONFIG } from './config.js'
+
+const defaultImage = API_CONFIG.IMAGES.DEFAULT_IMAGE
+
 // ! Product card for grid view
 export const createProductCard = (product) => `
   <div class="single-product-area ">
     <div class="product-thumb">
       <a href="product-details.html" class="product-detail-link" data-product-id="${product.id}">
-        <img class="primary-image" src="${product.imageUrl}" alt="${product.name}" loading="lazy">
+        <img class="primary-image" src="${product.imageUrl} || ${defaultImage}" alt="${product.name}" loading="lazy">
       </a>
       ${!product.inStock ? '<div class="label-product label_out">Нет в наличии</div>' : ''}
       <div class="action-links">
