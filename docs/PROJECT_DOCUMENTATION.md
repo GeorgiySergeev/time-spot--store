@@ -184,6 +184,8 @@ const API_CONFIG = {
 }
 ```
 
+For the complete backend watch model with field descriptions and examples, see [Watch Product Data Model](./DATA_MODEL_WATCH.md).
+
 #### Normalized Product Object
 
 ```javascript
