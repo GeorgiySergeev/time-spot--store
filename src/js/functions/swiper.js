@@ -375,7 +375,7 @@ export const initQuickViewModalSwiper = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initHeroSwiper()
+  // initHeroSwiper()
   initProductSwiper()
   initBrandSwiper()
   initTestimonialsSwiper()
